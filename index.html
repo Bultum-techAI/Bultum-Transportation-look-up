@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Bultum Academy — Transportation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14243D; --ink-soft:#3A4A63;
+    --marigold:#E0982B; --marigold-deep:#C67F16;
+    --paper:#FBF7EF; --card:#FFFFFF; --line:#E7DFCE;
+    --sage:#2E6E5E; --muted:#6B7688; --danger:#B4442E;
+    --shadow:0 14px 40px -18px rgba(20,36,61,.35); --radius:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    background:radial-gradient(120% 60% at 50% -10%, rgba(224,152,43,.10), transparent 60%),var(--paper);
+    color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5;
+    min-height:100dvh;display:flex;flex-direction:column;
+  }
+  .wrap{width:100%;max-width:560px;margin:0 auto;padding:22px 18px 40px;flex:1;display:flex;flex-direction:column}
+  .mast{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+  .mast .mark{width:44px;height:44px;flex:none;border-radius:12px;background:var(--ink);color:var(--marigold);
+    display:grid;place-items:center;font-family:'Archivo',sans-serif;font-weight:900;font-size:22px;letter-spacing:-.02em}
+  .mast h1{font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.01em;line-height:1.15}
+  .mast .sub{font-size:12.5px;color:var(--muted);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+
+  .screen{display:none;animation:rise .32s ease both}
+  .screen.active{display:block}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.screen,.screen.active{animation:none}}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+
+  .notice-head{background:var(--ink);color:#fff;padding:22px 22px 20px}
+  .notice-head .eyebrow{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--marigold);margin-bottom:8px}
+  .notice-head h2{font-family:'Archivo',sans-serif;font-weight:800;font-size:23px;line-height:1.15;letter-spacing:-.01em}
+  .notice-body{padding:6px 20px 20px}
+  .point{display:flex;gap:14px;padding:16px 2px;border-bottom:1px solid var(--line)}
+  .point:last-of-type{border-bottom:0}
+  .point .n{flex:none;width:30px;height:30px;border-radius:9px;background:rgba(224,152,43,.14);color:var(--marigold-deep);
+    display:grid;place-items:center;font-family:'Space Mono',monospace;font-weight:700;font-size:14px}
+  .point .txt strong{display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:15.5px;margin-bottom:2px;color:var(--ink)}
+  .point .txt span{font-size:14.5px;color:var(--ink-soft)}
+  .patience{margin:6px 2px 2px;padding:14px 16px;background:var(--paper);border:1px dashed var(--line);border-radius:14px;font-size:14.5px;color:var(--ink-soft)}
+  .patience b{color:var(--ink);font-weight:600}
+  .ack{display:flex;align-items:flex-start;gap:12px;padding:18px 20px;border-top:1px solid var(--line);cursor:pointer;user-select:none}
+  .ack input{appearance:none;-webkit-appearance:none;flex:none;width:26px;height:26px;border:2px solid var(--line);border-radius:8px;background:#fff;display:grid;place-items:center;cursor:pointer;transition:.15s;margin-top:1px}
+  .ack input:checked{background:var(--sage);border-color:var(--sage)}
+  .ack input:checked::after{content:"";width:7px;height:12px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg) translateY(-1px)}
+  .ack input:focus-visible{outline:3px solid rgba(46,110,94,.4);outline-offset:2px}
+  .ack label{font-size:14.5px;font-weight:500;color:var(--ink);cursor:pointer;line-height:1.4}
+
+  .btn{display:block;width:100%;border:0;border-radius:14px;padding:17px 20px;font-family:'Archivo',sans-serif;font-weight:700;font-size:16.5px;letter-spacing:.01em;cursor:pointer;transition:transform .12s ease, box-shadow .2s, background .2s;margin-top:16px}
+  .btn-primary{background:var(--marigold);color:var(--ink);box-shadow:0 10px 22px -10px rgba(224,152,43,.8)}
+  .btn-primary:hover{background:var(--marigold-deep);color:#fff}
+  .btn-primary:active{transform:translateY(1px)}
+  .btn-primary:disabled{background:var(--line);color:var(--muted);box-shadow:none;cursor:not-allowed}
+  .btn-ghost{background:transparent;color:var(--ink-soft);font-size:15px;padding:12px;margin-top:8px;border:0}
+  .btn-ghost:hover{color:var(--ink)}
+  .btn:focus-visible{outline:3px solid rgba(20,36,61,.4);outline-offset:2px}
+
+  .search-intro{padding:24px 22px 6px}
+  .search-intro h2{font-family:'Archivo',sans-serif;font-weight:800;font-size:24px;line-height:1.12;letter-spacing:-.01em}
+  .search-intro p{margin-top:8px;color:var(--ink-soft);font-size:15px}
+  .fields{padding:8px 22px 22px}
+  .field{margin-top:16px}
+  .field label{display:block;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+  .field .opt{text-transform:none;letter-spacing:0;font-weight:500;color:#B0A892}
+  .field input{width:100%;border:1.5px solid var(--line);border-radius:13px;padding:15px 16px;font-size:17px;font-family:inherit;color:var(--ink);background:#fff;transition:border-color .15s, box-shadow .15s}
+  .field input:focus{outline:none;border-color:var(--marigold);box-shadow:0 0 0 4px rgba(224,152,43,.15)}
+  .field input::placeholder{color:#B8B2A4}
+
+  .form-msg{margin:14px 22px 0;padding:13px 15px;border-radius:12px;font-size:14.5px;display:none}
+  .form-msg.show{display:block}
+  .form-msg.error{background:rgba(180,68,46,.09);color:var(--danger);border:1px solid rgba(180,68,46,.2)}
+  .form-msg.info{background:var(--paper);color:var(--ink-soft);border:1px solid var(--line)}
+
+  .placard{padding:22px}
+  .placard .who{font-size:13px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+  .placard .name{font-family:'Archivo',sans-serif;font-weight:800;font-size:26px;letter-spacing:-.01em;line-height:1.1;margin:3px 0 6px}
+  .tag{display:inline-flex;align-items:center;gap:6px;background:rgba(224,152,43,.14);color:var(--marigold-deep);
+    font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;margin:0 0 16px}
+  .vehicle{display:flex;align-items:center;gap:14px;background:var(--ink);color:#fff;border-radius:16px;padding:16px 18px;margin-bottom:16px}
+  .vehicle .ico{flex:none;width:46px;height:46px;border-radius:12px;background:var(--marigold);display:grid;place-items:center}
+  .vehicle .ico svg{width:26px;height:26px}
+  .vehicle .label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:600}
+  .vehicle .val{font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;letter-spacing:.01em}
+  .vehicle .area{font-size:13px;color:rgba(255,255,255,.72);font-weight:500;margin-top:1px}
+
+  .trow{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:10px;background:#fff}
+  .trow.friday{background:var(--paper);border-style:dashed}
+  .trow .leg{flex:none;width:112px}
+  .trow .leg .cap{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;display:flex;align-items:center;gap:6px}
+  .trow .leg .cap .dot{width:8px;height:8px;border-radius:50%}
+  .trow.am .dot{background:var(--marigold)} .trow.pm .dot{background:var(--sage)} .trow.friday .dot{background:var(--ink)}
+  .trow .leg .sub{font-size:11px;color:#A79E8C;margin-top:2px}
+  .trow .clock{margin-left:auto;font-family:'Space Mono',monospace;font-weight:700;font-size:24px;letter-spacing:-.01em;color:var(--ink)}
+  .trow .clock.soft{font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:var(--muted);max-width:170px;text-align:right}
+
+  .remind{margin-top:16px;display:flex;gap:11px;align-items:flex-start;background:rgba(224,152,43,.12);border:1px solid rgba(224,152,43,.3);border-radius:14px;padding:14px 15px;font-size:14.5px;color:var(--ink)}
+  .remind svg{flex:none;width:20px;height:20px;color:var(--marigold-deep);margin-top:1px}
+  .remind b{font-weight:700}
+  .multi-note{font-size:13.5px;color:var(--muted);text-align:center;padding:2px 0 14px}
+
+  .foot{text-align:center;margin-top:26px;font-size:12.5px;color:var(--muted);line-height:1.6}
+  .foot b{color:var(--ink-soft);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="mast">
+    <div class="mark">B</div>
+    <div><h1>Bultum Academy</h1><div class="sub">Transportation</div></div>
+  </div>
+
+  <!-- SCREEN 1: NOTICE -->
+  <section id="screen-notice" class="screen active">
+    <div class="card">
+      <div class="notice-head">
+        <div class="eyebrow">Before you look up your route</div>
+        <h2>Please read this first</h2>
+      </div>
+      <div class="notice-body">
+        <div class="point"><div class="n">1</div><div class="txt"><strong>Be outside 2 minutes early</strong><span>Please have your child outside at least 2 minutes before the bus or van arrives.</span></div></div>
+        <div class="point"><div class="n">2</div><div class="txt"><strong>The time shown is departure time</strong><span>It is the time the bus or van will <em>leave</em> your stop &mdash; not when it arrives.</span></div></div>
+        <div class="point"><div class="n">3</div><div class="txt"><strong>Expect delays the first two weeks</strong><span>Transportation can be very late at first while everyone gets used to the new routes.</span></div></div>
+        <div class="point"><div class="n">4</div><div class="txt"><strong>We&rsquo;ll tell you about big delays &mdash; later</strong><span>After the first two weeks, if a bus will be more than 10 minutes late, we will let you know.</span></div></div>
+        <div class="patience"><b>Please be patient</b> the first couple of weeks as we iron out the details. Thank you for working with us.</div>
+        <label class="ack" for="ackbox"><input type="checkbox" id="ackbox"><span>I have read and understand the information above.</span></label>
+        <div style="padding:0 20px 20px"><button class="btn btn-primary" id="continueBtn" disabled>I understand &mdash; continue</button></div>
+      </div>
+    </div>
+    <div class="foot">Questions? Call the school office.<br><b>Bultum Academy &middot; Columbia Heights, MN</b></div>
+  </section>
+
+  <!-- SCREEN 2: SEARCH -->
+  <section id="screen-search" class="screen">
+    <div class="card">
+      <div class="search-intro">
+        <h2>Find your child&rsquo;s ride</h2>
+        <p>Type your child&rsquo;s name as it appears on their school record. If the name is spelled a few ways, try just the first name.</p>
+      </div>
+      <div class="fields">
+        <div class="field"><label for="first">First name</label><input type="text" id="first" autocomplete="off" autocapitalize="words" placeholder="e.g. Amar"></div>
+        <div class="field"><label for="last">Last name <span class="opt">(optional)</span></label><input type="text" id="last" autocomplete="off" autocapitalize="words" placeholder="e.g. Amin"></div>
+        <button class="btn btn-primary" id="searchBtn">Look up route</button>
+      </div>
+      <div class="form-msg" id="searchMsg"></div>
+      <div style="padding:0 22px 20px"><button class="btn btn-ghost" id="backToNotice">&larr; Back to the notice</button></div>
+    </div>
+    <div class="foot">Can&rsquo;t find your child? Please call the school office and we&rsquo;ll help.</div>
+  </section>
+
+  <!-- SCREEN 3: RESULT -->
+  <section id="screen-result" class="screen">
+    <div id="resultHost"></div>
+    <div style="padding-top:4px"><button class="btn btn-ghost" id="searchAgain">&larr; Look up another child</button></div>
+    <div class="foot"><b>Bultum Academy &middot; Transportation</b><br>If anything looks wrong, please call the office.</div>
+  </section>
+
+</div>
+
+<script>
+/* ============================================================
+   Bultum transportation data — 2026&ndash;27
+   To update: edit the Google Sheet + backend, or replace this
+   array. Each record: first, last, vehicle, area, pickup,
+   dropoff, friday (early-release drop-off), note.
+   ============================================================ */
+const DATA = [
+  {first:"Zulekha",last:"Osman",vehicle:"Bus 1",area:"Fridley",pickup:"8:00 AM",dropoff:"4:15 PM",friday:"12:15 PM",note:""},
+  {first:"Milkesa",last:"Mohammed",vehicle:"Bus 1",area:"Fridley",pickup:"8:05 AM",dropoff:"4:20 PM",friday:"12:20 PM",note:""},
+  {first:"Maryam",last:"Shakul",vehicle:"Bus 1",area:"Fridley",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Muhammed",last:"Shakul",vehicle:"Bus 1",area:"Fridley",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Milkessa",last:"Wado",vehicle:"Bus 1",area:"Fridley",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Fenet",last:"Wado",vehicle:"Bus 1",area:"Fridley",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Ahil",last:"Mahammed",vehicle:"Bus 1",area:"Fridley",pickup:"8:10 AM",dropoff:"4:25 PM",friday:"12:25 PM",note:""},
+  {first:"Shukri",last:"Rashid",vehicle:"Bus 1",area:"Fridley",pickup:"8:13 AM",dropoff:"4:28 PM",friday:"12:28 PM",note:""},
+  {first:"Malik",last:"Rashid",vehicle:"Bus 1",area:"Fridley",pickup:"8:13 AM",dropoff:"4:28 PM",friday:"12:28 PM",note:""},
+  {first:"Hafizat",last:"Abdullahi",vehicle:"Bus 1",area:"Fridley",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Muhsinat",last:"Abdullahi",vehicle:"Bus 1",area:"Fridley",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Qanitat",last:"Abdullahi",vehicle:"Bus 1",area:"Fridley",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Hafiz",last:"Abdullahi",vehicle:"Bus 1",area:"Fridley",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Hanan",last:"Ahmed",vehicle:"Bus 1",area:"Fridley",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Yusra",last:"Ahmed",vehicle:"Bus 1",area:"Fridley",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Aisha",last:"Kalid",vehicle:"Bus 1",area:"Fridley",pickup:"8:18 AM",dropoff:"4:32 PM",friday:"12:32 PM",note:""},
+  {first:"Abidah",last:"Kalid",vehicle:"Bus 1",area:"Fridley",pickup:"8:18 AM",dropoff:"4:32 PM",friday:"12:32 PM",note:""},
+  {first:"Abdallah",last:"Kalid",vehicle:"Bus 1",area:"Fridley",pickup:"8:18 AM",dropoff:"4:32 PM",friday:"12:32 PM",note:""},
+  {first:"Abdalla",last:"Kalid",vehicle:"Bus 1",area:"Fridley",pickup:"8:18 AM",dropoff:"4:32 PM",friday:"12:32 PM",note:""},
+  {first:"Amar",last:"Amin",vehicle:"Bus 1",area:"Fridley",pickup:"8:20 AM",dropoff:"4:34 PM",friday:"12:34 PM",note:""},
+  {first:"Amira",last:"Amin",vehicle:"Bus 1",area:"Fridley",pickup:"8:20 AM",dropoff:"4:34 PM",friday:"12:34 PM",note:""},
+  {first:"Hafsa",last:"Amin",vehicle:"Bus 1",area:"Fridley",pickup:"8:20 AM",dropoff:"4:34 PM",friday:"12:34 PM",note:""},
+  {first:"Abbas",last:"Sumrain",vehicle:"Bus 1",area:"Fridley",pickup:"8:26 AM",dropoff:"4:40 PM",friday:"12:40 PM",note:""},
+  {first:"Ali",last:"Sumrain",vehicle:"Bus 1",area:"Fridley",pickup:"8:26 AM",dropoff:"4:40 PM",friday:"12:40 PM",note:""},
+  {first:"Hamza",last:"Sumrain",vehicle:"Bus 1",area:"Fridley",pickup:"8:26 AM",dropoff:"4:40 PM",friday:"12:40 PM",note:""},
+  {first:"Laya",last:"Khalil",vehicle:"Bus 1",area:"Fridley",pickup:"8:30 AM",dropoff:"4:05 PM",friday:"12:05 PM",note:""},
+  {first:"Musa",last:"Nur-Salah",vehicle:"Bus 2",area:"CH",pickup:"7:52 AM",dropoff:"4:02 PM",friday:"12:42 PM",note:""},
+  {first:"Mazna",last:"Abshir",vehicle:"Bus 2",area:"CH",pickup:"7:55 AM",dropoff:"4:04 PM",friday:"12:40 PM",note:""},
+  {first:"Mumtaz",last:"Abshir",vehicle:"Bus 2",area:"CH",pickup:"7:55 AM",dropoff:"4:04 PM",friday:"12:40 PM",note:""},
+  {first:"Muhammad",last:"Abshir",vehicle:"Bus 2",area:"CH",pickup:"7:55 AM",dropoff:"4:04 PM",friday:"12:40 PM",note:""},
+  {first:"Khadija",last:"Mohamed",vehicle:"Bus 2",area:"CH",pickup:"7:56 AM",dropoff:"4:05 PM",friday:"12:39 PM",note:""},
+  {first:"Bonsa",last:"Musa",vehicle:"Bus 2",area:"CH",pickup:"8:10 AM",dropoff:"4:35 PM",friday:"12:30 PM",note:""},
+  {first:"Sabat",last:"Gazali",vehicle:"Bus 2",area:"CH",pickup:"8:10 AM",dropoff:"4:35 PM",friday:"12:30 PM",note:""},
+  {first:"Riham",last:"Hussein",vehicle:"Bus 2",area:"CH",pickup:"—",dropoff:"4:10 PM",friday:"—",note:"Tue–Thu · daycare"},
+  {first:"Riham",last:"Hussein",vehicle:"Bus 2",area:"CH",pickup:"8:15 AM",dropoff:"4:30 PM",friday:"12:25 PM",note:""},
+  {first:"Abduljabar",last:"Abdullahi Sharif",vehicle:"Bus 2",area:"CH",pickup:"8:15 AM",dropoff:"4:30 PM",friday:"12:25 PM",note:""},
+  {first:"Aisha",last:"Abdullahi Sharif",vehicle:"Bus 2",area:"CH",pickup:"8:15 AM",dropoff:"4:30 PM",friday:"12:25 PM",note:""},
+  {first:"Sudays",last:"Mohamed",vehicle:"Bus 2",area:"CH",pickup:"8:15 AM",dropoff:"4:30 PM",friday:"12:25 PM",note:""},
+  {first:"Yasmin",last:"Mohamed",vehicle:"Bus 2",area:"CH",pickup:"8:15 AM",dropoff:"4:30 PM",friday:"12:25 PM",note:""},
+  {first:"Azizaa",last:"Mohamed",vehicle:"Bus 2",area:"CH",pickup:"8:15 AM",dropoff:"4:30 PM",friday:"12:25 PM",note:""},
+  {first:"Nura",last:"Siyat",vehicle:"Bus 2",area:"CH",pickup:"8:20 AM",dropoff:"4:25 PM",friday:"12:20 PM",note:""},
+  {first:"Haruun",last:"Siyat",vehicle:"Bus 2",area:"CH",pickup:"8:20 AM",dropoff:"4:25 PM",friday:"12:20 PM",note:""},
+  {first:"Fatimah",last:"Mohamed",vehicle:"Bus 2",area:"CH",pickup:"8:20 AM",dropoff:"4:25 PM",friday:"12:20 PM",note:""},
+  {first:"Abdallah",last:"Mohamed",vehicle:"Bus 2",area:"CH",pickup:"8:20 AM",dropoff:"4:25 PM",friday:"12:20 PM",note:""},
+  {first:"Walid",last:"Umer",vehicle:"Bus 2",area:"CH",pickup:"8:26 AM",dropoff:"4:21 PM",friday:"12:16 PM",note:""},
+  {first:"Abduljabar",last:"Abdullahi Sharif",vehicle:"Bus 2",area:"CH",pickup:"",dropoff:"",friday:"",note:"Fridays only"},
+  {first:"Aisha",last:"Abdullahi Sharif",vehicle:"Bus 2",area:"CH",pickup:"",dropoff:"",friday:"",note:"Fridays only"},
+  {first:"Mustafa",last:"Umar",vehicle:"Bus 2",area:"CH",pickup:"8:30 AM",dropoff:"4:15 PM",friday:"12:50 PM",note:""},
+  {first:"Bilal",last:"Umar",vehicle:"Bus 2",area:"CH",pickup:"8:30 AM",dropoff:"4:15 PM",friday:"12:50 PM",note:""},
+  {first:"Zamzam",last:"Umar",vehicle:"Bus 2",area:"CH",pickup:"8:30 AM",dropoff:"4:15 PM",friday:"12:50 PM",note:""},
+  {first:"Mustafa",last:"El Kaddur",vehicle:"Bus 2",area:"CH",pickup:"8:35 AM",dropoff:"4:05 PM",friday:"12:05 PM",note:""},
+  {first:"Muhammad",last:"Sharif",vehicle:"Bus 2",area:"CH",pickup:"8:36 AM",dropoff:"4:04 PM",friday:"12:04 PM",note:""},
+  {first:"Hassan",last:"Sharif",vehicle:"Bus 2",area:"CH",pickup:"8:36 AM",dropoff:"4:04 PM",friday:"12:04 PM",note:""},
+  {first:"Maryam",last:"Shakul",vehicle:"Bus 2",area:"CH",pickup:"—",dropoff:"4:17 PM",friday:"—",note:"Mon–Thu · daycare"},
+  {first:"Muhammed",last:"Shakul",vehicle:"Bus 2",area:"CH",pickup:"—",dropoff:"4:17 PM",friday:"—",note:"Mon–Thu · daycare"},
+  {first:"Mohamed",last:"Omar",vehicle:"Bus 3",area:"North",pickup:"7:55 AM",dropoff:"4:16 PM",friday:"12:16 PM",note:""},
+  {first:"Nimat",last:"Yusuf",vehicle:"Bus 3",area:"North",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Abdurahman",last:"Abdurahman",vehicle:"Bus 3",area:"North",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Anisa",last:"Abdulwahab",vehicle:"Bus 3",area:"North",pickup:"8:00 AM",dropoff:"4:22 PM",friday:"12:22 PM",note:""},
+  {first:"Khadijah",last:"Burton",vehicle:"Bus 3",area:"North",pickup:"8:04 AM",dropoff:"4:26 PM",friday:"12:26 PM",note:""},
+  {first:"Siam",last:"Bakri",vehicle:"Bus 3",area:"North",pickup:"8:06 AM",dropoff:"4:28 PM",friday:"12:28 PM",note:""},
+  {first:"Eman",last:"Bakri",vehicle:"Bus 3",area:"North",pickup:"8:06 AM",dropoff:"4:28 PM",friday:"12:28 PM",note:""},
+  {first:"Bilal",last:"Aboubaker",vehicle:"Bus 3",area:"North",pickup:"8:08 AM",dropoff:"4:30 PM",friday:"12:30 PM",note:""},
+  {first:"Atinaf",last:"Abdullahi",vehicle:"Bus 3",area:"North",pickup:"8:16 AM",dropoff:"4:36 PM",friday:"12:36 PM",note:""},
+  {first:"Ikhlas",last:"Amir",vehicle:"Bus 3",area:"North",pickup:"8:18 AM",dropoff:"4:38 PM",friday:"12:38 PM",note:""},
+  {first:"Amir",last:"Amir",vehicle:"Bus 3",area:"North",pickup:"8:18 AM",dropoff:"4:38 PM",friday:"12:38 PM",note:""},
+  {first:"Obsitu",last:"Mohamed",vehicle:"Bus 3",area:"North",pickup:"8:18 AM",dropoff:"4:38 PM",friday:"12:38 PM",note:""},
+  {first:"Simran",last:"Mohamed",vehicle:"Bus 3",area:"North",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Sabrina",last:"Mohamed",vehicle:"Bus 3",area:"North",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Maryam",last:"Ahmed",vehicle:"Bus 3",area:"North",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Idris",last:"Nor",vehicle:"Bus 3",area:"North",pickup:"—",dropoff:"",friday:"—",note:""},
+  {first:"Mohamed",last:"Nor",vehicle:"Bus 3",area:"North",pickup:"—",dropoff:"",friday:"—",note:""},
+  {first:"Samiya",last:"Nor",vehicle:"Bus 3",area:"North",pickup:"—",dropoff:"",friday:"—",note:""},
+  {first:"Suheyla",last:"Nor",vehicle:"Bus 3",area:"North",pickup:"—",dropoff:"",friday:"—",note:""},
+  {first:"Ikhlas",last:"Amir",vehicle:"Bus 4",area:"S Mpls",pickup:"—",dropoff:"4:30 PM",friday:"—",note:"Mon–Thu · PM daycare"},
+  {first:"Amir",last:"Amir",vehicle:"Bus 4",area:"S Mpls",pickup:"—",dropoff:"4:30 PM",friday:"—",note:"Mon–Thu · PM daycare"},
+  {first:"Seran",last:"Abdusemed",vehicle:"Bus 4",area:"S Mpls",pickup:"—",dropoff:"4:30 PM",friday:"—",note:"Mon–Thu · PM daycare"},
+  {first:"Amar",last:"Abamilki",vehicle:"Bus 4",area:"S Mpls",pickup:"—",dropoff:"4:30 PM",friday:"—",note:"Mon–Thu · PM daycare"},
+  {first:"Jowar",last:"Mohammed",vehicle:"Bus 4",area:"S Mpls",pickup:"—",dropoff:"4:30 PM",friday:"—",note:"Mon–Thu · PM daycare"},
+  {first:"Eman",last:"Mohammed",vehicle:"Bus 4",area:"S Mpls",pickup:"—",dropoff:"4:30 PM",friday:"—",note:"Mon–Thu · PM daycare"},
+  {first:"Nabil",last:"Ibrahim",vehicle:"Bus 4",area:"S Mpls",pickup:"—",dropoff:"4:30 PM",friday:"—",note:"Mon–Thu · PM daycare"},
+  {first:"Noah",last:"Abdulkadir",vehicle:"Bus 4",area:"S Mpls",pickup:"—",dropoff:"4:30 PM",friday:"—",note:"Mon–Thu · PM daycare"},
+  {first:"Riha",last:"Nur",vehicle:"Bus 4",area:"S Mpls",pickup:"7:50 AM",dropoff:"4:21 PM",friday:"12:19 PM",note:""},
+  {first:"Megersan",last:"Alishu",vehicle:"Bus 4",area:"S Mpls",pickup:"7:52 AM",dropoff:"4:20 PM",friday:"12:18 PM",note:""},
+  {first:"Kununsan",last:"Alishu",vehicle:"Bus 4",area:"S Mpls",pickup:"7:52 AM",dropoff:"4:20 PM",friday:"12:18 PM",note:""},
+  {first:"Sumeya",last:"Alishu",vehicle:"Bus 4",area:"S Mpls",pickup:"7:52 AM",dropoff:"4:20 PM",friday:"12:18 PM",note:""},
+  {first:"Kenna",last:"Ahmed",vehicle:"Bus 4",area:"S Mpls",pickup:"7:54 AM",dropoff:"4:18 PM",friday:"12:17 PM",note:""},
+  {first:"Imran",last:"Addish",vehicle:"Bus 4",area:"S Mpls",pickup:"—",dropoff:"4:14 PM",friday:"",note:""},
+  {first:"Faud",last:"Ali",vehicle:"Bus 4",area:"S Mpls",pickup:"7:56 AM",dropoff:"4:15 PM",friday:"12:13 PM",note:""},
+  {first:"Adem",last:"Bullo",vehicle:"Bus 4",area:"S Mpls",pickup:"7:57 AM",dropoff:"4:16 PM",friday:"12:14 PM",note:""},
+  {first:"Zamzam",last:"Bullo",vehicle:"Bus 4",area:"S Mpls",pickup:"7:57 AM",dropoff:"4:16 PM",friday:"12:14 PM",note:""},
+  {first:"Hassan",last:"Idris",vehicle:"Bus 4",area:"S Mpls",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Haris",last:"Idris",vehicle:"Bus 4",area:"S Mpls",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Amar",last:"Abamilki",vehicle:"Bus 4",area:"S Mpls",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Sumaya",last:"Mohamed",vehicle:"Bus 4",area:"S Mpls",pickup:"7:58 AM",dropoff:"4:17 PM",friday:"12:15 PM",note:""},
+  {first:"Amal",last:"Ali-Salaat",vehicle:"Bus 4",area:"S Mpls",pickup:"7:58 AM",dropoff:"4:17 PM",friday:"12:15 PM",note:""},
+  {first:"Naim",last:"Wako",vehicle:"Bus 4",area:"S Mpls",pickup:"7:58 AM",dropoff:"4:17 PM",friday:"12:15 PM",note:""},
+  {first:"Hikma",last:"Wako",vehicle:"Bus 4",area:"S Mpls",pickup:"7:58 AM",dropoff:"4:17 PM",friday:"12:15 PM",note:""},
+  {first:"Nuradin",last:"Wako",vehicle:"Bus 4",area:"S Mpls",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Mahir",last:"Heyder",vehicle:"Bus 4",area:"S Mpls",pickup:"8:02 AM",dropoff:"4:45 PM",friday:"12:24 PM",note:""},
+  {first:"Mariyam",last:"Mesfin",vehicle:"Bus 4",area:"S Mpls",pickup:"8:02 AM",dropoff:"4:45 PM",friday:"12:24 PM",note:""},
+  {first:"Muhamed",last:"Muktar",vehicle:"Bus 4",area:"S Mpls",pickup:"8:02 AM",dropoff:"4:45 PM",friday:"12:24 PM",note:""},
+  {first:"Eman",last:"Mohamed",vehicle:"Bus 4",area:"S Mpls",pickup:"8:04 AM",dropoff:"4:46 PM",friday:"12:25 PM",note:""},
+  {first:"Jowar",last:"Mohamed",vehicle:"Bus 4",area:"S Mpls",pickup:"8:04 AM",dropoff:"4:46 PM",friday:"12:25 PM",note:""},
+  {first:"Seran",last:"Abdusemed",vehicle:"Bus 4",area:"S Mpls",pickup:"8:04 AM",dropoff:"4:46 PM",friday:"12:25 PM",note:""},
+  {first:"Khalid",last:"Isaac",vehicle:"Bus 4",area:"S Mpls",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Asmaa",last:"Isaac",vehicle:"Bus 4",area:"S Mpls",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Hikma",last:"Isaac",vehicle:"Bus 4",area:"S Mpls",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Mohamed",last:"Gidi",vehicle:"Bus 4",area:"S Mpls",pickup:"8:04 AM",dropoff:"4:46 PM",friday:"12:25 PM",note:""},
+  {first:"Rahma",last:"Mesfin",vehicle:"Bus 4",area:"S Mpls",pickup:"8:06 AM",dropoff:"4:48 PM",friday:"12:26 PM",note:""},
+  {first:"Soresa",last:"Jemal",vehicle:"Bus 4",area:"S Mpls",pickup:"8:10 AM",dropoff:"4:49 PM",friday:"12:32 PM",note:""},
+  {first:"Sifenan",last:"Jibril",vehicle:"Bus 4",area:"S Mpls",pickup:"8:10 AM",dropoff:"4:49 PM",friday:"12:32 PM",note:""},
+  {first:"Sarah",last:"Ahmed",vehicle:"Bus 4",area:"S Mpls",pickup:"8:14 AM",dropoff:"4:26 PM",friday:"12:37 PM",note:""},
+  {first:"Muwal",last:"Ahmed",vehicle:"Bus 4",area:"S Mpls",pickup:"8:14 AM",dropoff:"4:26 PM",friday:"12:37 PM",note:""},
+  {first:"Bariiso",last:"Ahmed",vehicle:"Bus 4",area:"S Mpls",pickup:"8:14 AM",dropoff:"4:26 PM",friday:"12:37 PM",note:""},
+  {first:"Imran",last:"Addish",vehicle:"Bus 4",area:"S Mpls",pickup:"8:25 AM",dropoff:"—",friday:"—",note:""},
+  {first:"Anas",last:"Hassan",vehicle:"Bus 5",area:"BP",pickup:"7:50 AM",dropoff:"4:15 PM",friday:"12:15 PM",note:""},
+  {first:"Hamzaa",last:"Usmael",vehicle:"Bus 5",area:"BP",pickup:"7:52 AM",dropoff:"4:17 PM",friday:"12:17 PM",note:""},
+  {first:"Seenaa",last:"Usmael",vehicle:"Bus 5",area:"BP",pickup:"7:52 AM",dropoff:"4:17 PM",friday:"12:17 PM",note:""},
+  {first:"Ammar",last:"Abdi",vehicle:"Bus 5",area:"BP",pickup:"8:00 AM",dropoff:"4:25 PM",friday:"12:25 PM",note:""},
+  {first:"Hayat",last:"Abdi",vehicle:"Bus 5",area:"BP",pickup:"8:00 AM",dropoff:"4:25 PM",friday:"12:25 PM",note:""},
+  {first:"Hafsa",last:"Mohamed",vehicle:"Bus 5",area:"BP",pickup:"8:06 AM",dropoff:"4:31 PM",friday:"12:25 PM",note:""},
+  {first:"Shuaib",last:"Mohamed",vehicle:"Bus 5",area:"BP",pickup:"8:06 AM",dropoff:"4:31 PM",friday:"12:25 PM",note:""},
+  {first:"Omar",last:"Abdullahi",vehicle:"Bus 5",area:"BP",pickup:"8:08 AM",dropoff:"4:33 PM",friday:"12:33 PM",note:""},
+  {first:"Abdulrahman",last:"Abdullahi",vehicle:"Bus 5",area:"BP",pickup:"8:08 AM",dropoff:"4:33 PM",friday:"12:33 PM",note:""},
+  {first:"Khalid",last:"Abdullahi",vehicle:"Bus 5",area:"BP",pickup:"8:08 AM",dropoff:"4:33 PM",friday:"12:33 PM",note:""},
+  {first:"Sumeya",last:"Abdullahi",vehicle:"Bus 5",area:"BP",pickup:"8:08 AM",dropoff:"4:33 PM",friday:"12:33 PM",note:""},
+  {first:"Sitra",last:"Khadar",vehicle:"Bus 5",area:"BP",pickup:"—",dropoff:"—",friday:"12:34 PM",note:"Fridays / if needed"},
+  {first:"Amar",last:"Taha",vehicle:"Bus 5",area:"BP",pickup:"8:09 AM",dropoff:"4:34 PM",friday:"12:35 PM",note:""},
+  {first:"Dhul-Qarnayn",last:"Mustafa",vehicle:"Bus 5",area:"BP",pickup:"",dropoff:"",friday:"",note:"Mon–Thu · PM daycare"},
+  {first:"Zakiyah",last:"Mustafa",vehicle:"Bus 5",area:"BP",pickup:"",dropoff:"",friday:"",note:"Mon–Thu · PM daycare"},
+  {first:"Safiyyah",last:"Mustafa",vehicle:"Bus 5",area:"BP",pickup:"",dropoff:"",friday:"",note:"Mon–Thu · PM daycare"},
+  {first:"Luqman",last:"Mustafa",vehicle:"Bus 5",area:"BP",pickup:"",dropoff:"",friday:"",note:"Mon–Thu · PM daycare"},
+  {first:"Namoyi",last:"Mohamed",vehicle:"Bus 5",area:"BP",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Omar",last:"Mohamed",vehicle:"Bus 5",area:"BP",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Dhul-Qarnayn",last:"Mustafa",vehicle:"Bus 5",area:"BP",pickup:"8:30 AM",dropoff:"—",friday:"12:54 PM",note:"Fridays (home stop)"},
+  {first:"Zakiyah",last:"Mustafa",vehicle:"Bus 5",area:"BP",pickup:"8:30 AM",dropoff:"—",friday:"12:54 PM",note:"Fridays (home stop)"},
+  {first:"Safiyyah",last:"Mustafa",vehicle:"Bus 5",area:"BP",pickup:"8:30 AM",dropoff:"—",friday:"12:54 PM",note:"Fridays (home stop)"},
+  {first:"Luqman",last:"Mustafa",vehicle:"Bus 5",area:"BP",pickup:"8:30 AM",dropoff:"—",friday:"12:54 PM",note:"Fridays (home stop)"},
+  {first:"Urji",last:"Tahir",vehicle:"Bus 6",area:"CR",pickup:"7:50 AM",dropoff:"4:50 PM",friday:"12:50 PM",note:""},
+  {first:"Sabh",last:"Abdullahi",vehicle:"Bus 6",area:"CR",pickup:"7:52 AM",dropoff:"4:48 PM",friday:"12:48 PM",note:""},
+  {first:"Ahmed",last:"Abdurahman",vehicle:"Bus 6",area:"CR",pickup:"8:00 AM",dropoff:"4:40 PM",friday:"12:40 PM",note:""},
+  {first:"Amal",last:"Abdurahman",vehicle:"Bus 6",area:"CR",pickup:"8:00 AM",dropoff:"4:40 PM",friday:"12:40 PM",note:""},
+  {first:"Hanim",last:"Abdurahman",vehicle:"Bus 6",area:"CR",pickup:"8:00 AM",dropoff:"4:40 PM",friday:"12:40 PM",note:""},
+  {first:"Hawa",last:"Abdurahman",vehicle:"Bus 6",area:"CR",pickup:"8:00 AM",dropoff:"4:40 PM",friday:"12:40 PM",note:""},
+  {first:"Raziya",last:"Abdurahman",vehicle:"Bus 6",area:"CR",pickup:"8:00 AM",dropoff:"4:40 PM",friday:"12:40 PM",note:""},
+  {first:"Ifnan",last:"Abduro",vehicle:"Bus 6",area:"CR",pickup:"8:10 AM",dropoff:"4:30 PM",friday:"12:30 PM",note:""},
+  {first:"Jenna",last:"Dilbi",vehicle:"Bus 6",area:"CR",pickup:"8:18 AM",dropoff:"4:22 PM",friday:"12:22 PM",note:""},
+  {first:"Rahil",last:"Muktar",vehicle:"Bus 6",area:"CR",pickup:"8:24 AM",dropoff:"4:16 PM",friday:"12:16 PM",note:""},
+  {first:"Rihan",last:"Muktar",vehicle:"Bus 6",area:"CR",pickup:"8:24 AM",dropoff:"4:16 PM",friday:"12:16 PM",note:""},
+  {first:"Mohamed",last:"Muktar",vehicle:"Bus 6",area:"CR",pickup:"8:24 AM",dropoff:"4:16 PM",friday:"12:16 PM",note:""},
+  {first:"Eban",last:"Sena",vehicle:"Bus 6",area:"CR",pickup:"8:30 AM",dropoff:"4:10 PM",friday:"12:10 PM",note:""},
+  {first:"Murtesa",last:"Mohamed",vehicle:"Bus 7",area:"N of BP",pickup:"7:50 AM",dropoff:"4:38 PM",friday:"12:38 PM",note:""},
+  {first:"Chaltu",last:"Seid",vehicle:"Bus 7",area:"N of BP",pickup:"7:55 AM",dropoff:"4:32 PM",friday:"12:32 PM",note:""},
+  {first:"Milkessaa",last:"Seid",vehicle:"Bus 7",area:"N of BP",pickup:"7:55 AM",dropoff:"4:32 PM",friday:"12:32 PM",note:""},
+  {first:"Sina",last:"Mohamed",vehicle:"Bus 7",area:"N of BP",pickup:"8:00 AM",dropoff:"",friday:"",note:""},
+  {first:"Ahlam",last:"",vehicle:"Bus 7",area:"N of BP",pickup:"8:04 AM",dropoff:"4:10 PM",friday:"12:10 PM",note:""},
+  {first:"Amir",last:"",vehicle:"Bus 7",area:"N of BP",pickup:"8:04 AM",dropoff:"4:10 PM",friday:"12:10 PM",note:""},
+  {first:"Hasenat",last:"",vehicle:"Bus 7",area:"N of BP",pickup:"8:04 AM",dropoff:"4:10 PM",friday:"12:10 PM",note:""},
+  {first:"Omar",last:"Ali",vehicle:"Bus 7",area:"N of BP",pickup:"8:08 AM",dropoff:"4:26 PM",friday:"12:26 PM",note:""},
+  {first:"Imran",last:"Osman",vehicle:"Bus 7",area:"N of BP",pickup:"8:16 AM",dropoff:"4:18 PM",friday:"12:18 PM",note:""},
+  {first:"Hadi",last:"Walji",vehicle:"Bus 7",area:"N of BP",pickup:"8:18 AM",dropoff:"4:16 PM",friday:"12:16 PM",note:""},
+  {first:"Ruqayyah",last:"Walji",vehicle:"Bus 7",area:"N of BP",pickup:"8:18 AM",dropoff:"4:16 PM",friday:"12:16 PM",note:""},
+  {first:"Muhammad",last:"Walji",vehicle:"Bus 7",area:"N of BP",pickup:"8:18 AM",dropoff:"4:16 PM",friday:"12:16 PM",note:""},
+  {first:"Naol",last:"Abdiyo",vehicle:"Bus 8",area:"Blaine",pickup:"7:45 AM",dropoff:"4:45 PM",friday:"12:45 PM",note:""},
+  {first:"Bilal",last:"Abdiyo",vehicle:"Bus 8",area:"Blaine",pickup:"7:45 AM",dropoff:"4:45 PM",friday:"12:45 PM",note:""},
+  {first:"Ilhan",last:"Abdiyo",vehicle:"Bus 8",area:"Blaine",pickup:"7:45 AM",dropoff:"4:45 PM",friday:"12:45 PM",note:""},
+  {first:"Ayub",last:"Abdi",vehicle:"Bus 8",area:"Blaine",pickup:"8:00 AM",dropoff:"4:30 PM",friday:"12:30 PM",note:""},
+  {first:"Sabrinne",last:"Abdi",vehicle:"Bus 8",area:"Blaine",pickup:"8:00 AM",dropoff:"4:30 PM",friday:"12:30 PM",note:""},
+  {first:"Hasina",last:"Damina",vehicle:"Bus 8",area:"Blaine",pickup:"8:05 AM",dropoff:"4:25 PM",friday:"12:25 PM",note:""},
+  {first:"Hizam",last:"Damina",vehicle:"Bus 8",area:"Blaine",pickup:"8:05 AM",dropoff:"4:25 PM",friday:"12:25 PM",note:""},
+  {first:"Huzeyfa",last:"Damina",vehicle:"Bus 8",area:"Blaine",pickup:"8:05 AM",dropoff:"4:25 PM",friday:"12:25 PM",note:""},
+  {first:"Ihsaan",last:"Hassan",vehicle:"Bus 8",area:"Blaine",pickup:"8:25 AM",dropoff:"4:10 PM",friday:"12:10 PM",note:""},
+  {first:"Abdullah",last:"Hassan",vehicle:"Bus 8",area:"Blaine",pickup:"8:25 AM",dropoff:"4:10 PM",friday:"12:10 PM",note:""},
+  {first:"Hassan",last:"Mohamed",vehicle:"Bus 8",area:"Blaine",pickup:"8:30 AM",dropoff:"4:05 PM",friday:"12:05 PM",note:""},
+  {first:"Hussen",last:"Mohamed",vehicle:"Bus 8",area:"Blaine",pickup:"8:30 AM",dropoff:"4:05 PM",friday:"12:05 PM",note:""},
+  {first:"Mahamad",last:"Yusuf",vehicle:"Bus 9",area:"St.P",pickup:"7:45 AM",dropoff:"4:45 PM",friday:"",note:""},
+  {first:"Aisha",last:"Yusuf",vehicle:"Bus 9",area:"St.P",pickup:"7:45 AM",dropoff:"4:45 PM",friday:"",note:""},
+  {first:"Nahla",last:"Abdulwahab",vehicle:"Bus 9",area:"St.P",pickup:"7:55 AM",dropoff:"4:37 PM",friday:"12:37 PM",note:""},
+  {first:"Ahyan",last:"Abdulwahab",vehicle:"Bus 9",area:"St.P",pickup:"7:55 AM",dropoff:"4:37 PM",friday:"12:37 PM",note:""},
+  {first:"Anam",last:"Abdala",vehicle:"Bus 9",area:"St.P",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Asma",last:"Abdala",vehicle:"Bus 9",area:"St.P",pickup:"8:05 AM",dropoff:"4:27 PM",friday:"12:27 PM",note:""},
+  {first:"Nure",last:"Abdala",vehicle:"Bus 9",area:"St.P",pickup:"8:05 AM",dropoff:"4:27 PM",friday:"12:27 PM",note:""},
+  {first:"Milkesa",last:"Aliy",vehicle:"Bus 9",area:"St.P",pickup:"8:11 AM",dropoff:"4:21 PM",friday:"12:21 PM",note:""},
+  {first:"Hachalu",last:"Aliy",vehicle:"Bus 9",area:"St.P",pickup:"8:11 AM",dropoff:"4:21 PM",friday:"12:21 PM",note:""},
+  {first:"Wariyo",last:"Aliy",vehicle:"Bus 9",area:"St.P",pickup:"8:11 AM",dropoff:"4:21 PM",friday:"12:21 PM",note:""},
+  {first:"Asma",last:"Najib",vehicle:"Bus 9",area:"St.P",pickup:"8:17 AM",dropoff:"4:15 PM",friday:"12:15 PM",note:""},
+  {first:"Ehsan",last:"Najib",vehicle:"Bus 9",area:"St.P",pickup:"8:17 AM",dropoff:"4:15 PM",friday:"12:15 PM",note:""},
+  {first:"Emran",last:"Najib",vehicle:"Bus 9",area:"St.P",pickup:"8:17 AM",dropoff:"4:15 PM",friday:"12:15 PM",note:""},
+  {first:"Misha",last:"Hebo",vehicle:"Bus 10",area:"Andover",pickup:"8:00 AM",dropoff:"4:47 PM",friday:"12:47 PM",note:""},
+  {first:"Nafiis",last:"Mohamed",vehicle:"Bus 10",area:"Andover",pickup:"8:04 AM",dropoff:"4:44 PM",friday:"12:44 PM",note:""},
+  {first:"Sabona",last:"Mohamed",vehicle:"Bus 10",area:"Andover",pickup:"8:04 AM",dropoff:"4:44 PM",friday:"12:44 PM",note:""},
+  {first:"Salman",last:"Mohamed",vehicle:"Bus 10",area:"Andover",pickup:"8:04 AM",dropoff:"4:44 PM",friday:"12:44 PM",note:""},
+  {first:"Ibsa",last:"Osman",vehicle:"Bus 10",area:"Andover",pickup:"8:10 AM",dropoff:"4:35 PM",friday:"12:35 PM",note:""},
+  {first:"Munir",last:"Osman",vehicle:"Bus 10",area:"Andover",pickup:"8:10 AM",dropoff:"4:35 PM",friday:"12:35 PM",note:""},
+  {first:"Asad",last:"Mohamednur",vehicle:"Bus 10",area:"Andover",pickup:"8:19 AM",dropoff:"4:26 PM",friday:"12:26 PM",note:""},
+  {first:"Azhar",last:"Mohamednur",vehicle:"Bus 10",area:"Andover",pickup:"8:19 AM",dropoff:"4:26 PM",friday:"12:26 PM",note:""},
+  {first:"Maliana",last:"Sheik",vehicle:"Van 1",area:"Blaine",pickup:"7:30 AM",dropoff:"5:10 PM",friday:"",note:""},
+  {first:"Safi",last:"Hamza",vehicle:"Van 1",area:"Blaine",pickup:"7:30 AM",dropoff:"5:10 PM",friday:"",note:""},
+  {first:"Damballa",last:"Damballa",vehicle:"Van 1",area:"Blaine",pickup:"7:35 AM",dropoff:"5:05 PM",friday:"",note:""},
+  {first:"Osman",last:"Damballa",vehicle:"Van 1",area:"Blaine",pickup:"7:35 AM",dropoff:"5:05 PM",friday:"",note:""},
+  {first:"Adola",last:"Damballa",vehicle:"Van 1",area:"Blaine",pickup:"7:35 AM",dropoff:"5:05 PM",friday:"",note:""},
+  {first:"Asahd",last:"Yusuf",vehicle:"Van 1",area:"Blaine",pickup:"7:45 AM",dropoff:"4:55 PM",friday:"",note:""},
+  {first:"Thulfokar",last:"Pashkanem",vehicle:"Van 1",area:"Blaine",pickup:"8:05 AM",dropoff:"4:35 PM",friday:"",note:""},
+  {first:"Hania",last:"Mohammed",vehicle:"Van 1",area:"Blaine",pickup:"8:20 AM",dropoff:"4:20 PM",friday:"",note:""},
+  {first:"Maruf",last:"Hebo",vehicle:"Van 2",area:"Robb",pickup:"8:00 AM",dropoff:"4:36 PM",friday:"12:36 PM",note:""},
+  {first:"Aflah",last:"Borana",vehicle:"Van 2",area:"Robb",pickup:"8:02 AM",dropoff:"4:34 PM",friday:"12:34 PM",note:""},
+  {first:"Manasa",last:"Borana",vehicle:"Van 2",area:"Robb",pickup:"8:02 AM",dropoff:"4:34 PM",friday:"12:34 PM",note:""},
+  {first:"Fatimah",last:"Mohamed",vehicle:"Van 2",area:"Robb",pickup:"8:12 AM",dropoff:"4:24 PM",friday:"12:24 PM",note:""},
+  {first:"Abdullah",last:"Mohamed",vehicle:"Van 2",area:"Robb",pickup:"8:12 AM",dropoff:"4:24 PM",friday:"12:24 PM",note:""},
+  {first:"Haamid",last:"Ali",vehicle:"Van 2",area:"Robb",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Nasra",last:"Ali",vehicle:"Van 2",area:"Robb",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Roba",last:"Abdi",vehicle:"Van 2",area:"Robb",pickup:"8:20 AM",dropoff:"4:15 PM",friday:"12:15 PM",note:""},
+  {first:"Bilal",last:"Abdi",vehicle:"Van 2",area:"Robb",pickup:"8:20 AM",dropoff:"4:15 PM",friday:"12:15 PM",note:""},
+  {first:"Furat",last:"Mohamed",vehicle:"Van 2",area:"Robb",pickup:"8:25 AM",dropoff:"4:10 PM",friday:"12:10 PM",note:""},
+  {first:"Abdallah",last:"Mohammed",vehicle:"Van 3",area:"MG",pickup:"8:10 AM",dropoff:"4:25 PM",friday:"12:25 PM",note:""},
+  {first:"Abdurahim",last:"Mohammed",vehicle:"Van 3",area:"MG",pickup:"8:10 AM",dropoff:"4:25 PM",friday:"12:25 PM",note:""},
+  {first:"Abdurahman",last:"Mohammed",vehicle:"Van 3",area:"MG",pickup:"8:10 AM",dropoff:"4:25 PM",friday:"12:25 PM",note:""},
+  {first:"Yahya",last:"Mohammed",vehicle:"Van 3",area:"MG",pickup:"8:10 AM",dropoff:"4:25 PM",friday:"12:25 PM",note:""},
+  {first:"Luqman",last:"Said",vehicle:"Van 3",area:"MG",pickup:"8:15 AM",dropoff:"4:20 PM",friday:"12:20 PM",note:""},
+  {first:"Imran",last:"Said",vehicle:"Van 3",area:"MG",pickup:"8:15 AM",dropoff:"4:20 PM",friday:"12:20 PM",note:""},
+  {first:"Zayn",last:"Said",vehicle:"Van 3",area:"MG",pickup:"8:15 AM",dropoff:"4:20 PM",friday:"12:20 PM",note:""},
+  {first:"Maryama",last:"Said",vehicle:"Van 3",area:"MG",pickup:"8:15 AM",dropoff:"4:20 PM",friday:"12:20 PM",note:""},
+  {first:"Bashir",last:"Said",vehicle:"Van 3",area:"MG",pickup:"8:15 AM",dropoff:"4:20 PM",friday:"12:20 PM",note:""},
+  {first:"Ahlam",last:"Esake",vehicle:"Van 4",area:"Ramsey",pickup:"8:00 AM",dropoff:"4:30 PM",friday:"12:30 PM",note:""},
+  {first:"Ammar",last:"Esake",vehicle:"Van 4",area:"Ramsey",pickup:"8:00 AM",dropoff:"4:30 PM",friday:"12:30 PM",note:""},
+  {first:"Khald",last:"Esake",vehicle:"Van 4",area:"Ramsey",pickup:"8:00 AM",dropoff:"4:30 PM",friday:"12:30 PM",note:""},
+  {first:"Kiran",last:"Esake",vehicle:"Van 4",area:"Ramsey",pickup:"8:00 AM",dropoff:"4:30 PM",friday:"12:30 PM",note:""},
+  {first:"Niya",last:"Muktar",vehicle:"Van 4",area:"Ramsey",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Amira",last:"Hassan",vehicle:"Van 4",area:"Ramsey",pickup:"",dropoff:"",friday:"",note:""},
+  {first:"Marwa",last:"Omar",vehicle:"Van 4",area:"Ramsey",pickup:"8:04 AM",dropoff:"4:26 PM",friday:"12:26 PM",note:""},
+  {first:"Haamid",last:"Ibrahim",vehicle:"Van 4",area:"Ramsey",pickup:"8:10 AM",dropoff:"4:20 PM",friday:"12:20 PM",note:""},
+  {first:"Imran",last:"Ibrahim",vehicle:"Van 4",area:"Ramsey",pickup:"8:10 AM",dropoff:"4:20 PM",friday:"12:20 PM",note:""},
+  {first:"Liyaanaa",last:"Ibrahim",vehicle:"Van 4",area:"Ramsey",pickup:"8:10 AM",dropoff:"4:20 PM",friday:"12:20 PM",note:""},
+  {first:"Rayyan",last:"Adam",vehicle:"Van 5",area:"Champlin",pickup:"8:00 AM",dropoff:"4:40 PM",friday:"",note:""},
+  {first:"Ammar",last:"Osman",vehicle:"Van 5",area:"Champlin",pickup:"8:05 AM",dropoff:"4:35 PM",friday:"",note:""},
+  {first:"Hachalu",last:"Osman",vehicle:"Van 5",area:"Champlin",pickup:"8:05 AM",dropoff:"4:35 PM",friday:"",note:""},
+  {first:"Nadura",last:"Osman",vehicle:"Van 5",area:"Champlin",pickup:"8:05 AM",dropoff:"4:35 PM",friday:"",note:""},
+  {first:"Wako",last:"Osman",vehicle:"Van 5",area:"Champlin",pickup:"8:05 AM",dropoff:"4:35 PM",friday:"",note:""},
+  {first:"Imran",last:"Osman",vehicle:"Van 5",area:"Champlin",pickup:"8:05 AM",dropoff:"4:35 PM",friday:"",note:""},
+  {first:"Mawardi",last:"Sabsibe",vehicle:"Van 6",area:"S.Mpls 1",pickup:"7:50 AM",dropoff:"4:50 PM",friday:"",note:""},
+  {first:"Abdihafiz",last:"Sabsibe",vehicle:"Van 6",area:"S.Mpls 1",pickup:"7:50 AM",dropoff:"4:50 PM",friday:"",note:""},
+  {first:"Sahil",last:"Adde",vehicle:"Van 6",area:"S.Mpls 1",pickup:"8:00 AM",dropoff:"4:40 PM",friday:"",note:""},
+  {first:"Mahir",last:"Momin",vehicle:"Van 6",area:"S.Mpls 1",pickup:"8:00 AM",dropoff:"4:40 PM",friday:"",note:""},
+  {first:"Sabir",last:"Kadir",vehicle:"Van 6",area:"S.Mpls 1",pickup:"8:20 AM",dropoff:"4:20 PM",friday:"",note:""},
+  {first:"Maysam",last:"Said",vehicle:"Van 6",area:"S.Mpls 1",pickup:"8:30 AM",dropoff:"4:10 PM",friday:"",note:""},
+  {first:"Imran",last:"Addish",vehicle:"Van 7",area:"S. Mpls 2",pickup:"8:00 AM",dropoff:"4:45 PM",friday:"",note:""},
+  {first:"Maryam",last:"Jirde",vehicle:"Van 7",area:"S. Mpls 2",pickup:"8:12 AM",dropoff:"4:33 PM",friday:"",note:""},
+  {first:"Marwa",last:"Muktar",vehicle:"Van 7",area:"S. Mpls 2",pickup:"8:22 AM",dropoff:"4:23 PM",friday:"",note:""},
+  {first:"Muhsin",last:"Muktar",vehicle:"Van 7",area:"S. Mpls 2",pickup:"8:22 AM",dropoff:"4:23 PM",friday:"",note:""},
+  {first:"Mohamed",last:"Muktar",vehicle:"Van 7",area:"S. Mpls 2",pickup:"8:22 AM",dropoff:"4:23 PM",friday:"",note:""},
+  {first:"Ihsan",last:"Ibrahim",vehicle:"Van 8",area:"CR & MV",pickup:"8:00 AM",dropoff:"4:45 PM",friday:"12:45 PM",note:""},
+  {first:"Ansar",last:"Ibrahim",vehicle:"Van 8",area:"CR & MV",pickup:"8:00 AM",dropoff:"4:45 PM",friday:"12:45 PM",note:""},
+  {first:"Shuaib",last:"Mohamed",vehicle:"Van 8",area:"CR & MV",pickup:"8:14 AM",dropoff:"4:32 PM",friday:"12:33 PM",note:""},
+  {first:"Elham",last:"Jemal",vehicle:"Van 8",area:"CR & MV",pickup:"8:25 AM",dropoff:"4:23 PM",friday:"12:24 PM",note:""},
+  {first:"Raha",last:"Omisaye",vehicle:"Van 8",area:"CR & MV",pickup:"8:33 AM",dropoff:"4:15 PM",friday:"12:15 PM",note:""},
+  {first:"Nabil",last:"Ibrahim",vehicle:"Van 9",area:"W. St. Paul",pickup:"7:50 AM",dropoff:"4:45 PM",friday:"12:36 PM",note:""},
+  {first:"Noah",last:"Abdikadir Ibrahim",vehicle:"Van 9",area:"W. St. Paul",pickup:"7:50 AM",dropoff:"4:45 PM",friday:"12:36 PM",note:""},
+  {first:"Abdisa",last:"Genemo",vehicle:"Van 9",area:"W. St. Paul",pickup:"8:10 AM",dropoff:"4:25 PM",friday:"12:26 PM",note:""},
+  {first:"Afyah",last:"Genemo",vehicle:"Van 9",area:"W. St. Paul",pickup:"8:10 AM",dropoff:"4:25 PM",friday:"12:26 PM",note:""},
+  {first:"Sumaya",last:"Genemo",vehicle:"Van 9",area:"W. St. Paul",pickup:"8:10 AM",dropoff:"4:25 PM",friday:"12:26 PM",note:""},
+  {first:"Siman",last:"Mohamed",vehicle:"Van 9",area:"W. St. Paul",pickup:"8:15 AM",dropoff:"4:22 PM",friday:"12:22 PM",note:""},
+  {first:"Sitra",last:"Khadar",vehicle:"Van 10",area:"EP & S.P",pickup:"7:55 AM",dropoff:"4:40 PM",friday:"12:40 PM",note:""},
+  {first:"Amir",last:"Ararso",vehicle:"Van 10",area:"EP & S.P",pickup:"8:10 AM",dropoff:"4:32 PM",friday:"12:32 PM",note:""},
+  {first:"Khalid",last:"Ararso",vehicle:"Van 10",area:"EP & S.P",pickup:"8:10 AM",dropoff:"4:32 PM",friday:"12:32 PM",note:""},
+  {first:"Samir",last:"Ararso",vehicle:"Van 10",area:"EP & S.P",pickup:"8:10 AM",dropoff:"4:32 PM",friday:"12:32 PM",note:""},
+  {first:"Museba",last:"Abdullahi",vehicle:"Van 10",area:"EP & S.P",pickup:"8:20 AM",dropoff:"4:22 PM",friday:"12:22 PM",note:""},
+  {first:"Salwa",last:"Abdullahi",vehicle:"Van 10",area:"EP & S.P",pickup:"8:20 AM",dropoff:"4:22 PM",friday:"12:22 PM",note:""},
+  {first:"6",last:"students",vehicle:"Van 10",area:"EP & S.P",pickup:"8:45 AM",dropoff:"4:00 PM",friday:"12:00 PM",note:""},
+  {first:"Aisha",last:"Ali",vehicle:"Van 11",area:"SPED",pickup:"8:20 AM",dropoff:"4:25 PM",friday:"",note:""},
+  {first:"Sarsan",last:"Tahir",vehicle:"Van 12",area:"",pickup:"7:20 AM",dropoff:"4:10 PM",friday:"",note:""},
+  {first:"Zikra",last:"Tahir",vehicle:"Van 12",area:"",pickup:"7:20 AM",dropoff:"4:10 PM",friday:"",note:""},
+  {first:"Atif",last:"Tahir",vehicle:"Van 12",area:"",pickup:"7:20 AM",dropoff:"4:10 PM",friday:"",note:""},
+  {first:"Talia",last:"Ali",vehicle:"Van 12",area:"",pickup:"7:50 AM",dropoff:"4:40 PM",friday:"",note:""},
+  {first:"Afnan",last:"Abubaker",vehicle:"Van 12",area:"",pickup:"8:10 AM",dropoff:"5:00 PM",friday:"",note:""},
+  {first:"Atinan",last:"Abubaker",vehicle:"Van 12",area:"",pickup:"8:10 AM",dropoff:"5:00 PM",friday:"",note:""}
+];
+
+/* Optional live backend. Leave USE_BACKEND false to use the data above
+   (works instantly on GitHub Pages, no setup). Flip to true and paste your
+   Apps Script /exec URL to pull the latest info from a Google Sheet. */
+const CONFIG = {
+  USE_BACKEND: false,
+  BACKEND_URL: ""
+};
+
+const $ = id => document.getElementById(id);
+const norm = s => (s||"").toString().trim().toLowerCase().replace(/\s+/g," ");
+const tokens = s => norm(s).split(" ").filter(Boolean);
+
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');window.scrollTo({top:0});}
+
+$('ackbox').addEventListener('change', e => { $('continueBtn').disabled = !e.target.checked; });
+$('continueBtn').addEventListener('click', () => { show('screen-search'); setTimeout(()=>$('first').focus(),120); });
+$('backToNotice').addEventListener('click', () => show('screen-notice'));
+$('searchBtn').addEventListener('click', runSearch);
+$('first').addEventListener('keydown', e => { if(e.key==='Enter') $('last').focus(); });
+$('last').addEventListener('keydown', e => { if(e.key==='Enter') runSearch(); });
+$('searchAgain').addEventListener('click', () => { $('first').value=''; $('last').value=''; hideMsg(); show('screen-search'); setTimeout(()=>$('first').focus(),120); });
+
+function hideMsg(){const m=$('searchMsg');m.className='form-msg';m.textContent='';}
+function showMsg(t,type){const m=$('searchMsg');m.className='form-msg show '+type;m.textContent=t;}
+
+async function runSearch(){
+  hideMsg();
+  const first = $('first').value, last = $('last').value;
+  const q = tokens(first + ' ' + last);
+  if(q.length===0){ showMsg('Please type your child\u2019s first name.','error'); return; }
+
+  let matches;
+  if(CONFIG.USE_BACKEND && CONFIG.BACKEND_URL){
+    const btn = $('searchBtn'); const old = btn.textContent;
+    btn.textContent = 'Looking\u2026'; btn.disabled = true;
+    try{
+      const res = await fetch(CONFIG.BACKEND_URL, { method:'POST', body: JSON.stringify({first, last}) });
+      matches = await res.json();
+      if(!Array.isArray(matches)) throw new Error('bad response');
+    }catch(err){
+      matches = lookup(DATA, q); // fall back to local data
+    }finally{
+      btn.textContent = old; btn.disabled = false;
+    }
+  } else {
+    matches = lookup(DATA, q);
+  }
+
+  if(!matches || matches.length===0){
+    showMsg("We couldn\u2019t find a student by that name. Check the spelling, try just the first name, or call the school office and we\u2019ll help you.",'info');
+    return;
+  }
+  renderResult(matches);
+  show('screen-result');
+}
+
+/* every typed word must be a prefix of some word in the student's full name */
+function lookup(list, q){
+  const scored = [];
+  for(const r of list){
+    const words = tokens(r.first + ' ' + r.last);
+    const all = q.every(t => words.some(w => w.startsWith(t)));
+    if(all){
+      // exact full-name match ranks first
+      const exact = norm(r.first+' '+r.last) === q.join(' ');
+      scored.push({r, exact});
+    }
+  }
+  scored.sort((a,b)=> (b.exact?1:0)-(a.exact?1:0));
+  return scored.map(s=>s.r);
+}
+
+const busIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#14243D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10"/><path d="M2 12h20"/><path d="M4 16h16v2a1 1 0 0 1-1 1h-1a2 2 0 0 1-4 0H10a2 2 0 0 1-4 0H5a1 1 0 0 1-1-1z"/><circle cx="7.5" cy="16.5" r=".6" fill="#14243D"/><circle cx="16.5" cy="16.5" r=".6" fill="#14243D"/></svg>';
+const clockIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+const tagIcon = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v5l3 2"/><circle cx="12" cy="12" r="9"/></svg>';
+
+function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+/* render one time row. value '' = not listed, '\u2014' = no service */
+function timeRow(cls, cap, sub, val){
+  let clock;
+  if(val==='\u2014') clock = '<div class="clock soft">No service on this run</div>';
+  else if(!val)      clock = '<div class="clock soft">Not listed \u2014 call office</div>';
+  else               clock = '<div class="clock">'+esc(val)+'</div>';
+  return '<div class="trow '+cls+'"><div class="leg"><div class="cap"><span class="dot"></span>'+cap+'</div>'+(sub?'<div class="sub">'+sub+'</div>':'')+'</div>'+clock+'</div>';
+}
+
+function placard(r){
+  const tag = r.note ? '<div class="tag">'+tagIcon+' '+esc(r.note)+'</div>' : '';
+  const area = r.area ? '<div class="area">'+esc(r.area)+' route</div>' : '';
+  return ''
+  + '<div class="card placard">'
+  +   '<div class="who">Route for</div>'
+  +   '<div class="name">'+esc(r.first)+' '+esc(r.last)+'</div>'
+  +   tag
+  +   '<div class="vehicle"><div class="ico">'+busIcon+'</div><div><div class="label">Your ride</div><div class="val">'+(esc(r.vehicle)||'\u2014')+'</div>'+area+'</div></div>'
+  +   timeRow('am','Morning pickup','', r.pickup)
+  +   timeRow('pm','Afternoon drop-off','Mon\u2013Thu', r.dropoff)
+  +   timeRow('friday','Friday drop-off','early release', r.friday)
+  +   '<div class="remind">'+clockIcon+'<div><b>Be outside 2 minutes early.</b> The time above is when the ride <b>leaves</b> your stop.</div></div>'
+  + '</div>';
+}
+
+function renderResult(matches){
+  let html='';
+  if(matches.length>1) html += '<div class="multi-note">We found '+matches.length+' matches. If your child rides more than one bus (for example, a daycare route), each one is shown below.</div>';
+  html += matches.map(placard).join('<div style="height:14px"></div>');
+  $('resultHost').innerHTML = html;
+}
+</script>
+</body>
+</html>
