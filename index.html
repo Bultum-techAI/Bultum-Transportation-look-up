@@ -90,6 +90,11 @@
   .placard .area{font-size:13.5px;color:var(--ink-soft);font-weight:500;margin-bottom:14px}
   .placard .area b{color:var(--ink);font-weight:700}
   .splitflag{display:inline-flex;align-items:center;gap:6px;background:rgba(224,152,43,.14);color:var(--marigold-deep);font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;margin:0 0 14px}
+  .dcbanner{display:inline-flex;gap:7px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:7px 11px;margin:2px 0 14px;color:var(--ink-soft)}
+  .dcbanner svg{flex:none;width:15px;height:15px;color:var(--marigold-deep)}
+  .dcbanner .lbl{font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;color:var(--ink)}
+  .dcbanner .det{font-size:12.5px;color:var(--muted)}
+  .dcbanner .det b{color:var(--ink-soft);font-weight:600}
 
   .trow{display:flex;align-items:center;gap:13px;border:1px solid var(--line);border-radius:14px;padding:13px 15px;margin-top:10px;background:#fff}
   .trow.friday{background:var(--paper);border-style:dashed}
@@ -115,6 +120,9 @@
 
   .foot{text-align:center;margin-top:24px;font-size:12.5px;color:var(--muted);line-height:1.6}
   .foot b{color:var(--ink-soft);font-weight:600}
+  .smslink{color:var(--sage);font-weight:700;text-decoration:none;white-space:nowrap;border-bottom:1.5px solid rgba(46,110,94,.35)}
+  .smslink:hover{border-bottom-color:var(--sage)}
+  .form-msg .smslink{color:var(--sage)}
 </style>
 </head>
 <body>
@@ -160,7 +168,7 @@
       <div class="form-msg" id="searchMsg"></div>
       <div style="padding:0 22px 20px"><button class="btn btn-ghost" id="backToNotice">&larr; Back to the notice</button></div>
     </div>
-    <div class="foot">Can&rsquo;t find your child? Please call the school office and we&rsquo;ll help.</div>
+    <div class="foot">Can&rsquo;t find your child? <b>Text only</b> their first name, last name &amp; address to <a class="smslink" href="sms:7635684659">763-568-4659</a> and say you can&rsquo;t find your child. Please don&rsquo;t call.</div>
   </section>
 
   <!-- SCREEN 3: RESULT -->
@@ -460,7 +468,7 @@ $('last').addEventListener('keydown', e => { if(e.key==='Enter') runSearch(); })
 $('searchAgain').addEventListener('click', () => { $('first').value=''; $('last').value=''; hideMsg(); show('screen-search'); setTimeout(()=>$('first').focus(),120); });
 
 function hideMsg(){const m=$('searchMsg');m.className='form-msg';m.textContent='';}
-function showMsg(t,type){const m=$('searchMsg');m.className='form-msg show '+type;m.textContent=t;}
+function showMsg(t,type){const m=$('searchMsg');m.className='form-msg show '+type;m.innerHTML=t;}
 
 async function runSearch(){
   hideMsg();
@@ -475,7 +483,9 @@ async function runSearch(){
     finally{ btn.textContent=old; btn.disabled=false; }
   } else { matches=lookup(DATA,q); }
   if(!matches||matches.length===0){
-    showMsg("We couldn\u2019t find a student by that name. Check the spelling, try just the first name, or call the school office and we\u2019ll help you.",'info');
+    showMsg("We couldn\u2019t find a student by that name. First, check the spelling or try just the first name.<br><br>"
+      + "Still can\u2019t find your child? <b>Please text</b> your child\u2019s <b>first name, last name, and address</b> to "
+      + "<a class=\"smslink\" href=\"sms:7635684659\">763-568-4659</a> and say you can\u2019t find your child. <b>Text only \u2014 please do not call.</b>",'info');
     return;
   }
   renderResult(matches);
@@ -497,6 +507,7 @@ function lookup(list,q){
 const busIcon='<svg viewBox="0 0 24 24" fill="none" stroke="#14243D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10"/><path d="M2 12h20"/><path d="M4 16h16v2a1 1 0 0 1-1 1h-1a2 2 0 0 1-4 0H10a2 2 0 0 1-4 0H5a1 1 0 0 1-1-1z"/></svg>';
 const clockIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
 const infoIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>';
+const dcIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-5h6v5"/></svg>';
 function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 
 function clockCell(val){
@@ -520,6 +531,11 @@ function placard(r){
   html+='<div class="who">Route for</div>';
   html+='<div class="name">'+esc(r.first)+' '+esc(r.last)+'</div>';
   if(r.area) html+='<div class="area">Morning stop area: <b>'+esc(r.area)+'</b></div>';
+  if(pmPlace==='daycare'){
+    const days = (pmNote||'').replace(/daycare/ig,'').replace(/pm/ig,'').replace(/[·|-]+/g,' ').trim() || 'Mon\u2013Thu';
+    html+='<div class="dcbanner">'+dcIcon+'<span class="lbl">Daycare in the afternoon</span>'
+        + '<span class="det">&middot; '+esc(days)+' &middot; dismiss to <b>'+esc(pmV||'afternoon van')+'</b></span></div>';
+  }
   if(split) html+='<div class="splitflag">'+busIcon.replace(/width="?\d*"?/,'')+' Different van in the morning &amp; afternoon</div>';
   html+=timeRow('am','Morning pickup', amV, amT, null, 'Picked up from home');
   html+=timeRow('pm','Afternoon drop-off &middot; Mon\u2013Thu', pmV, pmT,
