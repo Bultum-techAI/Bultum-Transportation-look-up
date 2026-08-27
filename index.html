@@ -95,6 +95,8 @@
   .dcbanner .lbl{font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;color:var(--ink)}
   .dcbanner .det{font-size:12.5px;color:var(--muted)}
   .dcbanner .det b{color:var(--ink-soft);font-weight:600}
+  .estnote{display:flex;gap:8px;align-items:flex-start;background:var(--paper);border:1px dashed var(--line);border-radius:11px;padding:9px 12px;margin:2px 0 12px;font-size:12.5px;color:var(--muted)}
+  .estnote svg{flex:none;width:15px;height:15px;color:var(--marigold-deep);margin-top:1px}
 
   .trow{display:flex;align-items:center;gap:13px;border:1px solid var(--line);border-radius:14px;padding:13px 15px;margin-top:10px;background:#fff}
   .trow.friday{background:var(--paper);border-style:dashed}
@@ -123,6 +125,47 @@
   .smslink{color:var(--sage);font-weight:700;text-decoration:none;white-space:nowrap;border-bottom:1.5px solid rgba(46,110,94,.35)}
   .smslink:hover{border-bottom-color:var(--sage)}
   .form-msg .smslink{color:var(--sage)}
+  .stafflink{color:var(--muted);font-size:12.5px;text-decoration:none;font-weight:600;letter-spacing:.02em}
+  .stafflink:hover{color:var(--ink)}
+
+  .staff-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:22px 22px 4px}
+  .staff-head h2{font-family:'Archivo',sans-serif;font-weight:800;font-size:23px;letter-spacing:-.01em;line-height:1.12}
+  .pill-ghost{flex:none;border:1px solid var(--line);background:#fff;color:var(--ink-soft);font-size:13px;font-weight:600;padding:8px 13px;border-radius:999px;cursor:pointer}
+  .pill-ghost:hover{border-color:var(--muted);color:var(--ink)}
+  .staff-tools{padding:12px 22px 6px}
+  .staff-tools input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:13px 15px;font-size:16px;font-family:inherit;color:var(--ink);background:#fff}
+  .staff-tools input:focus{outline:none;border-color:var(--marigold);box-shadow:0 0 0 4px rgba(224,152,43,.15)}
+  .grade-tabs{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+  .gtab{border:1px solid var(--line);background:#fff;color:var(--ink-soft);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;padding:7px 12px;border-radius:10px;cursor:pointer;transition:.12s}
+  .gtab:hover{border-color:var(--marigold)}
+  .gtab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .gtab .c{color:var(--marigold);margin-left:5px}
+  .gtab.on .c{color:var(--marigold)}
+
+  .staff-list{padding:8px 16px 20px}
+  .srow{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:13px;padding:12px 14px;margin:8px 6px;background:#fff}
+  .srow .info{flex:1;min-width:0}
+  .srow .nm{font-family:'Archivo',sans-serif;font-weight:700;font-size:15.5px;color:var(--ink);line-height:1.2}
+  .srow .arr{font-size:12.5px;color:var(--muted);margin-top:3px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+  .srow .vchip{font-family:'Space Mono',monospace;font-weight:700;font-size:11.5px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+  .srow .dc{color:var(--marigold-deep);font-weight:700}
+  .srow .gbtn{flex:none;border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 12px;cursor:pointer;text-align:center;min-width:56px}
+  .srow .gbtn .gg{font-family:'Archivo',sans-serif;font-weight:800;font-size:16px;color:var(--ink);line-height:1}
+  .srow .gbtn .gl{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:block;margin-top:2px}
+  .srow .gbtn.empty{border-style:dashed;border-color:var(--marigold);background:rgba(224,152,43,.08)}
+  .srow .gbtn.empty .gg{color:var(--marigold-deep);font-size:13px}
+  .staff-empty{text-align:center;color:var(--muted);font-size:14px;padding:24px 16px}
+
+  .sheet{position:fixed;inset:0;background:rgba(20,36,61,.5);display:none;align-items:flex-end;justify-content:center;z-index:50;padding:0}
+  .sheet.open{display:flex}
+  .sheet-card{width:100%;max-width:560px;background:var(--card);border-radius:22px 22px 0 0;padding:22px 20px calc(20px + env(safe-area-inset-bottom));box-shadow:0 -12px 40px -12px rgba(20,36,61,.4);animation:sheetup .25s ease both}
+  @keyframes sheetup{from{transform:translateY(30px);opacity:.6}to{transform:none;opacity:1}}
+  .sheet-title{font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;margin-bottom:14px}
+  .sheet-title span{color:var(--marigold-deep)}
+  .sheet-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:14px}
+  .gopt{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:14px 0;font-family:'Archivo',sans-serif;font-weight:800;font-size:17px;color:var(--ink);cursor:pointer;transition:.12s}
+  .gopt:hover{border-color:var(--marigold)}
+  .gopt.clear{grid-column:span 4;font-size:14px;font-weight:600;color:var(--muted);background:var(--paper)}
 </style>
 </head>
 <body>
@@ -168,7 +211,7 @@
       <div class="form-msg" id="searchMsg"></div>
       <div style="padding:0 22px 20px"><button class="btn btn-ghost" id="backToNotice">&larr; Back to the notice</button></div>
     </div>
-    <div class="foot">Can&rsquo;t find your child? <b>Text only</b> their first name, last name &amp; address to <a class="smslink" href="sms:7635684659">763-568-4659</a> and say you can&rsquo;t find your child. Please don&rsquo;t call.</div>
+    <div class="foot">Can&rsquo;t find your child? <b>Text only</b> their first name, last name &amp; address to <a class="smslink" href="sms:7635684659">763-568-4659</a> and say you can&rsquo;t find your child. Please don&rsquo;t call.<br><br><a class="stafflink" id="staffEntry" href="#">School staff &rarr;</a></div>
   </section>
 
   <!-- SCREEN 3: RESULT -->
@@ -178,7 +221,51 @@
     <div class="foot"><b>Bultum Academy &middot; Transportation</b><br>If anything looks wrong, please call the office.</div>
   </section>
 
+  <!-- SCREEN 4: STAFF GATE -->
+  <section id="screen-staff-gate" class="screen">
+    <div class="card">
+      <div class="search-intro">
+        <h2>School staff</h2>
+        <p>This area is for Bultum staff. Enter the staff code to see transportation arrangements by grade.</p>
+      </div>
+      <div class="fields">
+        <div class="field"><label for="pin">Staff code</label>
+          <input type="password" id="pin" inputmode="numeric" autocomplete="off" placeholder="&bull;&bull;&bull;&bull;"></div>
+        <button class="btn btn-primary" id="pinBtn">Enter</button>
+      </div>
+      <div class="form-msg" id="pinMsg"></div>
+      <div style="padding:0 22px 20px"><button class="btn btn-ghost" id="staffBack">&larr; Back</button></div>
+    </div>
+    <div class="foot"><b>Bultum Academy &middot; Transportation</b></div>
+  </section>
+
+  <!-- SCREEN 5: STAFF DASHBOARD -->
+  <section id="screen-staff" class="screen">
+    <div class="card">
+      <div class="staff-head">
+        <div>
+          <div class="who">Staff view</div>
+          <h2>Arrangements by grade</h2>
+        </div>
+        <button class="pill-ghost" id="staffSignout">Sign out</button>
+      </div>
+      <div class="staff-tools">
+        <input type="text" id="staffSearch" autocomplete="off" placeholder="Search a student by name&hellip;">
+        <div class="grade-tabs" id="gradeTabs"></div>
+      </div>
+      <div id="staffList" class="staff-list"></div>
+    </div>
+    <div class="foot"><b>Bultum Academy &middot; Transportation</b><br>Grades you add are saved on this device. Ask the office to sync them for everyone.</div>
+  </section>
+
 </div>
+
+<!-- grade picker sheet -->
+<div id="gradeSheet" class="sheet"><div class="sheet-card">
+  <div class="sheet-title">Set grade for <span id="sheetName"></span></div>
+  <div class="sheet-grid" id="sheetGrid"></div>
+  <button class="btn btn-ghost" id="sheetClose">Cancel</button>
+</div></div>
 
 <script>
 /* ============================================================
@@ -188,267 +275,292 @@
    this name). Times: "" = not listed, "\u2014" = no service that run.
    ============================================================ */
 const DATA = [
-  {"first": "Zulekha", "last": "Osman", "area": "Fridley", "am": ["Bus 1", "8:00 AM"], "pm": ["Bus 1", "4:15 PM", "home", ""], "fri": ["Bus 1", "12:15 PM"], "extras": [], "amb": 0},
-  {"first": "Milkesa", "last": "Mohammed", "area": "Fridley", "am": ["Bus 1", "8:05 AM"], "pm": ["Bus 1", "4:20 PM", "home", ""], "fri": ["Bus 1", "12:20 PM"], "extras": [], "amb": 0},
-  {"first": "Maryam", "last": "Shakul", "area": "Fridley", "am": ["Bus 1", "8:05 AM"], "pm": ["Bus 2", "4:17 PM", "daycare", "M-Th Daycare"], "fri": ["Bus 1", "12:20 PM"], "extras": ["On days not at daycare: dropped off 4:20 PM on Bus 1."], "amb": 0},
-  {"first": "Muhammed", "last": "Shakul", "area": "Fridley", "am": ["Bus 1", "8:05 AM"], "pm": ["Bus 2", "4:17 PM", "daycare", "M-Th Daycare"], "fri": ["Bus 1", "12:20 PM"], "extras": ["On days not at daycare: dropped off 4:20 PM on Bus 1."], "amb": 0},
-  {"first": "Milkessa", "last": "Wado", "area": "Fridley", "am": ["Bus 1", "8:05 AM"], "pm": ["Bus 1", "4:20 PM", "home", ""], "fri": ["Bus 1", "12:20 PM"], "extras": [], "amb": 0},
-  {"first": "Fenet", "last": "Wado", "area": "Fridley", "am": ["Bus 1", "8:05 AM"], "pm": ["Bus 1", "4:20 PM", "home", ""], "fri": ["Bus 1", "12:20 PM"], "extras": [], "amb": 0},
-  {"first": "Ahil", "last": "Mahammed", "area": "Fridley", "am": ["Bus 1", "8:10 AM"], "pm": ["Bus 1", "4:25 PM", "home", ""], "fri": ["Bus 1", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Shukri", "last": "Rashid", "area": "Fridley", "am": ["Bus 1", "8:13 AM"], "pm": ["Bus 1", "4:28 PM", "home", ""], "fri": ["Bus 1", "12:28 PM"], "extras": [], "amb": 0},
-  {"first": "Malik", "last": "Rashid", "area": "Fridley", "am": ["Bus 1", "8:13 AM"], "pm": ["Bus 1", "4:28 PM", "home", ""], "fri": ["Bus 1", "12:28 PM"], "extras": [], "amb": 0},
-  {"first": "Hafizat", "last": "Abdullahi", "area": "Fridley", "am": ["Bus 1", "8:13 AM"], "pm": ["Bus 1", "4:28 PM", "home", ""], "fri": ["Bus 1", "12:28 PM"], "extras": [], "amb": 0},
-  {"first": "Muhsinat", "last": "Abdullahi", "area": "Fridley", "am": ["Bus 1", "8:13 AM"], "pm": ["Bus 1", "4:28 PM", "home", ""], "fri": ["Bus 1", "12:28 PM"], "extras": [], "amb": 0},
-  {"first": "Qanitat", "last": "Abdullahi", "area": "Fridley", "am": ["Bus 1", "8:13 AM"], "pm": ["Bus 1", "4:28 PM", "home", ""], "fri": ["Bus 1", "12:28 PM"], "extras": [], "amb": 0},
-  {"first": "Hafiz", "last": "Abdullahi", "area": "Fridley", "am": ["Bus 1", "8:13 AM"], "pm": ["Bus 1", "4:28 PM", "home", ""], "fri": ["Bus 1", "12:28 PM"], "extras": [], "amb": 0},
-  {"first": "Hanan", "last": "Ahmed", "area": "Fridley", "am": ["Bus 1", "8:13 AM"], "pm": ["Bus 1", "4:28 PM", "home", ""], "fri": ["Bus 1", "12:28 PM"], "extras": [], "amb": 0},
-  {"first": "Yusra", "last": "Ahmed", "area": "Fridley", "am": ["Bus 1", "8:13 AM"], "pm": ["Bus 1", "4:28 PM", "home", ""], "fri": ["Bus 1", "12:28 PM"], "extras": [], "amb": 0},
-  {"first": "Aisha", "last": "Kalid", "area": "Fridley", "am": ["Bus 1", "8:18 AM"], "pm": ["Bus 1", "4:32 PM", "home", ""], "fri": ["Bus 1", "12:32 PM"], "extras": [], "amb": 0},
-  {"first": "Abidah", "last": "Kalid", "area": "Fridley", "am": ["Bus 1", "8:18 AM"], "pm": ["Bus 1", "4:32 PM", "home", ""], "fri": ["Bus 1", "12:32 PM"], "extras": [], "amb": 0},
-  {"first": "Abdallah", "last": "Kalid", "area": "Fridley", "am": ["Bus 1", "8:18 AM"], "pm": ["Bus 1", "4:32 PM", "home", ""], "fri": ["Bus 1", "12:32 PM"], "extras": [], "amb": 0},
-  {"first": "Abdalla", "last": "Kalid", "area": "Fridley", "am": ["Bus 1", "8:18 AM"], "pm": ["Bus 1", "4:32 PM", "home", ""], "fri": ["Bus 1", "12:32 PM"], "extras": [], "amb": 0},
-  {"first": "Amar", "last": "Amin", "area": "Fridley", "am": ["Bus 1", "8:20 AM"], "pm": ["Bus 1", "4:34 PM", "home", ""], "fri": ["Bus 1", "12:34 PM"], "extras": [], "amb": 0},
-  {"first": "Amira", "last": "Amin", "area": "Fridley", "am": ["Bus 1", "8:20 AM"], "pm": ["Bus 1", "4:34 PM", "home", ""], "fri": ["Bus 1", "12:34 PM"], "extras": [], "amb": 0},
-  {"first": "Hafsa", "last": "Amin", "area": "Fridley", "am": ["Bus 1", "8:20 AM"], "pm": ["Bus 1", "4:34 PM", "home", ""], "fri": ["Bus 1", "12:34 PM"], "extras": [], "amb": 0},
-  {"first": "Abbas", "last": "Sumrain", "area": "Fridley", "am": ["Bus 1", "8:26 AM"], "pm": ["Bus 1", "4:40 PM", "home", ""], "fri": ["Bus 1", "12:40 PM"], "extras": [], "amb": 0},
-  {"first": "Ali", "last": "Sumrain", "area": "Fridley", "am": ["Bus 1", "8:26 AM"], "pm": ["Bus 1", "4:40 PM", "home", ""], "fri": ["Bus 1", "12:40 PM"], "extras": [], "amb": 0},
-  {"first": "Hamza", "last": "Sumrain", "area": "Fridley", "am": ["Bus 1", "8:26 AM"], "pm": ["Bus 1", "4:40 PM", "home", ""], "fri": ["Bus 1", "12:40 PM"], "extras": [], "amb": 0},
-  {"first": "Laya", "last": "Khalil", "area": "Fridley", "am": ["Bus 1", "8:30 AM"], "pm": ["Bus 1", "4:05 PM", "home", ""], "fri": ["Bus 1", "12:05 PM"], "extras": [], "amb": 0},
-  {"first": "Musa", "last": "Nur-Salah", "area": "CH", "am": ["Bus 2", "7:52 AM"], "pm": ["Bus 2", "4:02 PM", "home", ""], "fri": ["Bus 2", "12:42 PM"], "extras": [], "amb": 0},
-  {"first": "Mazna", "last": "Abshir", "area": "CH", "am": ["Bus 2", "7:55 AM"], "pm": ["Bus 2", "4:04 PM", "home", ""], "fri": ["Bus 2", "12:40 PM"], "extras": [], "amb": 0},
-  {"first": "Mumtaz", "last": "Abshir", "area": "CH", "am": ["Bus 2", "7:55 AM"], "pm": ["Bus 2", "4:04 PM", "home", ""], "fri": ["Bus 2", "12:40 PM"], "extras": [], "amb": 0},
-  {"first": "Muhammad", "last": "Abshir", "area": "CH", "am": ["Bus 2", "7:55 AM"], "pm": ["Bus 2", "4:04 PM", "home", ""], "fri": ["Bus 2", "12:40 PM"], "extras": [], "amb": 0},
-  {"first": "Khadija", "last": "Mohamed", "area": "CH", "am": ["Bus 2", "7:56 AM"], "pm": ["Bus 2", "4:05 PM", "home", ""], "fri": ["Bus 2", "12:39 PM"], "extras": [], "amb": 0},
-  {"first": "Bonsa", "last": "Musa", "area": "CH", "am": ["Bus 2", "8:10 AM"], "pm": ["Bus 2", "4:35 PM", "home", ""], "fri": ["Bus 2", "12:30 PM"], "extras": [], "amb": 0},
-  {"first": "Sabat", "last": "Gazali", "area": "CH", "am": ["Bus 2", "8:10 AM"], "pm": ["Bus 2", "4:35 PM", "home", ""], "fri": ["Bus 2", "12:30 PM"], "extras": [], "amb": 0},
-  {"first": "Riham", "last": "Hussein", "area": "CH", "am": ["Bus 2", "8:15 AM"], "pm": ["Bus 2", "4:10 PM", "daycare", "T-Th Daycare"], "fri": ["Bus 2", "12:25 PM"], "extras": ["On days not at daycare: dropped off 4:30 PM on Bus 2."], "amb": 0},
-  {"first": "Abduljabar", "last": "Abdullahi Sharif", "area": "CH", "am": ["Bus 2", "8:15 AM"], "pm": ["Bus 2", "4:30 PM", "home", ""], "fri": ["Bus 2", "12:25 PM"], "extras": [], "amb": 1},
-  {"first": "Abduljabar", "last": "Abdullahi Sharif", "area": "CH", "am": ["Bus 2", "8:26 AM"], "pm": ["Bus 2", "4:21 PM", "home", "ONLY FRIDAY"], "fri": ["Bus 2", "12:16 PM"], "extras": [], "amb": 1},
-  {"first": "Aisha", "last": "Abdullahi Sharif", "area": "CH", "am": ["Bus 2", "8:15 AM"], "pm": ["Bus 2", "4:30 PM", "home", ""], "fri": ["Bus 2", "12:25 PM"], "extras": [], "amb": 1},
-  {"first": "Aisha", "last": "Abdullahi Sharif", "area": "CH", "am": ["Bus 2", "8:26 AM"], "pm": ["Bus 2", "4:21 PM", "home", "ONLY FRIDAY"], "fri": ["Bus 2", "12:16 PM"], "extras": [], "amb": 1},
-  {"first": "Sudays", "last": "Mohamed", "area": "CH", "am": ["Bus 2", "8:15 AM"], "pm": ["Bus 2", "4:30 PM", "home", ""], "fri": ["Bus 2", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Yasmin", "last": "Mohamed", "area": "CH", "am": ["Bus 2", "8:15 AM"], "pm": ["Bus 2", "4:30 PM", "home", ""], "fri": ["Bus 2", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Azizaa", "last": "Mohamed", "area": "CH", "am": ["Bus 2", "8:15 AM"], "pm": ["Bus 2", "4:30 PM", "home", ""], "fri": ["Bus 2", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Nura", "last": "Siyat", "area": "CH", "am": ["Bus 2", "8:20 AM"], "pm": ["Bus 2", "4:25 PM", "home", ""], "fri": ["Bus 2", "12:20 PM"], "extras": [], "amb": 0},
-  {"first": "Haruun", "last": "Siyat", "area": "CH", "am": ["Bus 2", "8:20 AM"], "pm": ["Bus 2", "4:25 PM", "home", ""], "fri": ["Bus 2", "12:20 PM"], "extras": [], "amb": 0},
-  {"first": "Fatimah", "last": "Mohamed", "area": "CH", "am": ["Bus 2", "8:20 AM"], "pm": ["Bus 2", "4:25 PM", "home", ""], "fri": ["Bus 2", "12:20 PM"], "extras": [], "amb": 1},
-  {"first": "Fatimah", "last": "Mohamed", "area": "Robb", "am": ["Van 2", "8:12 AM"], "pm": ["Van 2", "4:24 PM", "home", ""], "fri": ["Van 2", "12:24 PM"], "extras": [], "amb": 1},
-  {"first": "Abdallah", "last": "Mohamed", "area": "CH", "am": ["Bus 2", "8:20 AM"], "pm": ["Bus 2", "4:25 PM", "home", ""], "fri": ["Bus 2", "12:20 PM"], "extras": [], "amb": 1},
-  {"first": "Abdallah", "last": "Mohamed", "area": "MG", "am": ["Van 3", "8:10 AM"], "pm": ["Van 3", "4:25 PM", "home", ""], "fri": ["Van 3", "12:25 PM"], "extras": [], "amb": 1},
-  {"first": "Walid", "last": "Umer", "area": "CH", "am": ["Bus 2", "8:26 AM"], "pm": ["Bus 2", "4:21 PM", "home", ""], "fri": ["Bus 2", "12:16 PM"], "extras": [], "amb": 0},
-  {"first": "Mustafa", "last": "Umar", "area": "CH", "am": ["Bus 2", "8:30 AM"], "pm": ["Bus 2", "4:15 PM", "home", ""], "fri": ["Bus 2", "12:50 PM"], "extras": [], "amb": 0},
-  {"first": "Bilal", "last": "Umar", "area": "CH", "am": ["Bus 2", "8:30 AM"], "pm": ["Bus 2", "4:15 PM", "home", ""], "fri": ["Bus 2", "12:50 PM"], "extras": [], "amb": 0},
-  {"first": "Zamzam", "last": "Umar", "area": "CH", "am": ["Bus 2", "8:30 AM"], "pm": ["Bus 2", "4:15 PM", "home", ""], "fri": ["Bus 2", "12:50 PM"], "extras": [], "amb": 0},
-  {"first": "Mustafa", "last": "El Kaddur", "area": "CH", "am": ["Bus 2", "8:35 AM"], "pm": ["Bus 2", "4:05 PM", "home", ""], "fri": ["Bus 2", "12:05 PM"], "extras": [], "amb": 0},
-  {"first": "Muhammad", "last": "Sharif", "area": "CH", "am": ["Bus 2", "8:36 AM"], "pm": ["Bus 2", "4:04 PM", "home", ""], "fri": ["Bus 2", "12:04 PM"], "extras": [], "amb": 0},
-  {"first": "Hassan", "last": "Sharif", "area": "CH", "am": ["Bus 2", "8:36 AM"], "pm": ["Bus 2", "4:04 PM", "home", ""], "fri": ["Bus 2", "12:04 PM"], "extras": [], "amb": 0},
-  {"first": "Mohamed", "last": "Omar", "area": "North", "am": ["Bus 3", "7:55 AM"], "pm": ["Bus 3", "4:16 PM", "home", ""], "fri": ["Bus 3", "12:16 PM"], "extras": [], "amb": 0},
-  {"first": "Nimat", "last": "Yusuf", "area": "North", "am": ["Bus 3", "7:55 AM"], "pm": ["Bus 3", "4:16 PM", "home", ""], "fri": ["Bus 3", "12:16 PM"], "extras": [], "amb": 0},
-  {"first": "Abdurahman", "last": "Abdurahman", "area": "North", "am": ["Bus 3", "7:55 AM"], "pm": ["Bus 3", "4:16 PM", "home", ""], "fri": ["Bus 3", "12:16 PM"], "extras": [], "amb": 0},
-  {"first": "Anisa", "last": "Abdulwahab", "area": "North", "am": ["Bus 3", "8:00 AM"], "pm": ["Bus 3", "4:22 PM", "home", ""], "fri": ["Bus 3", "12:22 PM"], "extras": [], "amb": 0},
-  {"first": "Khadijah", "last": "Burton", "area": "North", "am": ["Bus 3", "8:04 AM"], "pm": ["Bus 3", "4:26 PM", "home", ""], "fri": ["Bus 3", "12:26 PM"], "extras": [], "amb": 0},
-  {"first": "Siam", "last": "Bakri", "area": "North", "am": ["Bus 3", "8:06 AM"], "pm": ["Bus 3", "4:28 PM", "home", ""], "fri": ["Bus 3", "12:28 PM"], "extras": [], "amb": 0},
-  {"first": "Eman", "last": "Bakri", "area": "North", "am": ["Bus 3", "8:06 AM"], "pm": ["Bus 3", "4:28 PM", "home", ""], "fri": ["Bus 3", "12:28 PM"], "extras": [], "amb": 0},
-  {"first": "Bilal", "last": "Aboubaker", "area": "North", "am": ["Bus 3", "8:08 AM"], "pm": ["Bus 3", "4:30 PM", "home", ""], "fri": ["Bus 3", "12:30 PM"], "extras": [], "amb": 0},
-  {"first": "Atinaf", "last": "Abdullahi", "area": "North", "am": ["Bus 3", "8:16 AM"], "pm": ["Bus 3", "4:36 PM", "home", ""], "fri": ["Bus 3", "12:36 PM"], "extras": [], "amb": 0},
-  {"first": "Ikhlas", "last": "Amir", "area": "North", "am": ["Bus 3", "8:18 AM"], "pm": ["Bus 4", "4:30 PM", "daycare", "M-Th PM Daycare"], "fri": ["Bus 3", "12:38 PM"], "extras": ["On days not at daycare: dropped off 4:38 PM on Bus 3."], "amb": 0},
-  {"first": "Amir", "last": "Amir", "area": "North", "am": ["Bus 3", "8:18 AM"], "pm": ["Bus 4", "4:30 PM", "daycare", "M-Th PM Daycare"], "fri": ["Bus 3", "12:38 PM"], "extras": ["On days not at daycare: dropped off 4:38 PM on Bus 3."], "amb": 0},
-  {"first": "Obsitu", "last": "Mohamed", "area": "North", "am": ["Bus 3", "8:18 AM"], "pm": ["Bus 3", "4:38 PM", "home", ""], "fri": ["Bus 3", "12:38 PM"], "extras": [], "amb": 0},
-  {"first": "Simran", "last": "Mohamed", "area": "North", "am": ["Bus 3", "8:18 AM"], "pm": ["Bus 3", "4:38 PM", "home", ""], "fri": ["Bus 3", "12:38 PM"], "extras": [], "amb": 0},
-  {"first": "Sabrina", "last": "Mohamed", "area": "North", "am": ["Bus 3", "8:18 AM"], "pm": ["Bus 3", "4:38 PM", "home", ""], "fri": ["Bus 3", "12:38 PM"], "extras": [], "amb": 0},
-  {"first": "Maryam", "last": "Ahmed", "area": "North", "am": ["Bus 3", ""], "pm": ["Bus 3", "", "home", ""], "fri": ["Bus 3", ""], "extras": [], "amb": 0},
-  {"first": "Idris", "last": "Nor", "area": "North", "am": ["Bus 3", "—"], "pm": ["Bus 3", "", "home", ""], "fri": ["Bus 3", "—"], "extras": [], "amb": 0},
-  {"first": "Mohamed", "last": "Nor", "area": "North", "am": ["Bus 3", "—"], "pm": ["Bus 3", "", "home", ""], "fri": ["Bus 3", "—"], "extras": [], "amb": 0},
-  {"first": "Samiya", "last": "Nor", "area": "North", "am": ["Bus 3", "—"], "pm": ["Bus 3", "", "home", ""], "fri": ["Bus 3", "—"], "extras": [], "amb": 0},
-  {"first": "Suheyla", "last": "Nor", "area": "North", "am": ["Bus 3", "—"], "pm": ["Bus 3", "", "home", ""], "fri": ["Bus 3", "—"], "extras": [], "amb": 0},
-  {"first": "Seran", "last": "Abdusemed", "area": "S Mpls", "am": ["Bus 4", "8:04 AM"], "pm": ["Bus 4", "4:30 PM", "daycare", "M-Th PM Daycare"], "fri": ["Bus 4", "12:25 PM"], "extras": ["On days not at daycare: dropped off 4:46 PM on Bus 4."], "amb": 0},
-  {"first": "Amar", "last": "Abamilki", "area": "S Mpls", "am": ["Bus 4", "7:57 AM"], "pm": ["Bus 4", "4:30 PM", "daycare", "M-Th PM Daycare"], "fri": ["Bus 4", "12:14 PM"], "extras": ["On days not at daycare: dropped off 4:16 PM on Bus 4."], "amb": 0},
-  {"first": "Jowar", "last": "Mohamed", "area": "S Mpls", "am": ["Bus 4", "8:04 AM"], "pm": ["Bus 4", "4:30 PM", "daycare", "M-Th PM Daycare"], "fri": ["Bus 4", "12:25 PM"], "extras": ["On days not at daycare: dropped off 4:46 PM on Bus 4."], "amb": 0},
-  {"first": "Eman", "last": "Mohamed", "area": "S Mpls", "am": ["Bus 4", "8:04 AM"], "pm": ["Bus 4", "4:30 PM", "daycare", "M-Th PM Daycare"], "fri": ["Bus 4", "12:25 PM"], "extras": ["On days not at daycare: dropped off 4:46 PM on Bus 4."], "amb": 0},
-  {"first": "Nabil", "last": "Ibrahim", "area": "W. St. Paul", "am": ["Van 9", "7:50 AM"], "pm": ["Bus 4", "4:30 PM", "daycare", "M-Th PM Daycare"], "fri": ["Van 9", "12:36 PM"], "extras": ["On days not at daycare: dropped off 4:45 PM on Van 9."], "amb": 0},
-  {"first": "Riha", "last": "Nur", "area": "S Mpls", "am": ["Bus 4", "7:50 AM"], "pm": ["Bus 4", "4:21 PM", "home", ""], "fri": ["Bus 4", "12:19 PM"], "extras": [], "amb": 0},
-  {"first": "Megersan", "last": "Alishu", "area": "S Mpls", "am": ["Bus 4", "7:52 AM"], "pm": ["Bus 4", "4:20 PM", "home", ""], "fri": ["Bus 4", "12:18 PM"], "extras": [], "amb": 0},
-  {"first": "Kununsan", "last": "Alishu", "area": "S Mpls", "am": ["Bus 4", "7:52 AM"], "pm": ["Bus 4", "4:20 PM", "home", ""], "fri": ["Bus 4", "12:18 PM"], "extras": [], "amb": 0},
-  {"first": "Sumeya", "last": "Alishu", "area": "S Mpls", "am": ["Bus 4", "7:52 AM"], "pm": ["Bus 4", "4:20 PM", "home", ""], "fri": ["Bus 4", "12:18 PM"], "extras": [], "amb": 0},
-  {"first": "Kenna", "last": "Ahmed", "area": "S Mpls", "am": ["Bus 4", "7:54 AM"], "pm": ["Bus 4", "4:18 PM", "home", ""], "fri": ["Bus 4", "12:17 PM"], "extras": [], "amb": 0},
-  {"first": "Imran", "last": "Addish", "area": "S Mpls", "am": ["Bus 4", "—"], "pm": ["Bus 4", "4:14 PM", "home", ""], "fri": ["Bus 4", ""], "extras": [], "amb": 1},
-  {"first": "Imran", "last": "Addish", "area": "S Mpls", "am": ["Bus 4", "8:25 AM"], "pm": ["Bus 4", "—", "home", ""], "fri": ["Bus 4", "—"], "extras": [], "amb": 1},
-  {"first": "Imran", "last": "Addish", "area": "S. Mpls 2", "am": ["Van 7", "8:00 AM"], "pm": ["Van 7", "4:45 PM", "home", ""], "fri": ["Van 7", ""], "extras": [], "amb": 1},
-  {"first": "Faud", "last": "Ali", "area": "S Mpls", "am": ["Bus 4", "7:56 AM"], "pm": ["Bus 4", "4:15 PM", "home", ""], "fri": ["Bus 4", "12:13 PM"], "extras": [], "amb": 0},
-  {"first": "Adem", "last": "Bullo", "area": "S Mpls", "am": ["Bus 4", "7:57 AM"], "pm": ["Bus 4", "4:16 PM", "home", ""], "fri": ["Bus 4", "12:14 PM"], "extras": [], "amb": 0},
-  {"first": "Zamzam", "last": "Bullo", "area": "S Mpls", "am": ["Bus 4", "7:57 AM"], "pm": ["Bus 4", "4:16 PM", "home", ""], "fri": ["Bus 4", "12:14 PM"], "extras": [], "amb": 0},
-  {"first": "Hassan", "last": "Idris", "area": "S Mpls", "am": ["Bus 4", "7:57 AM"], "pm": ["Bus 4", "4:16 PM", "home", ""], "fri": ["Bus 4", "12:14 PM"], "extras": [], "amb": 0},
-  {"first": "Haris", "last": "Idris", "area": "S Mpls", "am": ["Bus 4", "7:57 AM"], "pm": ["Bus 4", "4:16 PM", "home", ""], "fri": ["Bus 4", "12:14 PM"], "extras": [], "amb": 0},
-  {"first": "Sumaya", "last": "Mohamed", "area": "S Mpls", "am": ["Bus 4", "7:58 AM"], "pm": ["Bus 4", "4:17 PM", "home", ""], "fri": ["Bus 4", "12:15 PM"], "extras": [], "amb": 0},
-  {"first": "Amal", "last": "Ali-Salaat", "area": "S Mpls", "am": ["Bus 4", "7:58 AM"], "pm": ["Bus 4", "4:17 PM", "home", ""], "fri": ["Bus 4", "12:15 PM"], "extras": [], "amb": 0},
-  {"first": "Naim", "last": "Wako", "area": "S Mpls", "am": ["Bus 4", "7:58 AM"], "pm": ["Bus 4", "4:17 PM", "home", ""], "fri": ["Bus 4", "12:15 PM"], "extras": [], "amb": 0},
-  {"first": "Hikma", "last": "Wako", "area": "S Mpls", "am": ["Bus 4", "7:58 AM"], "pm": ["Bus 4", "4:17 PM", "home", ""], "fri": ["Bus 4", "12:15 PM"], "extras": [], "amb": 0},
-  {"first": "Nuradin", "last": "Wako", "area": "S Mpls", "am": ["Bus 4", "7:58 AM"], "pm": ["Bus 4", "4:17 PM", "home", ""], "fri": ["Bus 4", "12:15 PM"], "extras": [], "amb": 0},
-  {"first": "Mahir", "last": "Heyder", "area": "S Mpls", "am": ["Bus 4", "8:02 AM"], "pm": ["Bus 4", "4:45 PM", "home", ""], "fri": ["Bus 4", "12:24 PM"], "extras": [], "amb": 0},
-  {"first": "Mariyam", "last": "Mesfin", "area": "S Mpls", "am": ["Bus 4", "8:02 AM"], "pm": ["Bus 4", "4:45 PM", "home", ""], "fri": ["Bus 4", "12:24 PM"], "extras": [], "amb": 0},
-  {"first": "Muhamed", "last": "Muktar", "area": "S Mpls", "am": ["Bus 4", "8:02 AM"], "pm": ["Bus 4", "4:45 PM", "home", ""], "fri": ["Bus 4", "12:24 PM"], "extras": [], "amb": 0},
-  {"first": "Khalid", "last": "Isaac", "area": "S Mpls", "am": ["Bus 4", "8:04 AM"], "pm": ["Bus 4", "4:46 PM", "home", ""], "fri": ["Bus 4", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Asmaa", "last": "Isaac", "area": "S Mpls", "am": ["Bus 4", "8:04 AM"], "pm": ["Bus 4", "4:46 PM", "home", ""], "fri": ["Bus 4", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Hikma", "last": "Isaac", "area": "S Mpls", "am": ["Bus 4", "8:04 AM"], "pm": ["Bus 4", "4:46 PM", "home", ""], "fri": ["Bus 4", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Mohamed", "last": "Gidi", "area": "S Mpls", "am": ["Bus 4", "8:04 AM"], "pm": ["Bus 4", "4:46 PM", "home", ""], "fri": ["Bus 4", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Rahma", "last": "Mesfin", "area": "S Mpls", "am": ["Bus 4", "8:06 AM"], "pm": ["Bus 4", "4:48 PM", "home", ""], "fri": ["Bus 4", "12:26 PM"], "extras": [], "amb": 0},
-  {"first": "Soresa", "last": "Jemal", "area": "S Mpls", "am": ["Bus 4", "8:10 AM"], "pm": ["Bus 4", "4:49 PM", "home", ""], "fri": ["Bus 4", "12:32 PM"], "extras": [], "amb": 0},
-  {"first": "Sifenan", "last": "Jibril", "area": "S Mpls", "am": ["Bus 4", "8:10 AM"], "pm": ["Bus 4", "4:49 PM", "home", ""], "fri": ["Bus 4", "12:32 PM"], "extras": [], "amb": 0},
-  {"first": "Sarah", "last": "Ahmed", "area": "S Mpls", "am": ["Bus 4", "8:14 AM"], "pm": ["Bus 4", "4:26 PM", "home", ""], "fri": ["Bus 4", "12:37 PM"], "extras": [], "amb": 0},
-  {"first": "Muwal", "last": "Ahmed", "area": "S Mpls", "am": ["Bus 4", "8:14 AM"], "pm": ["Bus 4", "4:26 PM", "home", ""], "fri": ["Bus 4", "12:37 PM"], "extras": [], "amb": 0},
-  {"first": "Bariiso", "last": "Ahmed", "area": "S Mpls", "am": ["Bus 4", "8:14 AM"], "pm": ["Bus 4", "4:26 PM", "home", ""], "fri": ["Bus 4", "12:37 PM"], "extras": [], "amb": 0},
-  {"first": "Anas", "last": "Hassan", "area": "BP", "am": ["Bus 5", "7:50 AM"], "pm": ["Bus 5", "4:15 PM", "home", ""], "fri": ["Bus 5", "12:15 PM"], "extras": [], "amb": 0},
-  {"first": "Hamzaa", "last": "Usmael", "area": "BP", "am": ["Bus 5", "7:52 AM"], "pm": ["Bus 5", "4:17 PM", "home", ""], "fri": ["Bus 5", "12:17 PM"], "extras": [], "amb": 0},
-  {"first": "Seenaa", "last": "Usmael", "area": "BP", "am": ["Bus 5", "7:52 AM"], "pm": ["Bus 5", "4:17 PM", "home", ""], "fri": ["Bus 5", "12:17 PM"], "extras": [], "amb": 0},
-  {"first": "Ammar", "last": "Abdi", "area": "BP", "am": ["Bus 5", "8:00 AM"], "pm": ["Bus 5", "4:25 PM", "home", ""], "fri": ["Bus 5", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Hayat", "last": "Abdi", "area": "BP", "am": ["Bus 5", "8:00 AM"], "pm": ["Bus 5", "4:25 PM", "home", ""], "fri": ["Bus 5", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Hafsa", "last": "Mohamed", "area": "BP", "am": ["Bus 5", "8:06 AM"], "pm": ["Bus 5", "4:31 PM", "home", ""], "fri": ["Bus 5", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Shuaib", "last": "Mohamed", "area": "BP", "am": ["Bus 5", "8:06 AM"], "pm": ["Bus 5", "4:31 PM", "home", ""], "fri": ["Bus 5", "12:25 PM"], "extras": [], "amb": 1},
-  {"first": "Shuaib", "last": "Mohamed", "area": "CR & MV", "am": ["Van 8", "8:14 AM"], "pm": ["Van 8", "4:32 PM", "home", ""], "fri": ["Van 8", "12:33 PM"], "extras": [], "amb": 1},
-  {"first": "Omar", "last": "Abdullahi", "area": "BP", "am": ["Bus 5", "8:08 AM"], "pm": ["Bus 5", "4:33 PM", "home", ""], "fri": ["Bus 5", "12:33 PM"], "extras": [], "amb": 0},
-  {"first": "Abdulrahman", "last": "Abdullahi", "area": "BP", "am": ["Bus 5", "8:08 AM"], "pm": ["Bus 5", "4:33 PM", "home", ""], "fri": ["Bus 5", "12:33 PM"], "extras": [], "amb": 0},
-  {"first": "Khalid", "last": "Abdullahi", "area": "BP", "am": ["Bus 5", "8:08 AM"], "pm": ["Bus 5", "4:33 PM", "home", ""], "fri": ["Bus 5", "12:33 PM"], "extras": [], "amb": 0},
-  {"first": "Sumeya", "last": "Abdullahi", "area": "BP", "am": ["Bus 5", "8:08 AM"], "pm": ["Bus 5", "4:33 PM", "home", ""], "fri": ["Bus 5", "12:33 PM"], "extras": [], "amb": 0},
-  {"first": "Sitra", "last": "Khadar", "area": "EP & S.P", "am": ["Van 10", "7:55 AM"], "pm": ["Van 10", "4:40 PM", "home", ""], "fri": ["Bus 5", "12:34 PM"], "extras": ["Fridays/If Needed on Bus 5 (12:34 PM)"], "amb": 0},
-  {"first": "Amar", "last": "Taha", "area": "BP", "am": ["Bus 5", "8:09 AM"], "pm": ["Bus 5", "4:34 PM", "home", ""], "fri": ["Bus 5", "12:35 PM"], "extras": [], "amb": 0},
-  {"first": "Dhul-Qarnayn", "last": "Mustafa", "area": "BP", "am": ["Bus 5", "8:30 AM"], "pm": ["Bus 5", "", "daycare", "M-Th PM Daycare"], "fri": ["Bus 5", "12:54 PM"], "extras": [], "amb": 0},
-  {"first": "Zakiyah", "last": "Mustafa", "area": "BP", "am": ["Bus 5", "8:30 AM"], "pm": ["Bus 5", "", "daycare", "M-Th PM Daycare"], "fri": ["Bus 5", "12:54 PM"], "extras": [], "amb": 0},
-  {"first": "Safiyyah", "last": "Mustafa", "area": "BP", "am": ["Bus 5", "8:30 AM"], "pm": ["Bus 5", "", "daycare", "M-Th PM Daycare"], "fri": ["Bus 5", "12:54 PM"], "extras": [], "amb": 0},
-  {"first": "Luqman", "last": "Mustafa", "area": "BP", "am": ["Bus 5", "8:30 AM"], "pm": ["Bus 5", "", "daycare", "M-Th PM Daycare"], "fri": ["Bus 5", "12:54 PM"], "extras": [], "amb": 0},
-  {"first": "Namoyi", "last": "Mohamed", "area": "BP", "am": ["Bus 5", ""], "pm": ["Bus 5", "", "home", ""], "fri": ["Bus 5", ""], "extras": [], "amb": 0},
-  {"first": "Omar", "last": "Mohamed", "area": "BP", "am": ["Bus 5", ""], "pm": ["Bus 5", "", "home", ""], "fri": ["Bus 5", ""], "extras": [], "amb": 0},
-  {"first": "Urji", "last": "Tahir", "area": "CR", "am": ["Bus 6", "7:50 AM"], "pm": ["Bus 6", "4:50 PM", "home", ""], "fri": ["Bus 6", "12:50 PM"], "extras": [], "amb": 0},
-  {"first": "Sabh", "last": "Abdullahi", "area": "CR", "am": ["Bus 6", "7:52 AM"], "pm": ["Bus 6", "4:48 PM", "home", ""], "fri": ["Bus 6", "12:48 PM"], "extras": [], "amb": 0},
-  {"first": "Ahmed", "last": "Abdurahman", "area": "CR", "am": ["Bus 6", "8:00 AM"], "pm": ["Bus 6", "4:40 PM", "home", ""], "fri": ["Bus 6", "12:40 PM"], "extras": [], "amb": 0},
-  {"first": "Amal", "last": "Abdurahman", "area": "CR", "am": ["Bus 6", "8:00 AM"], "pm": ["Bus 6", "4:40 PM", "home", ""], "fri": ["Bus 6", "12:40 PM"], "extras": [], "amb": 0},
-  {"first": "Hanim", "last": "Abdurahman", "area": "CR", "am": ["Bus 6", "8:00 AM"], "pm": ["Bus 6", "4:40 PM", "home", ""], "fri": ["Bus 6", "12:40 PM"], "extras": [], "amb": 0},
-  {"first": "Hawa", "last": "Abdurahman", "area": "CR", "am": ["Bus 6", "8:00 AM"], "pm": ["Bus 6", "4:40 PM", "home", ""], "fri": ["Bus 6", "12:40 PM"], "extras": [], "amb": 0},
-  {"first": "Raziya", "last": "Abdurahman", "area": "CR", "am": ["Bus 6", "8:00 AM"], "pm": ["Bus 6", "4:40 PM", "home", ""], "fri": ["Bus 6", "12:40 PM"], "extras": [], "amb": 0},
-  {"first": "Ifnan", "last": "Abduro", "area": "CR", "am": ["Bus 6", "8:10 AM"], "pm": ["Bus 6", "4:30 PM", "home", ""], "fri": ["Bus 6", "12:30 PM"], "extras": [], "amb": 0},
-  {"first": "Jenna", "last": "Dilbi", "area": "CR", "am": ["Bus 6", "8:18 AM"], "pm": ["Bus 6", "4:22 PM", "home", ""], "fri": ["Bus 6", "12:22 PM"], "extras": [], "amb": 0},
-  {"first": "Rahil", "last": "Muktar", "area": "CR", "am": ["Bus 6", "8:24 AM"], "pm": ["Bus 6", "4:16 PM", "home", ""], "fri": ["Bus 6", "12:16 PM"], "extras": [], "amb": 0},
-  {"first": "Rihan", "last": "Muktar", "area": "CR", "am": ["Bus 6", "8:24 AM"], "pm": ["Bus 6", "4:16 PM", "home", ""], "fri": ["Bus 6", "12:16 PM"], "extras": [], "amb": 0},
-  {"first": "Mohamed", "last": "Muktar", "area": "CR", "am": ["Bus 6", "8:24 AM"], "pm": ["Bus 6", "4:16 PM", "home", ""], "fri": ["Bus 6", "12:16 PM"], "extras": [], "amb": 1},
-  {"first": "Mohamed", "last": "Muktar", "area": "S. Mpls 2", "am": ["Van 7", "8:22 AM"], "pm": ["Van 7", "4:23 PM", "home", ""], "fri": ["Van 7", ""], "extras": [], "amb": 1},
-  {"first": "Eban", "last": "Sena", "area": "CR", "am": ["Bus 6", "8:30 AM"], "pm": ["Bus 6", "4:10 PM", "home", ""], "fri": ["Bus 6", "12:10 PM"], "extras": [], "amb": 0},
-  {"first": "Murtesa", "last": "Mohamed", "area": "N of BP", "am": ["Bus 7", "7:50 AM"], "pm": ["Bus 7", "4:38 PM", "home", ""], "fri": ["Bus 7", "12:38 PM"], "extras": [], "amb": 0},
-  {"first": "Chaltu", "last": "Seid", "area": "N of BP", "am": ["Bus 7", "7:55 AM"], "pm": ["Bus 7", "4:32 PM", "home", ""], "fri": ["Bus 7", "12:32 PM"], "extras": [], "amb": 0},
-  {"first": "Milkessaa", "last": "Seid", "area": "N of BP", "am": ["Bus 7", "7:55 AM"], "pm": ["Bus 7", "4:32 PM", "home", ""], "fri": ["Bus 7", "12:32 PM"], "extras": [], "amb": 0},
-  {"first": "Sina", "last": "Mohamed", "area": "N of BP", "am": ["Bus 7", "8:00 AM"], "pm": ["Bus 7", "", "home", ""], "fri": ["Bus 7", ""], "extras": [], "amb": 0},
-  {"first": "Ahlam", "last": "", "area": "N of BP", "am": ["Bus 7", "8:04 AM"], "pm": ["Bus 7", "4:10 PM", "home", ""], "fri": ["Bus 7", "12:10 PM"], "extras": [], "amb": 0},
-  {"first": "Amir", "last": "", "area": "N of BP", "am": ["Bus 7", "8:04 AM"], "pm": ["Bus 7", "4:10 PM", "home", ""], "fri": ["Bus 7", "12:10 PM"], "extras": [], "amb": 0},
-  {"first": "Hasenat", "last": "", "area": "N of BP", "am": ["Bus 7", "8:04 AM"], "pm": ["Bus 7", "4:10 PM", "home", ""], "fri": ["Bus 7", "12:10 PM"], "extras": [], "amb": 0},
-  {"first": "Omar", "last": "Ali", "area": "N of BP", "am": ["Bus 7", "8:08 AM"], "pm": ["Bus 7", "4:26 PM", "home", ""], "fri": ["Bus 7", "12:26 PM"], "extras": [], "amb": 0},
-  {"first": "Imran", "last": "Osman", "area": "N of BP", "am": ["Bus 7", "8:16 AM"], "pm": ["Bus 7", "4:18 PM", "home", ""], "fri": ["Bus 7", "12:18 PM"], "extras": [], "amb": 1},
-  {"first": "Imran", "last": "Osman", "area": "Champlin", "am": ["Van 5", "8:05 AM"], "pm": ["Van 5", "4:35 PM", "home", ""], "fri": ["Van 5", ""], "extras": [], "amb": 1},
-  {"first": "Hadi", "last": "Walji", "area": "N of BP", "am": ["Bus 7", "8:18 AM"], "pm": ["Bus 7", "4:16 PM", "home", ""], "fri": ["Bus 7", "12:16 PM"], "extras": [], "amb": 0},
-  {"first": "Ruqayyah", "last": "Walji", "area": "N of BP", "am": ["Bus 7", "8:18 AM"], "pm": ["Bus 7", "4:16 PM", "home", ""], "fri": ["Bus 7", "12:16 PM"], "extras": [], "amb": 0},
-  {"first": "Muhammad", "last": "Walji", "area": "N of BP", "am": ["Bus 7", "8:18 AM"], "pm": ["Bus 7", "4:16 PM", "home", ""], "fri": ["Bus 7", "12:16 PM"], "extras": [], "amb": 0},
-  {"first": "Naol", "last": "Abdiyo", "area": "Blaine", "am": ["Bus 8", "7:45 AM"], "pm": ["Bus 8", "4:45 PM", "home", ""], "fri": ["Bus 8", "12:45 PM"], "extras": [], "amb": 0},
-  {"first": "Bilal", "last": "Abdiyo", "area": "Blaine", "am": ["Bus 8", "7:45 AM"], "pm": ["Bus 8", "4:45 PM", "home", ""], "fri": ["Bus 8", "12:45 PM"], "extras": [], "amb": 0},
-  {"first": "Ilhan", "last": "Abdiyo", "area": "Blaine", "am": ["Bus 8", "7:45 AM"], "pm": ["Bus 8", "4:45 PM", "home", ""], "fri": ["Bus 8", "12:45 PM"], "extras": [], "amb": 0},
-  {"first": "Ayub", "last": "Abdi", "area": "Blaine", "am": ["Bus 8", "8:00 AM"], "pm": ["Bus 8", "4:30 PM", "home", ""], "fri": ["Bus 8", "12:30 PM"], "extras": [], "amb": 0},
-  {"first": "Sabrinne", "last": "Abdi", "area": "Blaine", "am": ["Bus 8", "8:00 AM"], "pm": ["Bus 8", "4:30 PM", "home", ""], "fri": ["Bus 8", "12:30 PM"], "extras": [], "amb": 0},
-  {"first": "Hasina", "last": "Damina", "area": "Blaine", "am": ["Bus 8", "8:05 AM"], "pm": ["Bus 8", "4:25 PM", "home", ""], "fri": ["Bus 8", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Hizam", "last": "Damina", "area": "Blaine", "am": ["Bus 8", "8:05 AM"], "pm": ["Bus 8", "4:25 PM", "home", ""], "fri": ["Bus 8", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Huzeyfa", "last": "Damina", "area": "Blaine", "am": ["Bus 8", "8:05 AM"], "pm": ["Bus 8", "4:25 PM", "home", ""], "fri": ["Bus 8", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Ihsaan", "last": "Hassan", "area": "Blaine", "am": ["Bus 8", "8:25 AM"], "pm": ["Bus 8", "4:10 PM", "home", ""], "fri": ["Bus 8", "12:10 PM"], "extras": [], "amb": 0},
-  {"first": "Abdullah", "last": "Hassan", "area": "Blaine", "am": ["Bus 8", "8:25 AM"], "pm": ["Bus 8", "4:10 PM", "home", ""], "fri": ["Bus 8", "12:10 PM"], "extras": [], "amb": 0},
-  {"first": "Hassan", "last": "Mohamed", "area": "Blaine", "am": ["Bus 8", "8:30 AM"], "pm": ["Bus 8", "4:05 PM", "home", ""], "fri": ["Bus 8", "12:05 PM"], "extras": [], "amb": 0},
-  {"first": "Hussen", "last": "Mohamed", "area": "Blaine", "am": ["Bus 8", "8:30 AM"], "pm": ["Bus 8", "4:05 PM", "home", ""], "fri": ["Bus 8", "12:05 PM"], "extras": [], "amb": 0},
-  {"first": "Mahamad", "last": "Yusuf", "area": "St.P", "am": ["Bus 9", "7:45 AM"], "pm": ["Bus 9", "4:45 PM", "home", ""], "fri": ["Bus 9", ""], "extras": [], "amb": 0},
-  {"first": "Aisha", "last": "Yusuf", "area": "St.P", "am": ["Bus 9", "7:45 AM"], "pm": ["Bus 9", "4:45 PM", "home", ""], "fri": ["Bus 9", ""], "extras": [], "amb": 0},
-  {"first": "Nahla", "last": "Abdulwahab", "area": "St.P", "am": ["Bus 9", "7:55 AM"], "pm": ["Bus 9", "4:37 PM", "home", ""], "fri": ["Bus 9", "12:37 PM"], "extras": [], "amb": 0},
-  {"first": "Ahyan", "last": "Abdulwahab", "area": "St.P", "am": ["Bus 9", "7:55 AM"], "pm": ["Bus 9", "4:37 PM", "home", ""], "fri": ["Bus 9", "12:37 PM"], "extras": [], "amb": 0},
-  {"first": "Anam", "last": "Abdala", "area": "St.P", "am": ["Bus 9", ""], "pm": ["Bus 9", "", "home", ""], "fri": ["Bus 9", ""], "extras": [], "amb": 0},
-  {"first": "Asma", "last": "Abdala", "area": "St.P", "am": ["Bus 9", "8:05 AM"], "pm": ["Bus 9", "4:27 PM", "home", ""], "fri": ["Bus 9", "12:27 PM"], "extras": [], "amb": 0},
-  {"first": "Nure", "last": "Abdala", "area": "St.P", "am": ["Bus 9", "8:05 AM"], "pm": ["Bus 9", "4:27 PM", "home", ""], "fri": ["Bus 9", "12:27 PM"], "extras": [], "amb": 0},
-  {"first": "Milkesa", "last": "Aliy", "area": "St.P", "am": ["Bus 9", "8:11 AM"], "pm": ["Bus 9", "4:21 PM", "home", ""], "fri": ["Bus 9", "12:21 PM"], "extras": [], "amb": 0},
-  {"first": "Hachalu", "last": "Aliy", "area": "St.P", "am": ["Bus 9", "8:11 AM"], "pm": ["Bus 9", "4:21 PM", "home", ""], "fri": ["Bus 9", "12:21 PM"], "extras": [], "amb": 0},
-  {"first": "Wariyo", "last": "Aliy", "area": "St.P", "am": ["Bus 9", "8:11 AM"], "pm": ["Bus 9", "4:21 PM", "home", ""], "fri": ["Bus 9", "12:21 PM"], "extras": [], "amb": 0},
-  {"first": "Asma", "last": "Najib", "area": "St.P", "am": ["Bus 9", "8:17 AM"], "pm": ["Bus 9", "4:15 PM", "home", ""], "fri": ["Bus 9", "12:15 PM"], "extras": [], "amb": 0},
-  {"first": "Ehsan", "last": "Najib", "area": "St.P", "am": ["Bus 9", "8:17 AM"], "pm": ["Bus 9", "4:15 PM", "home", ""], "fri": ["Bus 9", "12:15 PM"], "extras": [], "amb": 0},
-  {"first": "Emran", "last": "Najib", "area": "St.P", "am": ["Bus 9", "8:17 AM"], "pm": ["Bus 9", "4:15 PM", "home", ""], "fri": ["Bus 9", "12:15 PM"], "extras": [], "amb": 0},
-  {"first": "Misha", "last": "Hebo", "area": "Andover", "am": ["Bus 10", "8:00 AM"], "pm": ["Bus 10", "4:47 PM", "home", ""], "fri": ["Bus 10", "12:47 PM"], "extras": [], "amb": 0},
-  {"first": "Nafiis", "last": "Mohamed", "area": "Andover", "am": ["Bus 10", "8:04 AM"], "pm": ["Bus 10", "4:44 PM", "home", ""], "fri": ["Bus 10", "12:44 PM"], "extras": [], "amb": 0},
-  {"first": "Sabona", "last": "Mohamed", "area": "Andover", "am": ["Bus 10", "8:04 AM"], "pm": ["Bus 10", "4:44 PM", "home", ""], "fri": ["Bus 10", "12:44 PM"], "extras": [], "amb": 0},
-  {"first": "Salman", "last": "Mohamed", "area": "Andover", "am": ["Bus 10", "8:04 AM"], "pm": ["Bus 10", "4:44 PM", "home", ""], "fri": ["Bus 10", "12:44 PM"], "extras": [], "amb": 0},
-  {"first": "Ibsa", "last": "Osman", "area": "Andover", "am": ["Bus 10", "8:10 AM"], "pm": ["Bus 10", "4:35 PM", "home", ""], "fri": ["Bus 10", "12:35 PM"], "extras": [], "amb": 0},
-  {"first": "Munir", "last": "Osman", "area": "Andover", "am": ["Bus 10", "8:10 AM"], "pm": ["Bus 10", "4:35 PM", "home", ""], "fri": ["Bus 10", "12:35 PM"], "extras": [], "amb": 0},
-  {"first": "Asad", "last": "Mohamednur", "area": "Andover", "am": ["Bus 10", "8:19 AM"], "pm": ["Bus 10", "4:26 PM", "home", ""], "fri": ["Bus 10", "12:26 PM"], "extras": [], "amb": 0},
-  {"first": "Azhar", "last": "Mohamednur", "area": "Andover", "am": ["Bus 10", "8:19 AM"], "pm": ["Bus 10", "4:26 PM", "home", ""], "fri": ["Bus 10", "12:26 PM"], "extras": [], "amb": 0},
-  {"first": "Maliana", "last": "Sheik", "area": "Blaine", "am": ["Van 1", "7:30 AM"], "pm": ["Van 1", "5:10 PM", "home", ""], "fri": ["Van 1", ""], "extras": [], "amb": 0},
-  {"first": "Safi", "last": "Hamza", "area": "Blaine", "am": ["Van 1", "7:30 AM"], "pm": ["Van 1", "5:10 PM", "home", ""], "fri": ["Van 1", ""], "extras": [], "amb": 0},
-  {"first": "Damballa", "last": "Damballa", "area": "Blaine", "am": ["Van 1", "7:35 AM"], "pm": ["Van 1", "5:05 PM", "home", ""], "fri": ["Van 1", ""], "extras": [], "amb": 0},
-  {"first": "Osman", "last": "Damballa", "area": "Blaine", "am": ["Van 1", "7:35 AM"], "pm": ["Van 1", "5:05 PM", "home", ""], "fri": ["Van 1", ""], "extras": [], "amb": 0},
-  {"first": "Adola", "last": "Damballa", "area": "Blaine", "am": ["Van 1", "7:35 AM"], "pm": ["Van 1", "5:05 PM", "home", ""], "fri": ["Van 1", ""], "extras": [], "amb": 0},
-  {"first": "Asahd", "last": "Yusuf", "area": "Blaine", "am": ["Van 1", "7:45 AM"], "pm": ["Van 1", "4:55 PM", "home", ""], "fri": ["Van 1", ""], "extras": [], "amb": 0},
-  {"first": "Thulfokar", "last": "Pashkanem", "area": "Blaine", "am": ["Van 1", "8:05 AM"], "pm": ["Van 1", "4:35 PM", "home", ""], "fri": ["Van 1", ""], "extras": [], "amb": 0},
-  {"first": "Hania", "last": "Mohammed", "area": "Blaine", "am": ["Van 1", "8:20 AM"], "pm": ["Van 1", "4:20 PM", "home", ""], "fri": ["Van 1", ""], "extras": [], "amb": 0},
-  {"first": "Maruf", "last": "Hebo", "area": "Robb", "am": ["Van 2", "8:00 AM"], "pm": ["Van 2", "4:36 PM", "home", ""], "fri": ["Van 2", "12:36 PM"], "extras": [], "amb": 0},
-  {"first": "Aflah", "last": "Borana", "area": "Robb", "am": ["Van 2", "8:02 AM"], "pm": ["Van 2", "4:34 PM", "home", ""], "fri": ["Van 2", "12:34 PM"], "extras": [], "amb": 0},
-  {"first": "Manasa", "last": "Borana", "area": "Robb", "am": ["Van 2", "8:02 AM"], "pm": ["Van 2", "4:34 PM", "home", ""], "fri": ["Van 2", "12:34 PM"], "extras": [], "amb": 0},
-  {"first": "Abdullah", "last": "Mohamed", "area": "Robb", "am": ["Van 2", "8:12 AM"], "pm": ["Van 2", "4:24 PM", "home", ""], "fri": ["Van 2", "12:24 PM"], "extras": [], "amb": 0},
-  {"first": "Haamid", "last": "Ali", "area": "Robb", "am": ["Van 2", "8:12 AM"], "pm": ["Van 2", "4:24 PM", "home", ""], "fri": ["Van 2", "12:24 PM"], "extras": [], "amb": 0},
-  {"first": "Nasra", "last": "Ali", "area": "Robb", "am": ["Van 2", "8:12 AM"], "pm": ["Van 2", "4:24 PM", "home", ""], "fri": ["Van 2", "12:24 PM"], "extras": [], "amb": 0},
-  {"first": "Roba", "last": "Abdi", "area": "Robb", "am": ["Van 2", "8:20 AM"], "pm": ["Van 2", "4:15 PM", "home", ""], "fri": ["Van 2", "12:15 PM"], "extras": [], "amb": 0},
-  {"first": "Bilal", "last": "Abdi", "area": "Robb", "am": ["Van 2", "8:20 AM"], "pm": ["Van 2", "4:15 PM", "home", ""], "fri": ["Van 2", "12:15 PM"], "extras": [], "amb": 0},
-  {"first": "Furat", "last": "Mohamed", "area": "Robb", "am": ["Van 2", "8:25 AM"], "pm": ["Van 2", "4:10 PM", "home", ""], "fri": ["Van 2", "12:10 PM"], "extras": [], "amb": 0},
-  {"first": "Abdurahim", "last": "Mohammed", "area": "MG", "am": ["Van 3", "8:10 AM"], "pm": ["Van 3", "4:25 PM", "home", ""], "fri": ["Van 3", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Abdurahman", "last": "Mohammed", "area": "MG", "am": ["Van 3", "8:10 AM"], "pm": ["Van 3", "4:25 PM", "home", ""], "fri": ["Van 3", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Yahya", "last": "Mohammed", "area": "MG", "am": ["Van 3", "8:10 AM"], "pm": ["Van 3", "4:25 PM", "home", ""], "fri": ["Van 3", "12:25 PM"], "extras": [], "amb": 0},
-  {"first": "Luqman", "last": "Said", "area": "MG", "am": ["Van 3", "8:15 AM"], "pm": ["Van 3", "4:20 PM", "home", ""], "fri": ["Van 3", "12:20 PM"], "extras": [], "amb": 0},
-  {"first": "Imran", "last": "Said", "area": "MG", "am": ["Van 3", "8:15 AM"], "pm": ["Van 3", "4:20 PM", "home", ""], "fri": ["Van 3", "12:20 PM"], "extras": [], "amb": 0},
-  {"first": "Zayn", "last": "Said", "area": "MG", "am": ["Van 3", "8:15 AM"], "pm": ["Van 3", "4:20 PM", "home", ""], "fri": ["Van 3", "12:20 PM"], "extras": [], "amb": 0},
-  {"first": "Maryama", "last": "Said", "area": "MG", "am": ["Van 3", "8:15 AM"], "pm": ["Van 3", "4:20 PM", "home", ""], "fri": ["Van 3", "12:20 PM"], "extras": [], "amb": 0},
-  {"first": "Bashir", "last": "Said", "area": "MG", "am": ["Van 3", "8:15 AM"], "pm": ["Van 3", "4:20 PM", "home", ""], "fri": ["Van 3", "12:20 PM"], "extras": [], "amb": 0},
-  {"first": "Ahlam", "last": "Esake", "area": "Ramsey", "am": ["Van 4", "8:00 AM"], "pm": ["Van 4", "4:30 PM", "home", ""], "fri": ["Van 4", "12:30 PM"], "extras": [], "amb": 0},
-  {"first": "Ammar", "last": "Esake", "area": "Ramsey", "am": ["Van 4", "8:00 AM"], "pm": ["Van 4", "4:30 PM", "home", ""], "fri": ["Van 4", "12:30 PM"], "extras": [], "amb": 0},
-  {"first": "Khald", "last": "Esake", "area": "Ramsey", "am": ["Van 4", "8:00 AM"], "pm": ["Van 4", "4:30 PM", "home", ""], "fri": ["Van 4", "12:30 PM"], "extras": [], "amb": 0},
-  {"first": "Kiran", "last": "Esake", "area": "Ramsey", "am": ["Van 4", "8:00 AM"], "pm": ["Van 4", "4:30 PM", "home", ""], "fri": ["Van 4", "12:30 PM"], "extras": [], "amb": 0},
-  {"first": "Niya", "last": "Muktar", "area": "Ramsey", "am": ["Van 4", "8:00 AM"], "pm": ["Van 4", "4:30 PM", "home", ""], "fri": ["Van 4", "12:30 PM"], "extras": [], "amb": 0},
-  {"first": "Amira", "last": "Hassan", "area": "Ramsey", "am": ["Van 4", "8:00 AM"], "pm": ["Van 4", "4:30 PM", "home", ""], "fri": ["Van 4", "12:30 PM"], "extras": [], "amb": 0},
-  {"first": "Marwa", "last": "Omar", "area": "Ramsey", "am": ["Van 4", "8:04 AM"], "pm": ["Van 4", "4:26 PM", "home", ""], "fri": ["Van 4", "12:26 PM"], "extras": [], "amb": 0},
-  {"first": "Haamid", "last": "Ibrahim", "area": "Ramsey", "am": ["Van 4", "8:10 AM"], "pm": ["Van 4", "4:20 PM", "home", ""], "fri": ["Van 4", "12:20 PM"], "extras": [], "amb": 0},
-  {"first": "Imran", "last": "Ibrahim", "area": "Ramsey", "am": ["Van 4", "8:10 AM"], "pm": ["Van 4", "4:20 PM", "home", ""], "fri": ["Van 4", "12:20 PM"], "extras": [], "amb": 0},
-  {"first": "Liyaanaa", "last": "Ibrahim", "area": "Ramsey", "am": ["Van 4", "8:10 AM"], "pm": ["Van 4", "4:20 PM", "home", ""], "fri": ["Van 4", "12:20 PM"], "extras": [], "amb": 0},
-  {"first": "Rayyan", "last": "Adam", "area": "Champlin", "am": ["Van 5", "8:00 AM"], "pm": ["Van 5", "4:40 PM", "home", ""], "fri": ["Van 5", ""], "extras": [], "amb": 0},
-  {"first": "Ammar", "last": "Osman", "area": "Champlin", "am": ["Van 5", "8:05 AM"], "pm": ["Van 5", "4:35 PM", "home", ""], "fri": ["Van 5", ""], "extras": [], "amb": 0},
-  {"first": "Hachalu", "last": "Osman", "area": "Champlin", "am": ["Van 5", "8:05 AM"], "pm": ["Van 5", "4:35 PM", "home", ""], "fri": ["Van 5", ""], "extras": [], "amb": 0},
-  {"first": "Nadura", "last": "Osman", "area": "Champlin", "am": ["Van 5", "8:05 AM"], "pm": ["Van 5", "4:35 PM", "home", ""], "fri": ["Van 5", ""], "extras": [], "amb": 0},
-  {"first": "Wako", "last": "Osman", "area": "Champlin", "am": ["Van 5", "8:05 AM"], "pm": ["Van 5", "4:35 PM", "home", ""], "fri": ["Van 5", ""], "extras": [], "amb": 0},
-  {"first": "Mawardi", "last": "Sabsibe", "area": "S.Mpls 1", "am": ["Van 6", "7:50 AM"], "pm": ["Van 6", "4:50 PM", "home", ""], "fri": ["Van 6", ""], "extras": [], "amb": 0},
-  {"first": "Abdihafiz", "last": "Sabsibe", "area": "S.Mpls 1", "am": ["Van 6", "7:50 AM"], "pm": ["Van 6", "4:50 PM", "home", ""], "fri": ["Van 6", ""], "extras": [], "amb": 0},
-  {"first": "Sahil", "last": "Adde", "area": "S.Mpls 1", "am": ["Van 6", "8:00 AM"], "pm": ["Van 6", "4:40 PM", "home", ""], "fri": ["Van 6", ""], "extras": [], "amb": 0},
-  {"first": "Mahir", "last": "Momin", "area": "S.Mpls 1", "am": ["Van 6", "8:00 AM"], "pm": ["Van 6", "4:40 PM", "home", ""], "fri": ["Van 6", ""], "extras": [], "amb": 0},
-  {"first": "Sabir", "last": "Kadir", "area": "S.Mpls 1", "am": ["Van 6", "8:20 AM"], "pm": ["Van 6", "4:20 PM", "home", ""], "fri": ["Van 6", ""], "extras": [], "amb": 0},
-  {"first": "Maysam", "last": "Said", "area": "S.Mpls 1", "am": ["Van 6", "8:30 AM"], "pm": ["Van 6", "4:10 PM", "home", ""], "fri": ["Van 6", ""], "extras": [], "amb": 0},
-  {"first": "Maryam", "last": "Jirde", "area": "S. Mpls 2", "am": ["Van 7", "8:12 AM"], "pm": ["Van 7", "4:33 PM", "home", ""], "fri": ["Van 7", ""], "extras": [], "amb": 0},
-  {"first": "Marwa", "last": "Muktar", "area": "S. Mpls 2", "am": ["Van 7", "8:22 AM"], "pm": ["Van 7", "4:23 PM", "home", ""], "fri": ["Van 7", ""], "extras": [], "amb": 0},
-  {"first": "Muhsin", "last": "Muktar", "area": "S. Mpls 2", "am": ["Van 7", "8:22 AM"], "pm": ["Van 7", "4:23 PM", "home", ""], "fri": ["Van 7", ""], "extras": [], "amb": 0},
-  {"first": "Ihsan", "last": "Ibrahim", "area": "CR & MV", "am": ["Van 8", "8:00 AM"], "pm": ["Van 8", "4:45 PM", "home", ""], "fri": ["Van 8", "12:45 PM"], "extras": [], "amb": 0},
-  {"first": "Ansar", "last": "Ibrahim", "area": "CR & MV", "am": ["Van 8", "8:00 AM"], "pm": ["Van 8", "4:45 PM", "home", ""], "fri": ["Van 8", "12:45 PM"], "extras": [], "amb": 0},
-  {"first": "Elham", "last": "Jemal", "area": "CR & MV", "am": ["Van 8", "8:25 AM"], "pm": ["Van 8", "4:23 PM", "home", ""], "fri": ["Van 8", "12:24 PM"], "extras": [], "amb": 0},
-  {"first": "Raha", "last": "Omisaye", "area": "CR & MV", "am": ["Van 8", "8:33 AM"], "pm": ["Van 8", "4:15 PM", "home", ""], "fri": ["Van 8", "12:15 PM"], "extras": [], "amb": 0},
-  {"first": "Noah", "last": "Abdikadir Ibrahim", "area": "W. St. Paul", "am": ["Van 9", "7:50 AM"], "pm": ["Bus 4", "4:30 PM", "daycare", "M-Th PM Daycare"], "fri": ["Van 9", "12:36 PM"], "extras": ["On days not at daycare: dropped off 4:45 PM on Van 9."], "amb": 0},
-  {"first": "Abdisa", "last": "Genemo", "area": "W. St. Paul", "am": ["Van 9", "8:10 AM"], "pm": ["Van 9", "4:25 PM", "home", ""], "fri": ["Van 9", "12:26 PM"], "extras": [], "amb": 0},
-  {"first": "Afyah", "last": "Genemo", "area": "W. St. Paul", "am": ["Van 9", "8:10 AM"], "pm": ["Van 9", "4:25 PM", "home", ""], "fri": ["Van 9", "12:26 PM"], "extras": [], "amb": 0},
-  {"first": "Sumaya", "last": "Genemo", "area": "W. St. Paul", "am": ["Van 9", "8:10 AM"], "pm": ["Van 9", "4:25 PM", "home", ""], "fri": ["Van 9", "12:26 PM"], "extras": [], "amb": 0},
-  {"first": "Tasneem", "last": "Genemo", "area": "W. St. Paul", "am": ["Van 9", "8:10 AM"], "pm": ["Van 9", "4:25 PM", "home", ""], "fri": ["Van 9", "12:26 PM"], "extras": [], "amb": 0},
-  {"first": "Siman", "last": "Mohamed", "area": "W. St. Paul", "am": ["Van 9", "8:15 AM"], "pm": ["Van 9", "4:22 PM", "home", ""], "fri": ["Van 9", "12:22 PM"], "extras": [], "amb": 0},
-  {"first": "Amir", "last": "Ararso", "area": "EP & S.P", "am": ["Van 10", "8:10 AM"], "pm": ["Van 10", "4:32 PM", "home", ""], "fri": ["Van 10", "12:32 PM"], "extras": [], "amb": 0},
-  {"first": "Khalid", "last": "Ararso", "area": "EP & S.P", "am": ["Van 10", "8:10 AM"], "pm": ["Van 10", "4:32 PM", "home", ""], "fri": ["Van 10", "12:32 PM"], "extras": [], "amb": 0},
-  {"first": "Samir", "last": "Ararso", "area": "EP & S.P", "am": ["Van 10", "8:10 AM"], "pm": ["Van 10", "4:32 PM", "home", ""], "fri": ["Van 10", "12:32 PM"], "extras": [], "amb": 0},
-  {"first": "Museba", "last": "Abdullahi", "area": "EP & S.P", "am": ["Van 10", "8:20 AM"], "pm": ["Van 10", "4:22 PM", "home", ""], "fri": ["Van 10", "12:22 PM"], "extras": [], "amb": 0},
-  {"first": "Salwa", "last": "Abdullahi", "area": "EP & S.P", "am": ["Van 10", "8:20 AM"], "pm": ["Van 10", "4:22 PM", "home", ""], "fri": ["Van 10", "12:22 PM"], "extras": [], "amb": 0},
-  {"first": "6", "last": "students", "area": "EP & S.P", "am": ["Van 10", "8:45 AM"], "pm": ["Van 10", "4:00 PM", "home", ""], "fri": ["Van 10", "12:00 PM"], "extras": [], "amb": 0},
-  {"first": "Aisha", "last": "Ali", "area": "SPED", "am": ["Van 11", "8:20 AM"], "pm": ["Van 11", "4:25 PM", "home", ""], "fri": ["Van 11", ""], "extras": [], "amb": 0},
-  {"first": "Sarsan", "last": "Tahir", "area": "", "am": ["Van 12", "7:20 AM"], "pm": ["Van 12", "4:10 PM", "home", ""], "fri": ["Van 12", ""], "extras": [], "amb": 0},
-  {"first": "Zikra", "last": "Tahir", "area": "", "am": ["Van 12", "7:20 AM"], "pm": ["Van 12", "4:10 PM", "home", ""], "fri": ["Van 12", ""], "extras": [], "amb": 0},
-  {"first": "Atif", "last": "Tahir", "area": "", "am": ["Van 12", "7:20 AM"], "pm": ["Van 12", "4:10 PM", "home", ""], "fri": ["Van 12", ""], "extras": [], "amb": 0},
-  {"first": "Talia", "last": "Ali", "area": "", "am": ["Van 12", "7:50 AM"], "pm": ["Van 12", "4:40 PM", "home", ""], "fri": ["Van 12", ""], "extras": [], "amb": 0},
-  {"first": "Afnan", "last": "Abubaker", "area": "", "am": ["Van 12", "8:10 AM"], "pm": ["Van 12", "5:00 PM", "home", ""], "fri": ["Van 12", ""], "extras": [], "amb": 0},
-  {"first": "Atinan", "last": "Abubaker", "area": "", "am": ["Van 12", "8:10 AM"], "pm": ["Van 12", "5:00 PM", "home", ""], "fri": ["Van 12", ""], "extras": [], "amb": 0}
+  {"first": "Zulekha", "last": "Osman", "grade": "K", "area": "Fridley", "am": ["Bus 1", "8:00 AM"], "pm": ["Bus 1", "4:15 PM", "home", ""], "fri": ["Bus 1", "12:15 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Milkesa", "last": "Mohammed", "grade": "K", "area": "Fridley", "am": ["Bus 1", "8:05 AM"], "pm": ["Bus 1", "4:20 PM", "home", ""], "fri": ["Bus 1", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Maryam", "last": "Shakul", "grade": "3", "area": "Fridley", "am": ["Bus 1", "8:05 AM"], "pm": ["Bus 2", "4:04 PM", "daycare", "M-Th Daycare"], "fri": ["Bus 1", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Muhammed", "last": "Shakul", "grade": "K", "area": "Fridley", "am": ["Bus 1", "8:05 AM"], "pm": ["Bus 2", "4:04 PM", "daycare", "M-Th Daycare"], "fri": ["Bus 1", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Milkessa", "last": "Wado", "grade": "3", "area": "Fridley", "am": ["Bus 1", "8:05 AM"], "pm": ["Bus 1", "4:20 PM", "home", ""], "fri": ["Bus 1", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Fenet", "last": "Wado", "grade": "2", "area": "Fridley", "am": ["Bus 1", "8:05 AM"], "pm": ["Bus 1", "4:20 PM", "home", ""], "fri": ["Bus 1", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ahil", "last": "Mahammed", "grade": "3", "area": "Fridley", "am": ["Bus 1", "8:10 AM"], "pm": ["Bus 1", "4:30 PM", "home", ""], "fri": ["Bus 1", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Shukri", "last": "Rashid", "grade": "2", "area": "Fridley", "am": ["Bus 1", "8:14 AM"], "pm": ["Bus 1", "4:34 PM", "home", ""], "fri": ["Bus 1", "12:34 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Malik", "last": "Rashid", "grade": "PK", "area": "Fridley", "am": ["Bus 1", "8:14 AM"], "pm": ["Bus 1", "4:34 PM", "home", ""], "fri": ["Bus 1", "12:34 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hafizat", "last": "Abdullahi", "grade": "4", "area": "Fridley", "am": ["Bus 1", "8:14 AM"], "pm": ["Bus 1", "4:34 PM", "home", ""], "fri": ["Bus 1", "12:34 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Muhsinat", "last": "Abdullahi", "grade": "K", "area": "Fridley", "am": ["Bus 1", "8:14 AM"], "pm": ["Bus 1", "4:34 PM", "home", ""], "fri": ["Bus 1", "12:34 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Qanitat", "last": "Abdullahi", "grade": "3", "area": "Fridley", "am": ["Bus 1", "8:14 AM"], "pm": ["Bus 1", "4:34 PM", "home", ""], "fri": ["Bus 1", "12:34 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hafiz", "last": "Abdullahi", "grade": "2", "area": "Fridley", "am": ["Bus 1", "8:14 AM"], "pm": ["Bus 1", "4:34 PM", "home", ""], "fri": ["Bus 1", "12:34 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hanan", "last": "Ahmed", "grade": "2", "area": "Fridley", "am": ["Bus 1", "8:14 AM"], "pm": ["Bus 1", "4:34 PM", "home", ""], "fri": ["Bus 1", "12:34 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Yusra", "last": "Ahmed", "grade": "K", "area": "Fridley", "am": ["Bus 1", "8:14 AM"], "pm": ["Bus 1", "4:34 PM", "home", ""], "fri": ["Bus 1", "12:34 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Aisha", "last": "Kalid", "grade": "2", "area": "Fridley", "am": ["Bus 1", "8:18 AM"], "pm": ["Bus 1", "4:37 PM", "home", ""], "fri": ["Bus 1", "12:37 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Abidah", "last": "Kalid", "grade": "2", "area": "Fridley", "am": ["Bus 1", "8:18 AM"], "pm": ["Bus 1", "4:37 PM", "home", ""], "fri": ["Bus 1", "12:37 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Abdallah", "last": "Kalid", "grade": "PK", "area": "Fridley", "am": ["Bus 1", "8:18 AM"], "pm": ["Bus 1", "4:37 PM", "home", ""], "fri": ["Bus 1", "12:37 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Amar", "last": "Amin", "grade": "8", "area": "Fridley", "am": ["Bus 1", "8:20 AM"], "pm": ["Bus 1", "4:39 PM", "home", ""], "fri": ["Bus 1", "12:39 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Amira", "last": "Amin", "grade": "6", "area": "Fridley", "am": ["Bus 1", "8:20 AM"], "pm": ["Bus 1", "4:39 PM", "home", ""], "fri": ["Bus 1", "12:39 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hafsa", "last": "Amin", "grade": "4", "area": "Fridley", "am": ["Bus 1", "8:20 AM"], "pm": ["Bus 1", "4:39 PM", "home", ""], "fri": ["Bus 1", "12:39 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Nahila", "last": "Ahmed", "grade": "3", "area": "Fridley", "am": ["Bus 1", "8:12 AM"], "pm": ["Bus 1", "4:32 PM", "home", ""], "fri": ["Bus 1", "12:32 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Abuzar", "last": "Ahmed", "grade": "4", "area": "Fridley", "am": ["Bus 1", "8:12 AM"], "pm": ["Bus 1", "4:32 PM", "home", ""], "fri": ["Bus 1", "12:32 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Abbas", "last": "Sumrain", "grade": "5", "area": "Fridley", "am": ["Bus 1", "8:26 AM"], "pm": ["Bus 1", "4:45 PM", "home", ""], "fri": ["Bus 1", "12:45 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ali", "last": "Sumrain", "grade": "3", "area": "Fridley", "am": ["Bus 1", "8:26 AM"], "pm": ["Bus 1", "4:45 PM", "home", ""], "fri": ["Bus 1", "12:45 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hamza", "last": "Sumrain", "grade": "4", "area": "Fridley", "am": ["Bus 1", "8:26 AM"], "pm": ["Bus 1", "4:45 PM", "home", ""], "fri": ["Bus 1", "12:45 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Laya", "last": "Khalil", "grade": "3", "area": "Fridley", "am": ["Bus 1", "8:30 AM"], "pm": ["Bus 1", "4:05 PM", "home", ""], "fri": ["Bus 1", "12:05 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Rahil", "last": "Muktar", "grade": "6", "area": "CR", "am": ["Bus 6", "8:24 AM"], "pm": ["Bus 1", "4:04 PM", "daycare", "M-Th Daycare"], "fri": ["Bus 6", "12:48 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Mohamed", "last": "Muktar", "grade": "PK", "area": "Fridley", "am": ["Van 16", "8:20 AM"], "pm": ["Bus 1", "4:04 PM", "daycare", "M-Th Daycare"], "fri": ["Van 16", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Musa", "last": "Nur-Salah", "grade": "K", "area": "CH", "am": ["Bus 2", "7:52 AM"], "pm": ["Bus 2", "4:02 PM", "home", ""], "fri": ["Bus 2", "12:42 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Mazna", "last": "Abshir", "grade": "1", "area": "CH", "am": ["Bus 2", "8:31 AM"], "pm": ["Bus 2", "4:06 PM", "home", ""], "fri": ["Bus 2", "12:40 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Mumtaz", "last": "Abshir", "grade": "3", "area": "CH", "am": ["Bus 2", "8:31 AM"], "pm": ["Bus 2", "4:06 PM", "home", ""], "fri": ["Bus 2", "12:40 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Muhammad", "last": "Abshir", "grade": "4", "area": "CH", "am": ["Bus 2", "8:31 AM"], "pm": ["Bus 2", "4:06 PM", "home", ""], "fri": ["Bus 2", "12:40 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Khadija", "last": "Mohamed", "grade": "K", "area": "CH", "am": ["Bus 2", "8:30 AM"], "pm": ["Bus 2", "4:08 PM", "home", ""], "fri": ["Bus 2", "12:39 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Bonsa", "last": "Musa", "grade": "1", "area": "CH", "am": ["Bus 2", "8:00 AM"], "pm": ["Bus 2", "4:16 PM", "home", ""], "fri": ["Bus 2", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sabat", "last": "Gazali", "grade": "K", "area": "CH", "am": ["Bus 2", "8:00 AM"], "pm": ["Bus 2", "4:16 PM", "home", ""], "fri": ["Bus 2", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Riham", "last": "Hussein", "grade": "1", "area": "CH", "am": ["Bus 2", "8:04 AM"], "pm": ["Bus 2", "4:22 PM", "home", ""], "fri": ["Bus 2", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Abduljabar", "last": "Abdullahi Sharif", "grade": "5", "area": "CH", "am": ["Bus 2", "8:10 AM"], "pm": ["Bus 2", "4:28 PM", "home", "ONLY FRIDAY"], "fri": ["Bus 2", "12:20 PM"], "extras": [], "amb": 0, "approx": 1},
+  {"first": "Aisha", "last": "Abdullahi Sharif", "grade": "4", "area": "CH", "am": ["Bus 2", "8:10 AM"], "pm": ["Bus 2", "4:28 PM", "home", "ONLY FRIDAY"], "fri": ["Bus 2", "12:20 PM"], "extras": [], "amb": 0, "approx": 1},
+  {"first": "Sudays", "last": "Mohamed", "grade": "8", "area": "CH", "am": ["Bus 2", "8:04 AM"], "pm": ["Bus 2", "4:22 PM", "home", ""], "fri": ["Bus 2", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Yasmin", "last": "Mohamed", "grade": "4", "area": "CH", "am": ["Bus 2", "8:04 AM"], "pm": ["Bus 2", "4:22 PM", "home", ""], "fri": ["Bus 2", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Azizaa", "last": "Mohamed", "grade": "3", "area": "CH", "am": ["Bus 2", "8:04 AM"], "pm": ["Bus 2", "4:22 PM", "home", ""], "fri": ["Bus 2", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Nura", "last": "Siyat", "grade": "5", "area": "CH", "am": ["Bus 2", "8:10 AM"], "pm": ["Bus 2", "4:28 PM", "home", ""], "fri": ["Bus 2", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Haruun", "last": "Siyat", "grade": "2", "area": "CH", "am": ["Bus 2", "8:10 AM"], "pm": ["Bus 2", "4:28 PM", "home", ""], "fri": ["Bus 2", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Fatimah", "last": "Mohamed", "grade": "2", "area": "CH", "am": ["Bus 2", "8:10 AM"], "pm": ["Bus 2", "4:28 PM", "home", ""], "fri": ["Bus 2", "12:20 PM"], "extras": [], "amb": 1, "approx": 0},
+  {"first": "Fatimah", "last": "Mohamed", "grade": "2", "area": "", "am": ["Van 2", "8:12 AM"], "pm": ["Van 2", "4:24 PM", "home", ""], "fri": ["Van 2", "12:24 PM"], "extras": [], "amb": 1, "approx": 0},
+  {"first": "Abdallah", "last": "Mohammed", "grade": "6", "area": "CH", "am": ["Bus 2", "8:10 AM"], "pm": ["Bus 2", "4:28 PM", "home", ""], "fri": ["Bus 2", "12:20 PM"], "extras": [], "amb": 1, "approx": 0},
+  {"first": "Abdallah", "last": "Mohammed", "grade": "6", "area": "", "am": ["Van 3", "8:10 AM"], "pm": ["Van 3", "4:25 PM", "home", ""], "fri": ["Van 3", "12:25 PM"], "extras": [], "amb": 1, "approx": 0},
+  {"first": "Walid", "last": "Umer", "grade": "7", "area": "CH", "am": ["Bus 2", "8:20 AM"], "pm": ["Bus 2", "4:36 PM", "home", ""], "fri": ["Bus 2", "12:16 PM"], "extras": [], "amb": 1, "approx": 0},
+  {"first": "Walid", "last": "Umer", "grade": "7", "area": "St. Paul", "am": ["Bus 9", "7:55 AM"], "pm": ["Bus 9", "4:37 PM", "home", ""], "fri": ["Bus 9", "12:37 PM"], "extras": [], "amb": 1, "approx": 0},
+  {"first": "Mustafa", "last": "Umar", "grade": "1", "area": "CH", "am": ["Bus 2", "8:15 AM"], "pm": ["Bus 2", "4:32 PM", "home", ""], "fri": ["Bus 2", "12:50 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Bilal", "last": "Umar", "grade": "3", "area": "CH", "am": ["Bus 2", "8:15 AM"], "pm": ["Bus 2", "4:32 PM", "home", ""], "fri": ["Bus 2", "12:50 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Zamzam", "last": "Umar", "grade": "5", "area": "CH", "am": ["Bus 2", "8:15 AM"], "pm": ["Bus 2", "4:32 PM", "home", ""], "fri": ["Bus 2", "12:50 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Mustafa", "last": "El Kaddur", "grade": "4", "area": "CH", "am": ["Bus 2", "8:26 AM"], "pm": ["Bus 2", "4:40 PM", "home", ""], "fri": ["Bus 2", "12:35 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Muhammad", "last": "Sharif", "grade": "2", "area": "CH", "am": ["Bus 2", "8:35 AM"], "pm": ["Bus 2", "4:00 PM", "home", ""], "fri": ["Bus 2", "12:04 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hassan", "last": "Sharif", "grade": "5", "area": "CH", "am": ["Bus 2", "8:35 AM"], "pm": ["Bus 2", "4:00 PM", "home", ""], "fri": ["Bus 2", "12:04 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Mohamed", "last": "Omar", "grade": "4", "area": "North", "am": ["Bus 3", "7:55 AM"], "pm": ["Bus 3", "4:42 PM", "home", ""], "fri": ["Bus 3", "12:42 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Nimat", "last": "Yusuf", "grade": "1", "area": "North", "am": ["Bus 3", "7:55 AM"], "pm": ["Bus 3", "4:42 PM", "home", ""], "fri": ["Bus 3", "12:42 PM"], "extras": [], "amb": 0, "approx": 1},
+  {"first": "Abdurahman", "last": "Abdurahman", "grade": "1", "area": "North", "am": ["Bus 3", "7:55 AM"], "pm": ["Bus 3", "4:42 PM", "home", ""], "fri": ["Bus 3", "12:42 PM"], "extras": [], "amb": 0, "approx": 1},
+  {"first": "Anisa", "last": "Abdulwahab", "grade": "5", "area": "North", "am": ["Bus 3", "8:00 AM"], "pm": ["Bus 3", "4:38 PM", "home", ""], "fri": ["Bus 3", "12:38 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Khadijah", "last": "Burton", "grade": "6", "area": "North", "am": ["Bus 3", "8:04 AM"], "pm": ["Bus 3", "4:34 PM", "home", ""], "fri": ["Bus 3", "12:34 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Siam", "last": "Bakri", "grade": "2", "area": "North", "am": ["Bus 3", "8:06 AM"], "pm": ["Bus 3", "4:32 PM", "home", ""], "fri": ["Bus 3", "12:32 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Eman", "last": "Bakri", "grade": "K", "area": "North", "am": ["Bus 3", "8:06 AM"], "pm": ["Bus 3", "4:32 PM", "home", ""], "fri": ["Bus 3", "12:32 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Bilal", "last": "Aboubaker", "grade": "1", "area": "North", "am": ["Bus 3", "8:08 AM"], "pm": ["Bus 3", "4:30 PM", "home", ""], "fri": ["Bus 3", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Atinaf", "last": "Abdullahi", "grade": "5", "area": "North", "am": ["Bus 3", "8:16 AM"], "pm": ["Bus 3", "4:24 PM", "home", ""], "fri": ["Bus 3", "12:24 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ikhlas", "last": "Amir", "grade": "3", "area": "North", "am": ["Bus 3", "8:18 AM"], "pm": ["Bus 4", "4:30 PM", "daycare", "M-Th PM Daycare"], "fri": ["Bus 3", "12:22 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Amir", "last": "Amir", "grade": "6", "area": "North", "am": ["Bus 3", "8:18 AM"], "pm": ["Bus 4", "4:30 PM", "daycare", "M-Th PM Daycare"], "fri": ["Bus 3", "12:22 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Obsitu", "last": "Mohamed", "grade": "1", "area": "North", "am": ["Bus 3", "8:18 AM"], "pm": ["Bus 3", "4:22 PM", "home", ""], "fri": ["Bus 3", "12:22 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Simran", "last": "Mohamed", "grade": "6", "area": "North", "am": ["Bus 3", "8:18 AM"], "pm": ["Bus 3", "4:22 PM", "home", ""], "fri": ["Bus 3", "12:22 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sabrina", "last": "Mohamed", "grade": "3", "area": "North", "am": ["Bus 3", "8:18 AM"], "pm": ["Bus 3", "4:22 PM", "home", ""], "fri": ["Bus 3", "12:22 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Maryam", "last": "Ahmed", "grade": "6", "area": "North", "am": ["Bus 3", "8:20 AM"], "pm": ["Bus 3", "4:20 PM", "home", ""], "fri": ["Bus 3", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Idris", "last": "Nor", "grade": "6", "area": "North", "am": ["Bus 3", "8:30 AM"], "pm": ["Bus 3", "4:10 PM", "home", ""], "fri": ["Bus 3", "12:10 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Mohamed", "last": "Nor", "grade": "7", "area": "North", "am": ["Bus 3", "8:30 AM"], "pm": ["Bus 3", "4:10 PM", "home", ""], "fri": ["Bus 3", "12:10 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Samiya", "last": "Nor", "grade": "1", "area": "North", "am": ["Bus 3", "8:30 AM"], "pm": ["Bus 3", "4:10 PM", "home", ""], "fri": ["Bus 3", "12:10 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Suheyla", "last": "Nor", "grade": "1", "area": "North", "am": ["Bus 3", "8:30 AM"], "pm": ["Bus 3", "4:10 PM", "home", ""], "fri": ["Bus 3", "12:10 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Nizam", "last": "Endale", "grade": "7", "area": "", "am": ["Bus 3", ""], "pm": ["Bus 3", "", "home", ""], "fri": ["Bus 3", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Neshkur", "last": "Ahmed", "grade": "8", "area": "North", "am": ["Bus 3", "8:20 AM"], "pm": ["Bus 3", "4:20 PM", "home", ""], "fri": ["Bus 3", "12:20 PM"], "extras": [], "amb": 0, "approx": 1},
+  {"first": "Seran", "last": "Abdusemed", "grade": "K", "area": "S Mpls", "am": ["Bus 4", "8:04 AM"], "pm": ["Bus 4", "4:46 PM", "home", ""], "fri": ["Bus 4", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Amar", "last": "Abamilki", "grade": "1", "area": "S Mpls", "am": ["Bus 4", "7:57 AM"], "pm": ["Bus 4", "4:16 PM", "home", ""], "fri": ["Bus 4", "12:14 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Jowar", "last": "Mohammed", "grade": "K", "area": "S Mpls", "am": ["Bus 4", "8:04 AM"], "pm": ["Bus 4", "4:46 PM", "home", ""], "fri": ["Bus 4", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Eman", "last": "Mohammed", "grade": "3", "area": "S Mpls", "am": ["Bus 4", "8:04 AM"], "pm": ["Bus 4", "4:46 PM", "home", ""], "fri": ["Bus 4", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Nabil", "last": "Ibrahim", "grade": "7", "area": "S Mpls", "am": ["Van 16", "8:00 AM"], "pm": ["Bus 4", "4:30 PM", "daycare", "M-Th PM Daycare"], "fri": ["Van 16", "12:40 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Noah", "last": "Abdulkadir", "grade": "1", "area": "S Mpls", "am": ["Bus 4", "—"], "pm": ["Bus 4", "4:30 PM", "daycare", "M-Th PM Daycare"], "fri": ["Bus 4", "—"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Riha", "last": "Nur", "grade": "4", "area": "S Mpls", "am": ["Bus 4", "7:50 AM"], "pm": ["Bus 4", "4:21 PM", "home", ""], "fri": ["Bus 4", "12:19 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Megersan", "last": "Alishu", "grade": "4", "area": "S Mpls", "am": ["Bus 4", "7:52 AM"], "pm": ["Bus 4", "4:20 PM", "home", ""], "fri": ["Bus 4", "12:18 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Kununsan", "last": "Alishu", "grade": "5", "area": "S Mpls", "am": ["Bus 4", "7:52 AM"], "pm": ["Bus 4", "4:20 PM", "home", ""], "fri": ["Bus 4", "12:18 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sumeya", "last": "Alishu", "grade": "1", "area": "S Mpls", "am": ["Bus 4", "7:52 AM"], "pm": ["Bus 4", "4:20 PM", "home", ""], "fri": ["Bus 4", "12:18 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Kenna", "last": "Ahmed", "grade": "1", "area": "S Mpls", "am": ["Bus 4", "7:54 AM"], "pm": ["Bus 4", "4:18 PM", "home", ""], "fri": ["Bus 4", "12:17 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Imran", "last": "Addish", "grade": "3", "area": "S Mpls", "am": ["Bus 4", "—"], "pm": ["Bus 4", "4:14 PM", "home", ""], "fri": ["Bus 4", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Faud", "last": "Ali", "grade": "6", "area": "S Mpls", "am": ["Bus 4", "7:56 AM"], "pm": ["Bus 4", "4:15 PM", "home", ""], "fri": ["Bus 4", "12:13 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Adem", "last": "Bullo", "grade": "6", "area": "S Mpls", "am": ["Bus 4", "7:57 AM"], "pm": ["Bus 4", "4:16 PM", "home", ""], "fri": ["Bus 4", "12:14 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Zamzam", "last": "Bullo", "grade": "K", "area": "S Mpls", "am": ["Bus 4", "7:57 AM"], "pm": ["Bus 4", "4:16 PM", "home", ""], "fri": ["Bus 4", "12:14 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hassan", "last": "Idris", "grade": "8", "area": "S Mpls", "am": ["Bus 4", "7:57 AM"], "pm": ["Bus 4", "4:16 PM", "home", ""], "fri": ["Bus 4", "12:14 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Haris", "last": "Idris", "grade": "K", "area": "S Mpls", "am": ["Bus 4", "7:57 AM"], "pm": ["Bus 4", "4:16 PM", "home", ""], "fri": ["Bus 4", "12:14 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sumaya", "last": "Mohamed", "grade": "5", "area": "S Mpls", "am": ["Bus 4", "7:58 AM"], "pm": ["Bus 4", "4:17 PM", "home", ""], "fri": ["Bus 4", "12:15 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Amal", "last": "Ali-Salaat", "grade": "K", "area": "S Mpls", "am": ["Bus 4", "7:58 AM"], "pm": ["Bus 4", "4:17 PM", "home", ""], "fri": ["Bus 4", "12:15 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Naim", "last": "Wako", "grade": "3", "area": "S Mpls", "am": ["Bus 4", "7:58 AM"], "pm": ["Bus 4", "4:17 PM", "home", ""], "fri": ["Bus 4", "12:15 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hikma", "last": "Wako", "grade": "1", "area": "S Mpls", "am": ["Bus 4", "7:58 AM"], "pm": ["Bus 4", "4:17 PM", "home", ""], "fri": ["Bus 4", "12:15 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Nuradin", "last": "Wako", "grade": "PK", "area": "S Mpls", "am": ["Bus 4", "7:58 AM"], "pm": ["Bus 4", "4:17 PM", "home", ""], "fri": ["Bus 4", "12:15 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Mariyam", "last": "Mesfin", "grade": "PK", "area": "S Mpls", "am": ["Bus 4", "8:02 AM"], "pm": ["Bus 4", "4:45 PM", "home", ""], "fri": ["Bus 4", "12:24 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Muhamed", "last": "A. Muktar", "grade": "PK", "area": "S Mpls", "am": ["Bus 4", "8:02 AM"], "pm": ["Bus 4", "4:45 PM", "home", ""], "fri": ["Bus 4", "12:24 PM"], "extras": [], "amb": 0, "approx": 1},
+  {"first": "Khalid", "last": "Isaac", "grade": "PK", "area": "S Mpls", "am": ["Bus 4", "8:04 AM"], "pm": ["Bus 4", "4:46 PM", "home", ""], "fri": ["Bus 4", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Asmaa", "last": "Isaac", "grade": "2", "area": "S Mpls", "am": ["Bus 4", "8:04 AM"], "pm": ["Bus 4", "4:46 PM", "home", ""], "fri": ["Bus 4", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hikma", "last": "Isaac", "grade": "3", "area": "S Mpls", "am": ["Bus 4", "8:04 AM"], "pm": ["Bus 4", "4:46 PM", "home", ""], "fri": ["Bus 4", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Mohamed", "last": "Gidi", "grade": "K", "area": "S Mpls", "am": ["Bus 4", "8:04 AM"], "pm": ["Bus 4", "4:46 PM", "home", ""], "fri": ["Bus 4", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Rahma", "last": "Mesfin", "grade": "1", "area": "S Mpls", "am": ["Bus 4", "8:08 AM"], "pm": ["Bus 4", "4:50 PM", "home", ""], "fri": ["Bus 4", "12:29 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Soresa", "last": "Jemal", "grade": "1", "area": "S Mpls", "am": ["Bus 4", "8:10 AM"], "pm": ["Bus 4", "4:52 PM", "home", ""], "fri": ["Bus 4", "12:32 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sarah", "last": "Ahmed", "grade": "1", "area": "S Mpls", "am": ["Bus 4", "8:14 AM"], "pm": ["Bus 4", "4:26 PM", "home", ""], "fri": ["Bus 4", "12:37 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Muwal", "last": "Ahmed", "grade": "6", "area": "S Mpls", "am": ["Bus 4", "8:06 AM"], "pm": ["Bus 4", "4:48 PM", "home", ""], "fri": ["Bus 4", "12:27 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Bariiso", "last": "Ahmed", "grade": "7", "area": "S Mpls", "am": ["Bus 4", "8:06 AM"], "pm": ["Bus 4", "4:48 PM", "home", ""], "fri": ["Bus 4", "12:27 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Anas", "last": "Hassan", "grade": "6", "area": "BP", "am": ["Bus 5", "7:50 AM"], "pm": ["Bus 5", "4:10 PM", "home", ""], "fri": ["Bus 5", "12:10 PM"], "extras": [], "amb": 1, "approx": 0},
+  {"first": "Anas", "last": "Hassan", "grade": "6", "area": "", "am": ["Van 15", "8:10 AM"], "pm": ["Van 15", "4:40 PM", "home", ""], "fri": ["Van 15", "12:50 PM"], "extras": [], "amb": 1, "approx": 0},
+  {"first": "Hamzaa", "last": "Usmael", "grade": "1", "area": "BP", "am": ["Bus 5", "7:52 AM"], "pm": ["Bus 5", "4:12 PM", "home", ""], "fri": ["Bus 5", "12:12 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Seenaa", "last": "Usmael", "grade": "2", "area": "BP", "am": ["Bus 5", "7:52 AM"], "pm": ["Bus 5", "4:12 PM", "home", ""], "fri": ["Bus 5", "12:12 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ammar", "last": "Abdi", "grade": "3", "area": "BP", "am": ["Bus 5", "8:00 AM"], "pm": ["Bus 5", "4:18 PM", "home", ""], "fri": ["Bus 5", "12:18 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hayat", "last": "Abdi", "grade": "4", "area": "BP", "am": ["Bus 5", "8:00 AM"], "pm": ["Bus 5", "4:18 PM", "home", ""], "fri": ["Bus 5", "12:18 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hafsa", "last": "Mohamed", "grade": "PK", "area": "", "am": ["Bus 5", ""], "pm": ["Bus 5", "", "home", ""], "fri": ["Bus 5", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Shuaib", "last": "Mohamed", "grade": "K", "area": "", "am": ["Van 8", "8:14 AM"], "pm": ["Van 8", "4:32 PM", "home", ""], "fri": ["Van 8", "12:33 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Omar", "last": "Abdullahi", "grade": "4", "area": "BP", "am": ["Bus 5", "8:08 AM"], "pm": ["Bus 5", "4:26 PM", "home", ""], "fri": ["Bus 5", "12:26 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Abdulrahman", "last": "Abdullahi", "grade": "5", "area": "BP", "am": ["Bus 5", "8:08 AM"], "pm": ["Bus 5", "4:26 PM", "home", ""], "fri": ["Bus 5", "12:26 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Khalid", "last": "Abdullahi", "grade": "2", "area": "BP", "am": ["Bus 5", "8:08 AM"], "pm": ["Bus 5", "4:26 PM", "home", ""], "fri": ["Bus 5", "12:26 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sumeya", "last": "Abdullahi", "grade": "K", "area": "BP", "am": ["Bus 5", "8:08 AM"], "pm": ["Bus 5", "4:26 PM", "home", ""], "fri": ["Bus 5", "12:26 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sitra", "last": "Khadar", "grade": "8", "area": "", "am": ["Van 15", "8:00 AM"], "pm": ["Van 15", "4:50 PM", "home", ""], "fri": ["Bus 5", "12:28 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Amar", "last": "Taha", "grade": "8", "area": "BP", "am": ["Bus 5", "8:12 AM"], "pm": ["Bus 5", "4:30 PM", "home", ""], "fri": ["Bus 5", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Dhul-Qarnayn", "last": "Mustafa", "grade": "6", "area": "BP", "am": ["Bus 5", "8:30 AM"], "pm": ["Bus 5", "—", "home", "Fridays Home"], "fri": ["Bus 5", "12:44 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Zakiyah", "last": "Mustafa", "grade": "2", "area": "BP", "am": ["Bus 5", "8:30 AM"], "pm": ["Bus 5", "—", "home", "Fridays Home"], "fri": ["Bus 5", "12:44 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Safiyyah", "last": "Mustafa", "grade": "3", "area": "BP", "am": ["Bus 5", "8:30 AM"], "pm": ["Bus 5", "—", "home", "Fridays Home"], "fri": ["Bus 5", "12:44 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Luqman", "last": "Mustafa", "grade": "1", "area": "BP", "am": ["Bus 5", "8:30 AM"], "pm": ["Bus 5", "—", "home", "Fridays Home"], "fri": ["Bus 5", "12:44 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Urji", "last": "Tahir", "grade": "2", "area": "CR", "am": ["Bus 6", "7:50 AM"], "pm": ["Bus 6", "4:15 PM", "home", ""], "fri": ["Bus 6", "12:15 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sabh", "last": "Abdullahi", "grade": "8", "area": "CR", "am": ["Bus 6", "7:52 AM"], "pm": ["Bus 6", "4:18 PM", "home", ""], "fri": ["Bus 6", "12:18 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ahmed", "last": "Abdurahman", "grade": "PK", "area": "CR", "am": ["Bus 6", "8:00 AM"], "pm": ["Bus 6", "4:26 PM", "home", ""], "fri": ["Bus 6", "12:26 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Amal", "last": "Abdurahman", "grade": "6", "area": "CR", "am": ["Bus 6", "8:00 AM"], "pm": ["Bus 6", "4:26 PM", "home", ""], "fri": ["Bus 6", "12:26 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hanim", "last": "Abdurahman", "grade": "PK", "area": "CR", "am": ["Bus 6", "8:00 AM"], "pm": ["Bus 6", "4:26 PM", "home", ""], "fri": ["Bus 6", "12:26 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hawa", "last": "Abdurahman", "grade": "PK", "area": "CR", "am": ["Bus 6", "8:00 AM"], "pm": ["Bus 6", "4:26 PM", "home", ""], "fri": ["Bus 6", "12:26 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Raziya", "last": "Abdurahman", "grade": "3", "area": "CR", "am": ["Bus 6", "8:00 AM"], "pm": ["Bus 6", "4:26 PM", "home", ""], "fri": ["Bus 6", "12:26 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ifnan", "last": "Abduro", "grade": "4", "area": "CR", "am": ["Bus 6", "8:10 AM"], "pm": ["Bus 6", "4:35 PM", "home", ""], "fri": ["Bus 6", "12:35 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Jenna", "last": "Dilbi", "grade": "2", "area": "CR", "am": ["Bus 6", "8:18 AM"], "pm": ["Bus 6", "4:42 PM", "home", ""], "fri": ["Bus 6", "12:42 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Rihan", "last": "Muktar", "grade": "8", "area": "CR", "am": ["Bus 6", "8:24 AM"], "pm": ["Bus 6", "4:48 PM", "home", ""], "fri": ["Bus 6", "12:48 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Mohamed", "last": "F. Muktar", "grade": "PK", "area": "CR", "am": ["Bus 6", "8:24 AM"], "pm": ["Bus 6", "4:48 PM", "home", ""], "fri": ["Bus 6", "12:48 PM"], "extras": [], "amb": 0, "approx": 1},
+  {"first": "Eban", "last": "Sena", "grade": "5", "area": "CR", "am": ["Bus 6", "8:30 AM"], "pm": ["Bus 6", "4:54 PM", "home", ""], "fri": ["Bus 6", "12:54 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Murtesa", "last": "Mohamed", "grade": "1", "area": "N of BP", "am": ["Bus 7", "7:50 AM"], "pm": ["Bus 7", "4:38 PM", "home", ""], "fri": ["Bus 7", "12:38 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Chaltu", "last": "Seid", "grade": "7", "area": "N of BP", "am": ["Bus 7", "7:55 AM"], "pm": ["Bus 7", "4:32 PM", "home", ""], "fri": ["Bus 7", "12:32 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Milkessaa", "last": "Seid", "grade": "1", "area": "N of BP", "am": ["Bus 7", "7:55 AM"], "pm": ["Bus 7", "4:32 PM", "home", ""], "fri": ["Bus 7", "12:32 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sina", "last": "Mohamed", "grade": "K", "area": "N of BP", "am": ["Bus 7", "8:00 AM"], "pm": ["Bus 7", "", "home", ""], "fri": ["Bus 7", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ahlam", "last": "", "grade": "", "area": "N of BP", "am": ["Bus 7", "8:04 AM"], "pm": ["Bus 7", "4:10 PM", "home", ""], "fri": ["Bus 7", "12:10 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Amir", "last": "", "grade": "", "area": "N of BP", "am": ["Bus 7", "8:04 AM"], "pm": ["Bus 7", "4:10 PM", "home", ""], "fri": ["Bus 7", "12:10 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hasenat", "last": "", "grade": "", "area": "N of BP", "am": ["Bus 7", "8:04 AM"], "pm": ["Bus 7", "4:10 PM", "home", ""], "fri": ["Bus 7", "12:10 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Omar", "last": "Ali", "grade": "1", "area": "N of BP", "am": ["Bus 7", "8:08 AM"], "pm": ["Bus 7", "4:26 PM", "home", ""], "fri": ["Bus 7", "12:26 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Imran", "last": "Osman", "grade": "3", "area": "N of BP", "am": ["Bus 7", "8:16 AM"], "pm": ["Bus 7", "4:18 PM", "home", ""], "fri": ["Bus 7", "12:18 PM"], "extras": [], "amb": 1, "approx": 0},
+  {"first": "Imran", "last": "Osman", "grade": "3", "area": "", "am": ["Van 5", "8:05 AM"], "pm": ["Van 5", "4:35 PM", "home", ""], "fri": ["Van 5", ""], "extras": [], "amb": 1, "approx": 0},
+  {"first": "Hadi", "last": "Walji", "grade": "7", "area": "N of BP", "am": ["Bus 7", "8:18 AM"], "pm": ["Bus 7", "4:16 PM", "home", ""], "fri": ["Bus 7", "12:16 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ruqayyah", "last": "Walji", "grade": "5", "area": "N of BP", "am": ["Bus 7", "8:18 AM"], "pm": ["Bus 7", "4:16 PM", "home", ""], "fri": ["Bus 7", "12:16 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Muhammad", "last": "Walji", "grade": "2", "area": "N of BP", "am": ["Bus 7", "8:18 AM"], "pm": ["Bus 7", "4:16 PM", "home", ""], "fri": ["Bus 7", "12:16 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Naol", "last": "Abdiyo", "grade": "", "area": "Blaine", "am": ["Bus 8", "7:45 AM"], "pm": ["Bus 8", "4:45 PM", "home", ""], "fri": ["Bus 8", "12:45 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Bilal", "last": "Abdiyo", "grade": "", "area": "Blaine", "am": ["Bus 8", "7:45 AM"], "pm": ["Bus 8", "4:45 PM", "home", ""], "fri": ["Bus 8", "12:45 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ilhan", "last": "Abdiyo", "grade": "", "area": "Blaine", "am": ["Bus 8", "7:45 AM"], "pm": ["Bus 8", "4:45 PM", "home", ""], "fri": ["Bus 8", "12:45 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Leyan", "last": "Tufa", "grade": "PK", "area": "Blaine", "am": ["Bus 8", "7:50 AM"], "pm": ["Bus 8", "4:40 PM", "home", ""], "fri": ["Bus 8", "12:40 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ayub", "last": "Abdi", "grade": "", "area": "Blaine", "am": ["Bus 8", "8:00 AM"], "pm": ["Bus 8", "4:30 PM", "home", ""], "fri": ["Bus 8", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sabrinne", "last": "Abdi", "grade": "", "area": "Blaine", "am": ["Bus 8", "8:00 AM"], "pm": ["Bus 8", "4:30 PM", "home", ""], "fri": ["Bus 8", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hasina", "last": "Damina", "grade": "", "area": "Blaine", "am": ["Bus 8", "8:05 AM"], "pm": ["Bus 8", "4:25 PM", "home", ""], "fri": ["Bus 8", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hizam", "last": "Damina", "grade": "", "area": "Blaine", "am": ["Bus 8", "8:05 AM"], "pm": ["Bus 8", "4:25 PM", "home", ""], "fri": ["Bus 8", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Huzeyfa", "last": "Damina", "grade": "", "area": "Blaine", "am": ["Bus 8", "8:05 AM"], "pm": ["Bus 8", "4:25 PM", "home", ""], "fri": ["Bus 8", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ihsaan", "last": "Hassan", "grade": "", "area": "Blaine", "am": ["Bus 8", "8:25 AM"], "pm": ["Bus 8", "4:10 PM", "home", ""], "fri": ["Bus 8", "12:10 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Abdullah", "last": "Hassan", "grade": "", "area": "Blaine", "am": ["Bus 8", "8:25 AM"], "pm": ["Bus 8", "4:10 PM", "home", ""], "fri": ["Bus 8", "12:10 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hassan", "last": "Mohamed", "grade": "", "area": "Blaine", "am": ["Bus 8", "8:30 AM"], "pm": ["Bus 8", "4:05 PM", "home", ""], "fri": ["Bus 8", "12:05 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hussen", "last": "Mohamed", "grade": "", "area": "Blaine", "am": ["Bus 8", "8:30 AM"], "pm": ["Bus 8", "4:05 PM", "home", ""], "fri": ["Bus 8", "12:05 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Abdulmajid", "last": "Ahmed", "grade": "", "area": "Blaine", "am": ["Bus 8", "8:30 AM"], "pm": ["Bus 8", "4:05 PM", "home", ""], "fri": ["Bus 8", "12:05 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Mahamad", "last": "Yusuf", "grade": "", "area": "St. Paul", "am": ["Bus 9", "7:40 AM"], "pm": ["Bus 9", "4:52 PM", "home", ""], "fri": ["Bus 9", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Aisha", "last": "Yusuf", "grade": "", "area": "St. Paul", "am": ["Bus 9", "7:40 AM"], "pm": ["Bus 9", "4:52 PM", "home", ""], "fri": ["Bus 9", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Nahla", "last": "Abdulwahab", "grade": "", "area": "St. Paul", "am": ["Bus 9", "7:50 AM"], "pm": ["Bus 9", "4:42 PM", "home", ""], "fri": ["Bus 9", "12:42 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ahyan", "last": "Abdulwahab", "grade": "", "area": "St. Paul", "am": ["Bus 9", "7:50 AM"], "pm": ["Bus 9", "4:42 PM", "home", ""], "fri": ["Bus 9", "12:42 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Anam", "last": "Abdala", "grade": "", "area": "St. Paul", "am": ["Bus 9", "8:05 AM"], "pm": ["Bus 9", "4:27 PM", "home", ""], "fri": ["Bus 9", "12:27 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Asma", "last": "Abdala", "grade": "", "area": "St. Paul", "am": ["Bus 9", "8:05 AM"], "pm": ["Bus 9", "4:27 PM", "home", ""], "fri": ["Bus 9", "12:27 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Nure", "last": "Abdala", "grade": "", "area": "St. Paul", "am": ["Bus 9", "8:05 AM"], "pm": ["Bus 9", "4:27 PM", "home", ""], "fri": ["Bus 9", "12:27 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Milkesa", "last": "Aliy", "grade": "", "area": "St. Paul", "am": ["Bus 9", "8:11 AM"], "pm": ["Bus 9", "4:21 PM", "home", ""], "fri": ["Bus 9", "12:21 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hachalu", "last": "Aliy", "grade": "", "area": "St. Paul", "am": ["Bus 9", "8:11 AM"], "pm": ["Bus 9", "4:21 PM", "home", ""], "fri": ["Bus 9", "12:21 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Wariyo", "last": "Aliy", "grade": "", "area": "St. Paul", "am": ["Bus 9", "8:11 AM"], "pm": ["Bus 9", "4:21 PM", "home", ""], "fri": ["Bus 9", "12:21 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Asma", "last": "Najib", "grade": "", "area": "St. Paul", "am": ["Bus 9", "8:17 AM"], "pm": ["Bus 9", "4:15 PM", "home", ""], "fri": ["Bus 9", "12:15 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ehsan", "last": "Najib", "grade": "", "area": "St. Paul", "am": ["Bus 9", "8:17 AM"], "pm": ["Bus 9", "4:15 PM", "home", ""], "fri": ["Bus 9", "12:15 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Emran", "last": "Najib", "grade": "", "area": "St. Paul", "am": ["Bus 9", "8:17 AM"], "pm": ["Bus 9", "4:15 PM", "home", ""], "fri": ["Bus 9", "12:15 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sana", "last": "Awali Abdi", "grade": "2", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sarah", "last": "Awali Abdi", "grade": "7", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Suhaib", "last": "Awali Abdi", "grade": "4", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Amira", "last": "Boona Hamza", "grade": "3", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sebat", "last": "Boona Hamza", "grade": "6", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sumaya", "last": "Boona Hamza", "grade": "5", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Suleiman", "last": "Mohamed Hassan", "grade": "1", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Yasir", "last": "Issack", "grade": "6", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Zakariya", "last": "Issack", "grade": "6", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Zubair", "last": "Issack", "grade": "2", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Isam", "last": "Mohamed", "grade": "7", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Liyana", "last": "Mohamed", "grade": "6", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Siyana", "last": "Mohamed", "grade": "3", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Naifnaan", "last": "Bona Weday", "grade": "K", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hamdi", "last": "Adam", "grade": "PK", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Adil", "last": "Abdulkadir", "grade": "PK", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Humeyma", "last": "Abdullahi", "grade": "PK", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Humeyra", "last": "Abdullahi", "grade": "4", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Abdirahman", "last": "Abdullahi", "grade": "2", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Esmaeel", "last": "Edwards", "grade": "PK", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ahmed", "last": "Osman", "grade": "7", "area": "", "am": ["Parent Pick up", ""], "pm": ["Parent Pick up", "", "home", ""], "fri": ["Parent Pick up", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Maliana", "last": "Sheik", "grade": "", "area": "", "am": ["Van 1", ""], "pm": ["Van 1", "", "home", ""], "fri": ["Van 1", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Maruf", "last": "Hebo", "grade": "", "area": "", "am": ["Van 2", "8:00 AM"], "pm": ["Van 2", "4:36 PM", "home", ""], "fri": ["Van 2", "12:36 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ahlam", "last": "Esake", "grade": "", "area": "", "am": ["Van 4", "8:00 AM"], "pm": ["Van 4", "4:30 PM", "home", ""], "fri": ["Van 4", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Rayyan", "last": "Adam", "grade": "", "area": "", "am": ["Van 5", "8:00 AM"], "pm": ["Van 5", "4:40 PM", "home", ""], "fri": ["Van 5", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Mawardi", "last": "Sabsibe", "grade": "", "area": "", "am": ["Van 6", "12:30 PM"], "pm": ["Van 6", "", "home", ""], "fri": ["Van 6", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Maryam", "last": "Jirde", "grade": "", "area": "", "am": ["Van 7", "8:00 AM"], "pm": ["Van 7", "4:33 PM", "home", ""], "fri": ["Van 7", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ihsan", "last": "Ibrahim", "grade": "", "area": "", "am": ["Van 8", "8:00 AM"], "pm": ["Van 8", "4:45 PM", "home", ""], "fri": ["Van 8", "12:45 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sabir", "last": "Kadir", "grade": "", "area": "", "am": ["Van 9", "12:15 PM"], "pm": ["Van 9", "", "home", ""], "fri": ["Van 9", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Amir", "last": "Ararso", "grade": "", "area": "", "am": ["Van 10", "8:10 AM"], "pm": ["Van 10", "4:30 PM", "home", ""], "fri": ["Van 10", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Iesha", "last": "Ali", "grade": "", "area": "", "am": ["Van 11", ""], "pm": ["Van 11", "", "home", ""], "fri": ["Van 11", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Asad", "last": "Mohamednur", "grade": "", "area": "", "am": ["Van 12", ""], "pm": ["Van 12", "", "home", ""], "fri": ["Van 12", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ibsa", "last": "Osman", "grade": "", "area": "", "am": ["Van 13", "7:40 AM"], "pm": ["Van 13", "5:05 PM", "home", ""], "fri": ["Van 13", "1:05 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sarsan", "last": "Tahir", "grade": "", "area": "", "am": ["Van 14", "8:20 AM"], "pm": ["Van 14", "4:20 PM", "home", ""], "fri": ["Van 14", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Safi", "last": "Hamza", "grade": "", "area": "", "am": ["Van 1", ""], "pm": ["Van 1", "", "home", ""], "fri": ["Van 1", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Aflah", "last": "Borana", "grade": "", "area": "", "am": ["Van 2", "8:02 AM"], "pm": ["Van 2", "4:34 PM", "home", ""], "fri": ["Van 2", "12:34 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Abdurahim", "last": "Mohammed", "grade": "", "area": "", "am": ["Van 3", "8:10 AM"], "pm": ["Van 3", "4:25 PM", "home", ""], "fri": ["Van 3", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ammar", "last": "Esake", "grade": "PK", "area": "", "am": ["Van 4", "8:00 AM"], "pm": ["Van 4", "4:30 PM", "home", ""], "fri": ["Van 4", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ammar", "last": "Osman", "grade": "", "area": "", "am": ["Van 5", "8:05 AM"], "pm": ["Van 5", "4:35 PM", "home", ""], "fri": ["Van 5", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Abdihafiz", "last": "Sabsibe", "grade": "", "area": "", "am": ["Van 6", "12:30 PM"], "pm": ["Van 6", "", "home", ""], "fri": ["Van 6", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Elham", "last": "Jemal", "grade": "", "area": "", "am": ["Van 7", "12:20 PM"], "pm": ["Van 7", "", "home", ""], "fri": ["Van 7", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Ansar", "last": "Ibrahim", "grade": "", "area": "", "am": ["Van 8", "8:00 AM"], "pm": ["Van 8", "4:45 PM", "home", ""], "fri": ["Van 8", "12:45 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Abdisa", "last": "Genemo", "grade": "", "area": "", "am": ["Van 9", "12:30 PM"], "pm": ["Van 9", "", "home", ""], "fri": ["Van 9", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Khalid", "last": "Ararso", "grade": "", "area": "", "am": ["Van 10", "8:10 AM"], "pm": ["Van 10", "4:30 PM", "home", ""], "fri": ["Van 10", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Azhar", "last": "Mohamednur", "grade": "", "area": "", "am": ["Van 12", "8:15 AM"], "pm": ["Van 12", "4:30 PM", "home", ""], "fri": ["Van 12", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Munir", "last": "Osman", "grade": "", "area": "", "am": ["Van 13", "7:40 AM"], "pm": ["Van 13", "5:05 PM", "home", ""], "fri": ["Van 13", "1:05 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Zikra", "last": "Tahir", "grade": "", "area": "", "am": ["Van 14", "8:20 AM"], "pm": ["Van 14", "4:20 PM", "home", ""], "fri": ["Van 14", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Noah", "last": "Abdikadir", "grade": "", "area": "", "am": ["Van 16", "8:00 AM"], "pm": ["Van 16", "4:40 PM", "home", ""], "fri": ["Van 16", "12:40 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Damballa", "last": "Damballa", "grade": "", "area": "", "am": ["Van 1", ""], "pm": ["Van 1", "", "home", ""], "fri": ["Van 1", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Manasa", "last": "Borana", "grade": "", "area": "", "am": ["Van 2", "8:02 AM"], "pm": ["Van 2", "4:34 PM", "home", ""], "fri": ["Van 2", "12:34 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Abdurahman", "last": "Mohammed", "grade": "", "area": "", "am": ["Van 3", "8:10 AM"], "pm": ["Van 3", "4:25 PM", "home", ""], "fri": ["Van 3", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Khald", "last": "Esake", "grade": "2", "area": "", "am": ["Van 4", "8:00 AM"], "pm": ["Van 4", "4:30 PM", "home", ""], "fri": ["Van 4", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hachalu", "last": "Osman", "grade": "", "area": "", "am": ["Van 5", "8:05 AM"], "pm": ["Van 5", "4:35 PM", "home", ""], "fri": ["Van 5", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sahil", "last": "Adde", "grade": "", "area": "", "am": ["Van 6", "12:20 PM"], "pm": ["Van 6", "", "home", ""], "fri": ["Van 6", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Maysam", "last": "Said", "grade": "", "area": "", "am": ["Van 7", "12:10 PM"], "pm": ["Van 7", "", "home", ""], "fri": ["Van 7", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Tasneem", "last": "Genemo", "grade": "", "area": "", "am": ["Van 9", "12:30 PM"], "pm": ["Van 9", "", "home", ""], "fri": ["Van 9", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Samir", "last": "Ararso", "grade": "", "area": "", "am": ["Van 10", "8:10 AM"], "pm": ["Van 10", "4:30 PM", "home", ""], "fri": ["Van 10", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Nafiis", "last": "Mohammed", "grade": "", "area": "", "am": ["Van 13", "7:45 AM"], "pm": ["Van 13", "5:00 PM", "home", ""], "fri": ["Van 13", "1:00 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Atif", "last": "Tahir", "grade": "", "area": "", "am": ["Van 14", "8:20 AM"], "pm": ["Van 14", "4:20 PM", "home", ""], "fri": ["Van 14", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Fatima", "last": "Zahra Hassan", "grade": "", "area": "", "am": ["Van 15", "8:10 AM"], "pm": ["Van 15", "4:40 PM", "home", ""], "fri": ["Van 15", "12:40 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Marwa", "last": "Muktar", "grade": "", "area": "", "am": ["Van 16", "8:20 AM"], "pm": ["Van 16", "4:20 PM", "home", ""], "fri": ["Van 16", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Osman", "last": "Damballa", "grade": "", "area": "", "am": ["Van 1", ""], "pm": ["Van 1", "", "home", ""], "fri": ["Van 1", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Yahya", "last": "Mohammed", "grade": "", "area": "", "am": ["Van 3", "8:10 AM"], "pm": ["Van 3", "4:25 PM", "home", ""], "fri": ["Van 3", "12:25 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Kiran", "last": "Esake", "grade": "1", "area": "", "am": ["Van 4", "8:00 AM"], "pm": ["Van 4", "4:30 PM", "home", ""], "fri": ["Van 4", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Nadura", "last": "Osman", "grade": "", "area": "", "am": ["Van 5", "8:05 AM"], "pm": ["Van 5", "4:35 PM", "home", ""], "fri": ["Van 5", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Mahir", "last": "Momin", "grade": "", "area": "", "am": ["Van 6", "12:20 PM"], "pm": ["Van 6", "", "home", ""], "fri": ["Van 6", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Raha", "last": "Omisaye", "grade": "", "area": "", "am": ["Van 8", "8:25 AM"], "pm": ["Van 8", "4:15 PM", "home", ""], "fri": ["Van 8", "12:15 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Afyah", "last": "Genemo", "grade": "", "area": "", "am": ["Van 9", "12:30 PM"], "pm": ["Van 9", "", "home", ""], "fri": ["Van 9", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Museba", "last": "Abdullahi", "grade": "", "area": "", "am": ["Van 10", "8:20 AM"], "pm": ["Van 10", "4:20 PM", "home", ""], "fri": ["Van 10", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sabona", "last": "Mohammed", "grade": "", "area": "", "am": ["Van 13", "7:45 AM"], "pm": ["Van 13", "5:00 PM", "home", ""], "fri": ["Van 13", "1:00 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Talia", "last": "Ali", "grade": "", "area": "", "am": ["Van 14", ""], "pm": ["Van 14", "", "home", ""], "fri": ["Van 14", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Muhsin", "last": "Muktar", "grade": "", "area": "", "am": ["Van 16", "8:20 AM"], "pm": ["Van 16", "4:20 PM", "home", ""], "fri": ["Van 16", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Adola", "last": "Damballa", "grade": "", "area": "", "am": ["Van 1", ""], "pm": ["Van 1", "", "home", ""], "fri": ["Van 1", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Abdullah", "last": "Mohamed", "grade": "", "area": "", "am": ["Van 2", "8:12 AM"], "pm": ["Van 2", "4:24 PM", "home", ""], "fri": ["Van 2", "12:24 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Luqman", "last": "Said", "grade": "", "area": "", "am": ["Van 3", "8:15 AM"], "pm": ["Van 3", "4:20 PM", "home", ""], "fri": ["Van 3", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Niya", "last": "Muktar", "grade": "PK", "area": "", "am": ["Van 4", "8:00 AM"], "pm": ["Van 4", "4:30 PM", "home", ""], "fri": ["Van 4", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Wako", "last": "Osman", "grade": "", "area": "", "am": ["Van 5", "8:05 AM"], "pm": ["Van 5", "4:35 PM", "home", ""], "fri": ["Van 5", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Maryam", "last": "Omisaye", "grade": "", "area": "", "am": ["Van 8", "8:25 AM"], "pm": ["Van 8", "4:15 PM", "home", ""], "fri": ["Van 8", "12:15 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Sumaya", "last": "Genemo", "grade": "", "area": "", "am": ["Van 9", "12:30 PM"], "pm": ["Van 9", "", "home", ""], "fri": ["Van 9", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Salwa", "last": "Abdullahi", "grade": "", "area": "", "am": ["Van 10", "8:20 AM"], "pm": ["Van 10", "4:20 PM", "home", ""], "fri": ["Van 10", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Salman", "last": "Mohammed", "grade": "", "area": "", "am": ["Van 13", "7:45 AM"], "pm": ["Van 13", "5:00 PM", "home", ""], "fri": ["Van 13", "1:00 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Afnan", "last": "Abubaker", "grade": "", "area": "", "am": ["Van 14", ""], "pm": ["Van 14", "", "home", ""], "fri": ["Van 14", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Asahd", "last": "Yusuf", "grade": "", "area": "", "am": ["Van 1", ""], "pm": ["Van 1", "", "home", ""], "fri": ["Van 1", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Haamid", "last": "Ali", "grade": "", "area": "", "am": ["Van 2", "8:12 AM"], "pm": ["Van 2", "4:24 PM", "home", ""], "fri": ["Van 2", "12:24 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Imran", "last": "Said", "grade": "", "area": "", "am": ["Van 3", "8:15 AM"], "pm": ["Van 3", "4:20 PM", "home", ""], "fri": ["Van 3", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Amira", "last": "Hassan", "grade": "4", "area": "", "am": ["Van 4", "8:00 AM"], "pm": ["Van 4", "4:30 PM", "home", ""], "fri": ["Van 4", "12:30 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Miraj", "last": "Omisaye", "grade": "", "area": "", "am": ["Van 8", "8:25 AM"], "pm": ["Van 8", "4:15 PM", "home", ""], "fri": ["Van 8", "12:15 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Siman", "last": "Mohamed", "grade": "", "area": "", "am": ["Van 9", "12:25 PM"], "pm": ["Van 9", "", "home", ""], "fri": ["Van 9", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Naija", "last": "Abdulla", "grade": "", "area": "", "am": ["Van 13", "8:27 AM"], "pm": ["Van 13", "4:20 PM", "home", ""], "fri": ["Van 13", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Atinan", "last": "Abubaker", "grade": "", "area": "", "am": ["Van 14", ""], "pm": ["Van 14", "", "home", ""], "fri": ["Van 14", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Mahir", "last": "Heyder", "grade": "", "area": "", "am": ["Van 16", "8:20 AM"], "pm": ["Van 16", "4:20 PM", "home", ""], "fri": ["Van 16", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Thulfokar", "last": "Pashkanem", "grade": "", "area": "", "am": ["Van 1", ""], "pm": ["Van 1", "", "home", ""], "fri": ["Van 1", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Nasra", "last": "Ali", "grade": "", "area": "", "am": ["Van 2", "8:12 AM"], "pm": ["Van 2", "4:24 PM", "home", ""], "fri": ["Van 2", "12:24 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Zayn", "last": "Said", "grade": "", "area": "", "am": ["Van 3", "8:15 AM"], "pm": ["Van 3", "4:20 PM", "home", ""], "fri": ["Van 3", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Marwa", "last": "Omar", "grade": "1", "area": "", "am": ["Van 4", "8:04 AM"], "pm": ["Van 4", "4:26 PM", "home", ""], "fri": ["Van 4", "12:26 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Semra", "last": "Abdulla", "grade": "", "area": "", "am": ["Van 13", "8:27 AM"], "pm": ["Van 13", "4:20 PM", "home", ""], "fri": ["Van 13", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Hania", "last": "Mohammed", "grade": "", "area": "", "am": ["Van 1", ""], "pm": ["Van 1", "", "home", ""], "fri": ["Van 1", ""], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Roba", "last": "Abdi", "grade": "", "area": "BP", "am": ["Bus 5", "8:30 AM"], "pm": ["Bus 5", "4:44 PM", "home", ""], "fri": ["Bus 5", "12:44 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Maryama", "last": "Said", "grade": "", "area": "", "am": ["Van 3", "8:15 AM"], "pm": ["Van 3", "4:20 PM", "home", ""], "fri": ["Van 3", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Haamid", "last": "Ibrahim", "grade": "4", "area": "", "am": ["Van 4", "8:10 AM"], "pm": ["Van 4", "4:20 PM", "home", ""], "fri": ["Van 4", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Bilal", "last": "Abdi", "grade": "", "area": "BP", "am": ["Bus 5", "8:30 AM"], "pm": ["Bus 5", "4:44 PM", "home", ""], "fri": ["Bus 5", "12:44 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Bashir", "last": "Said", "grade": "", "area": "", "am": ["Van 3", "8:15 AM"], "pm": ["Van 3", "4:20 PM", "home", ""], "fri": ["Van 3", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Imran", "last": "Ibrahim", "grade": "", "area": "", "am": ["Van 4", "8:10 AM"], "pm": ["Van 4", "4:20 PM", "home", ""], "fri": ["Van 4", "12:20 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Furat", "last": "Mohamed", "grade": "", "area": "", "am": ["Van 2", "8:20 AM"], "pm": ["Van 2", "4:10 PM", "home", ""], "fri": ["Van 2", "12:10 PM"], "extras": [], "amb": 0, "approx": 0},
+  {"first": "Oromia", "last": "Ibrahim", "grade": "", "area": "", "am": ["Van 3", "8:20 AM"], "pm": ["Van 3", "4:20 PM", "home", ""], "fri": ["Van 3", ""], "extras": [], "amb": 0, "approx": 1},
+  {"first": "Liyaanaa", "last": "Ibrahim", "grade": "2", "area": "", "am": ["Van 4", "8:10 AM"], "pm": ["Van 4", "4:20 PM", "home", ""], "fri": ["Van 4", "12:20 PM"], "extras": [], "amb": 0, "approx": 0}
 ];
 
 /* Optional live backend (Google Sheet). Leave off to use the data above. */
@@ -526,11 +638,25 @@ function timeRow(cls, cap, vehicle, time, toTag, subnote){
 function placard(r){
   const am=r.am||[], pm=r.pm||[], fri=r.fri||[];
   const amV=am[0], amT=am[1], pmV=pm[0], pmT=pm[1], pmPlace=pm[2], pmNote=pm[3], frV=fri[0], frT=fri[1];
-  const split = (amV && pmV && amV!==pmV);
+  const isPP = (amV==='Parent Pick up' || pmV==='Parent Pick up');
+  const split = (amV && pmV && amV!==pmV && !isPP);
   let html='<div class="card placard">';
   html+='<div class="who">Route for</div>';
   html+='<div class="name">'+esc(r.first)+' '+esc(r.last)+'</div>';
-  if(r.area) html+='<div class="area">Morning stop area: <b>'+esc(r.area)+'</b></div>';
+  let meta=[];
+  if(r.grade) meta.push('Grade <b>'+esc(r.grade)+'</b>');
+  if(r.area && !isPP) meta.push('Morning stop area: <b>'+esc(r.area)+'</b>');
+  if(meta.length) html+='<div class="area">'+meta.join(' &nbsp;&middot;&nbsp; ')+'</div>';
+  if(r.approx && !isPP) html+='<div class="estnote">'+infoIcon+' Times below are our best estimate for this stop &mdash; please confirm with the office.</div>';
+
+  if(isPP){
+    html+='<div class="trow am"><div class="leg"><div class="cap"><span class="dot"></span>Dismissal</div>'
+        + '<div class="veh"><span class="chip">Parent pick-up</span></div>'
+        + '<div class="subnote">This student is picked up and dropped off by a parent/guardian &mdash; no bus or van.</div></div></div>';
+    html+='</div>';
+    return html;
+  }
+
   if(pmPlace==='daycare'){
     const days = (pmNote||'').replace(/daycare/ig,'').replace(/pm/ig,'').replace(/[·|-]+/g,' ').trim() || 'Mon\u2013Thu';
     html+='<div class="dcbanner">'+dcIcon+'<span class="lbl">Daycare in the afternoon</span>'
@@ -557,6 +683,96 @@ function renderResult(matches){
   html+=matches.map(placard).join('<div style="height:14px"></div>');
   $('resultHost').innerHTML=html;
 }
+
+/* ============================================================
+   STAFF AREA — code 1555. Shows every child's transportation
+   arrangement grouped by grade. Grades aren't in the route sheet,
+   so staff assign them here; assignments are saved on the device
+   (and can later be synced through the office's Google Sheet).
+   ============================================================ */
+const STAFF_CODE = "1555";
+const GRADES = ["PK","K","1","2","3","4","5","6","7","8"];
+const GKEY = "bultum_grades_v1";
+let MEM = {};                                   // fallback if storage is blocked
+function storeGet(){ try{ return JSON.parse(localStorage.getItem(GKEY)||"{}"); }catch(e){ return MEM; } }
+function storeSet(o){ MEM=o; try{ localStorage.setItem(GKEY, JSON.stringify(o)); }catch(e){} }
+function idOf(r){ return norm(r.first)+"|"+norm(r.last)+"|"+((r.am&&r.am[0])||(r.pm&&r.pm[0])||""); }
+function gradeOf(r){ const o=storeGet(); return (idOf(r) in o) ? o[idOf(r)] : (r.grade||""); }
+function setGrade(r,g){ const o=storeGet(); o[idOf(r)]=g; storeSet(o); }
+
+let staffGrade = "";        // currently selected grade tab ("" = all, "__none" = unassigned)
+let staffQuery = "";
+
+function openStaff(){ show('screen-staff-gate'); $('pin').value=''; pinMsgClear(); setTimeout(()=>$('pin').focus(),120); }
+function pinMsgClear(){ const m=$('pinMsg'); m.className='form-msg'; m.textContent=''; }
+function tryPin(){
+  if($('pin').value.trim()===STAFF_CODE){ staffGrade=""; staffQuery=""; $('staffSearch').value=""; renderStaff(); show('screen-staff'); }
+  else { const m=$('pinMsg'); m.className='form-msg show error'; m.textContent='That code isn\u2019t right. Please try again.'; $('pin').select(); }
+}
+
+function arrangement(r){
+  const am=r.am||[], pm=r.pm||[];
+  if(am[0]==='Parent Pick up' || pm[0]==='Parent Pick up') return '<span class="vchip">Parent pick-up</span>';
+  let bits=[];
+  if(am[0]) bits.push('<span class="vchip">'+esc(am[0])+'</span> AM');
+  if(pm[0]) bits.push('<span class="vchip">'+esc(pm[0])+'</span> PM'+(pm[2]==='daycare'?' <span class="dc">&middot; daycare</span>':''));
+  if(!bits.length) bits.push('No route on file');
+  return bits.join(' &nbsp; ');
+}
+
+function renderTabs(){
+  const g=storeGet();
+  const counts={}; GRADES.forEach(x=>counts[x]=0); let none=0;
+  DATA.forEach(r=>{ const gg=g[idOf(r)]; if(gg&&counts[gg]!=null) counts[gg]++; else if(!gg) none++; });
+  let h='<button class="gtab'+(staffGrade===''?' on':'')+'" data-g="">All<span class="c">'+DATA.length+'</span></button>';
+  h+='<button class="gtab'+(staffGrade==='__none'?' on':'')+'" data-g="__none">No grade<span class="c">'+none+'</span></button>';
+  h+=GRADES.map(x=>'<button class="gtab'+(staffGrade===x?' on':'')+'" data-g="'+x+'">'+x+'<span class="c">'+counts[x]+'</span></button>').join('');
+  $('gradeTabs').innerHTML=h;
+  $('gradeTabs').querySelectorAll('.gtab').forEach(b=>b.onclick=()=>{ staffGrade=b.getAttribute('data-g'); renderStaff(); });
+}
+
+function renderStaff(){
+  renderTabs();
+  const q=tokens(staffQuery);
+  let rows=DATA.slice();
+  if(staffGrade==='__none') rows=rows.filter(r=>!gradeOf(r));
+  else if(staffGrade) rows=rows.filter(r=>gradeOf(r)===staffGrade);
+  if(q.length) rows=rows.filter(r=>{ const w=tokens(r.first+' '+r.last); return q.every(t=>w.some(x=>x.startsWith(t))); });
+  rows.sort((a,b)=>(a.first+a.last).localeCompare(b.first+b.last));
+  if(!rows.length){ $('staffList').innerHTML='<div class="staff-empty">No students here yet.</div>'; return; }
+  $('staffList').innerHTML = rows.map((r,i)=>{
+    const gg=gradeOf(r);
+    const btn=gg ? '<div class="gbtn"><span class="gg">'+esc(gg)+'</span><span class="gl">grade</span></div>'
+                 : '<div class="gbtn empty"><span class="gg">+ Add</span><span class="gl">grade</span></div>';
+    return '<div class="srow" data-k="'+esc(idOf(r))+'"><div class="info"><div class="nm">'+esc(r.first)+' '+esc(r.last)+'</div>'
+         + '<div class="arr">'+arrangement(r)+'</div></div>'+btn+'</div>';
+  }).join('');
+  $('staffList').querySelectorAll('.srow').forEach(row=>{
+    row.querySelector('.gbtn').onclick=()=>{ const k=row.getAttribute('data-k'); openGradeSheet(DATA.find(r=>idOf(r)===k)); };
+  });
+}
+
+let sheetTarget=null;
+function openGradeSheet(r){
+  sheetTarget=r;
+  $('sheetName').textContent=r.first+' '+r.last;
+  const cur=gradeOf(r);
+  let h=GRADES.map(x=>'<button class="gopt" data-g="'+x+'" style="'+(x===cur?'border-color:var(--marigold);background:rgba(224,152,43,.1)':'')+'">'+x+'</button>').join('');
+  h+='<button class="gopt clear" data-g="">Clear grade</button>';
+  $('sheetGrid').innerHTML=h;
+  $('sheetGrid').querySelectorAll('.gopt').forEach(b=>b.onclick=()=>{ setGrade(sheetTarget, b.getAttribute('data-g')); closeSheet(); renderStaff(); });
+  $('gradeSheet').classList.add('open');
+}
+function closeSheet(){ $('gradeSheet').classList.remove('open'); sheetTarget=null; }
+
+$('staffEntry').addEventListener('click', e=>{ e.preventDefault(); openStaff(); });
+$('pinBtn').addEventListener('click', tryPin);
+$('pin').addEventListener('keydown', e=>{ if(e.key==='Enter') tryPin(); });
+$('staffBack').addEventListener('click', ()=>show('screen-search'));
+$('staffSignout').addEventListener('click', ()=>show('screen-search'));
+$('staffSearch').addEventListener('input', e=>{ staffQuery=e.target.value; renderStaff(); });
+$('sheetClose').addEventListener('click', closeSheet);
+$('gradeSheet').addEventListener('click', e=>{ if(e.target.id==='gradeSheet') closeSheet(); });
 </script>
 </body>
 </html>
