@@ -133,6 +133,9 @@
   .pill-ghost{flex:none;border:1px solid var(--line);background:#fff;color:var(--ink-soft);font-size:13px;font-weight:600;padding:8px 13px;border-radius:999px;cursor:pointer}
   .pill-ghost:hover{border-color:var(--muted);color:var(--ink)}
   .staff-tools{padding:12px 22px 6px}
+  .seg{display:flex;gap:0;border:1px solid var(--line);border-radius:11px;overflow:hidden;margin-bottom:12px}
+  .seg button{flex:1;border:0;background:#fff;color:var(--ink-soft);font-family:'Archivo',sans-serif;font-weight:700;font-size:13.5px;padding:11px 8px;cursor:pointer}
+  .seg button.on{background:var(--ink);color:#fff}
   .staff-tools input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:13px 15px;font-size:16px;font-family:inherit;color:var(--ink);background:#fff}
   .staff-tools input:focus{outline:none;border-color:var(--marigold);box-shadow:0 0 0 4px rgba(224,152,43,.15)}
   .grade-tabs{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
@@ -250,6 +253,10 @@
         <button class="pill-ghost" id="staffSignout">Sign out</button>
       </div>
       <div class="staff-tools">
+        <div class="seg" id="staffMode">
+          <button data-m="grade" class="on">By grade</button>
+          <button data-m="veh">By bus / van</button>
+        </div>
         <input type="text" id="staffSearch" autocomplete="off" placeholder="Search a student by name&hellip;">
         <div class="grade-tabs" id="gradeTabs"></div>
       </div>
@@ -700,13 +707,25 @@ function idOf(r){ return norm(r.first)+"|"+norm(r.last)+"|"+((r.am&&r.am[0])||(r
 function gradeOf(r){ const o=storeGet(); return (idOf(r) in o) ? o[idOf(r)] : (r.grade||""); }
 function setGrade(r,g){ const o=storeGet(); o[idOf(r)]=g; storeSet(o); }
 
-let staffGrade = "";        // currently selected grade tab ("" = all, "__none" = unassigned)
+let staffGrade = "";        // selected grade tab ("" = all, "__none" = unassigned)
+let staffMode = "grade";    // "grade" | "veh"
+let staffSel = "";          // selected vehicle when in veh mode
 let staffQuery = "";
+
+function vehList(){
+  const set=new Set();
+  DATA.forEach(r=>{ if(r.am&&r.am[0]) set.add(r.am[0]); if(r.pm&&r.pm[0]) set.add(r.pm[0]); });
+  const arr=[...set];
+  const rank=v=>{ const p=String(v).split(' '); if(p[0]==='Bus') return [0,parseInt(p[1])||0]; if(p[0]==='Van') return [1,parseInt(p[1])||0]; return [2,0]; };
+  arr.sort((a,b)=>{const ra=rank(a),rb=rank(b); return ra[0]-rb[0]||ra[1]-rb[1]|| a.localeCompare(b);});
+  return arr;
+}
+function onVeh(r,v){ return (r.am&&r.am[0]===v)||(r.pm&&r.pm[0]===v); }
 
 function openStaff(){ show('screen-staff-gate'); $('pin').value=''; pinMsgClear(); setTimeout(()=>$('pin').focus(),120); }
 function pinMsgClear(){ const m=$('pinMsg'); m.className='form-msg'; m.textContent=''; }
 function tryPin(){
-  if($('pin').value.trim()===STAFF_CODE){ staffGrade=""; staffQuery=""; $('staffSearch').value=""; renderStaff(); show('screen-staff'); }
+  if($('pin').value.trim()===STAFF_CODE){ staffMode='grade'; staffGrade=''; staffSel=''; staffQuery=''; $('staffSearch').value=''; renderStaff(); show('screen-staff'); }
   else { const m=$('pinMsg'); m.className='form-msg show error'; m.textContent='That code isn\u2019t right. Please try again.'; $('pin').select(); }
 }
 
@@ -714,33 +733,46 @@ function arrangement(r){
   const am=r.am||[], pm=r.pm||[];
   if(am[0]==='Parent Pick up' || pm[0]==='Parent Pick up') return '<span class="vchip">Parent pick-up</span>';
   let bits=[];
-  if(am[0]) bits.push('<span class="vchip">'+esc(am[0])+'</span> AM');
+  if(am[0]) bits.push('<span class="vchip">'+esc(am[0])+'</span> AM'+(am[1]?(' '+esc(am[1])):''));
   if(pm[0]) bits.push('<span class="vchip">'+esc(pm[0])+'</span> PM'+(pm[2]==='daycare'?' <span class="dc">&middot; daycare</span>':''));
   if(!bits.length) bits.push('No route on file');
   return bits.join(' &nbsp; ');
 }
 
 function renderTabs(){
-  const g=storeGet();
-  const counts={}; GRADES.forEach(x=>counts[x]=0); let none=0;
-  DATA.forEach(r=>{ const gg=g[idOf(r)]; if(gg&&counts[gg]!=null) counts[gg]++; else if(!gg) none++; });
-  let h='<button class="gtab'+(staffGrade===''?' on':'')+'" data-g="">All<span class="c">'+DATA.length+'</span></button>';
-  h+='<button class="gtab'+(staffGrade==='__none'?' on':'')+'" data-g="__none">No grade<span class="c">'+none+'</span></button>';
-  h+=GRADES.map(x=>'<button class="gtab'+(staffGrade===x?' on':'')+'" data-g="'+x+'">'+x+'<span class="c">'+counts[x]+'</span></button>').join('');
-  $('gradeTabs').innerHTML=h;
-  $('gradeTabs').querySelectorAll('.gtab').forEach(b=>b.onclick=()=>{ staffGrade=b.getAttribute('data-g'); renderStaff(); });
+  let h='';
+  if(staffMode==='grade'){
+    const g=storeGet();
+    const counts={}; GRADES.forEach(x=>counts[x]=0); let none=0;
+    DATA.forEach(r=>{ const gg=(idOf(r) in g)?g[idOf(r)]:(r.grade||''); if(gg&&counts[gg]!=null) counts[gg]++; else if(!gg) none++; });
+    h ='<button class="gtab'+(staffGrade===''?' on':'')+'" data-g="">All<span class="c">'+DATA.length+'</span></button>';
+    h+='<button class="gtab'+(staffGrade==='__none'?' on':'')+'" data-g="__none">No grade<span class="c">'+none+'</span></button>';
+    h+=GRADES.map(x=>'<button class="gtab'+(staffGrade===x?' on':'')+'" data-g="'+x+'">'+x+'<span class="c">'+counts[x]+'</span></button>').join('');
+    $('gradeTabs').innerHTML=h;
+    $('gradeTabs').querySelectorAll('.gtab').forEach(b=>b.onclick=()=>{ staffGrade=b.getAttribute('data-g'); renderStaff(); });
+  } else {
+    const vs=vehList();
+    h='<button class="gtab'+(staffSel===''?' on':'')+'" data-v="">All<span class="c">'+DATA.length+'</span></button>';
+    h+=vs.map(v=>{ const n=DATA.filter(r=>onVeh(r,v)).length; return '<button class="gtab'+(staffSel===v?' on':'')+'" data-v="'+esc(v)+'">'+esc(v)+'<span class="c">'+n+'</span></button>';}).join('');
+    $('gradeTabs').innerHTML=h;
+    $('gradeTabs').querySelectorAll('.gtab').forEach(b=>b.onclick=()=>{ staffSel=b.getAttribute('data-v'); renderStaff(); });
+  }
 }
 
 function renderStaff(){
   renderTabs();
   const q=tokens(staffQuery);
   let rows=DATA.slice();
-  if(staffGrade==='__none') rows=rows.filter(r=>!gradeOf(r));
-  else if(staffGrade) rows=rows.filter(r=>gradeOf(r)===staffGrade);
+  if(staffMode==='grade'){
+    if(staffGrade==='__none') rows=rows.filter(r=>!gradeOf(r));
+    else if(staffGrade) rows=rows.filter(r=>gradeOf(r)===staffGrade);
+  } else {
+    if(staffSel) rows=rows.filter(r=>onVeh(r,staffSel));
+  }
   if(q.length) rows=rows.filter(r=>{ const w=tokens(r.first+' '+r.last); return q.every(t=>w.some(x=>x.startsWith(t))); });
   rows.sort((a,b)=>(a.first+a.last).localeCompare(b.first+b.last));
   if(!rows.length){ $('staffList').innerHTML='<div class="staff-empty">No students here yet.</div>'; return; }
-  $('staffList').innerHTML = rows.map((r,i)=>{
+  $('staffList').innerHTML = rows.map(r=>{
     const gg=gradeOf(r);
     const btn=gg ? '<div class="gbtn"><span class="gg">'+esc(gg)+'</span><span class="gl">grade</span></div>'
                  : '<div class="gbtn empty"><span class="gg">+ Add</span><span class="gl">grade</span></div>';
@@ -771,6 +803,11 @@ $('pin').addEventListener('keydown', e=>{ if(e.key==='Enter') tryPin(); });
 $('staffBack').addEventListener('click', ()=>show('screen-search'));
 $('staffSignout').addEventListener('click', ()=>show('screen-search'));
 $('staffSearch').addEventListener('input', e=>{ staffQuery=e.target.value; renderStaff(); });
+$('staffMode').querySelectorAll('button').forEach(b=>b.addEventListener('click', ()=>{
+  staffMode=b.getAttribute('data-m');
+  $('staffMode').querySelectorAll('button').forEach(x=>x.classList.toggle('on', x===b));
+  staffGrade=''; staffSel=''; renderStaff();
+}));
 $('sheetClose').addEventListener('click', closeSheet);
 $('gradeSheet').addEventListener('click', e=>{ if(e.target.id==='gradeSheet') closeSheet(); });
 </script>
